@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var tradeSchema = mongoose.Schema({
     userOneCard	: String,
     userTwoCard	: String,
-    dateCreated : {
+    dateCompleted : {
         type: Date,
         default: Date.now
     }
