@@ -13,7 +13,18 @@ class OfferList extends Component {
 
 		return (
 			<div className = "OfferList">
-				<MiniCard />
+				<div className = "container">
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+					<div className = "card"><MiniCard className = "card"/></div>
+				</div>
 			</div>
 		)
 	}

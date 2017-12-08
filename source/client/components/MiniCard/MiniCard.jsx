@@ -11,7 +11,7 @@ class MiniCard extends Component {
 
 		return (
 			<div className = "MiniCard">
-				<img src = 'assets/test.jpg' />
+				<img src = 'assets/ramen.jpg' />
 				<div id = "info">
 					Title goes here
 				</div>

@@ -1,0 +1,16 @@
+.OfferList {
+	width: 100%;
+
+	.container {
+		margin: 0 auto;
+		width: 100%;
+		
+		display: flex;
+		flex-wrap: wrap;
+
+		.card {
+			flex-basis: 25%;
+		}
+	}
+
+}
