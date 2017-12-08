@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 var cardSchema = mongoose.Schema({
     title		: String,
     description	: String,
-    image       : String,
+    image       : {
+        type: String,
+        default: null
+    },
     location    : String,
     deadline    : Date,
     tags        : [String],

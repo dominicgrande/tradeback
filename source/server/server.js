@@ -1,12 +1,15 @@
 // Get the packages we need
-var express = require('express'),
-    router = express.Router(),
-    mongoose = require('mongoose'),
-    config = require('./config'),
-    bodyParser = require('body-parser');
-
-// Create our Express application
-var app = express();
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const passport = require('passport')
+const config = require('./config');
+// const User = require('./')
+const router = express.Router();
+const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 
 // Use environment defined port or 3000
 var port = config.port;
@@ -29,8 +32,23 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+/* Passport code */
+
+require('./models').connect(config.passport_db);
+require('./auth/passport')(passport);
+
+// Initialize cookie sessions
+app.use(cookieParser());
+app.use(cookieSession({
+  keys: ['asdf', 'asdf']
+}));
+
+// Initialize Passport
+app.use(passport.initialize()); // Create an instance of Passport
+app.use(passport.session());
+
 // Use routes as a module (see index.js)
-require('./routes')(app, router);
+require('./routes')(app, router, passport);
 
 // Start the server
 app.listen(port);

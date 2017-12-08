@@ -1,7 +1,7 @@
 /*
  * Connect all of your endpoints together here.
  */
-module.exports = function(app, router) {
+module.exports = function(app, router, passport) {
 
     // GET and POST for Cards
     app.use('/api', require('./cards.js')(router));
@@ -12,9 +12,12 @@ module.exports = function(app, router) {
 
     // GET, PUT, and DELETE for a Card
     app.use('/api', require('./cardID.js')(router));
-    // GET, PUT, and DELETE for a trade
+    // GET, PUT, and DELETE for a Trade
     app.use('/api', require('./tradeID.js')(router));
     //GET, PUT, and DELETE for a User
     app.use('/api', require('./userID.js')(router));
+
+    //Add auth api
+    app.use('/auth', require('./auth.js')(router, passport))
 
 };
