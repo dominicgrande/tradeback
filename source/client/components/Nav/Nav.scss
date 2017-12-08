@@ -1,0 +1,18 @@
+nav {
+	font-size: 1em;
+	width: 100%;
+	background-color: red;
+
+	ul {
+		margin: 0 1em 0 0;
+		list-style-type: none;
+		margin-right: 1em;
+		text-align: right;
+
+		li {
+			display: inline-block;
+			padding-right: 0.4em;
+
+		}
+	}
+}

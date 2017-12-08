@@ -1,0 +1,17 @@
+.MiniCard {
+	width: 256px;
+
+	img {
+		width: 100%;
+		height: 192px;
+		background-color: purple;
+	}
+
+	img:hover {
+		opacity: 0.8;
+	}
+
+	#info {
+		background-color: green;
+	}
+}

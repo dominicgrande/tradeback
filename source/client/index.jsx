@@ -1,10 +1,13 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {HashRouter as Router, Route, Link, hashHistory } from 'react-router-dom'
+
 import 'semantic-ui-css/semantic.min.css';
 
 import Home from './components/Home/Home.jsx'
 import Card from './components/Card/Card.jsx';
+
+require('./styles/main.scss')
 
 render(
 	<div>

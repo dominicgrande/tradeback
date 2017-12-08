@@ -1,0 +1,30 @@
+.Home {
+	text-align: center;
+	margin: 0 auto;
+	background-color: blue;
+
+	header {
+		padding-top: 6rem;
+		padding-bottom: 4rem;
+		color: white;
+
+		h1 {
+			font-size: 4rem;
+			margin: 0 auto;
+		}
+
+		h3 {
+			margin: 0 auto;
+		}
+	}
+
+	.tab {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.tabs {
+		flex: 1;
+	}
+}
+
