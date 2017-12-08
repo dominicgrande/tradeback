@@ -3,25 +3,27 @@ import { Input, Form, TextArea, Button } from 'semantic-ui-react'
 
 import styles from './Card.scss'
 
-class CardDisplay extends Component {
+class CardCreate extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
+	}
 
-}
-
-  componentDidMount(){
-
+	//image upload (partially functional)
+	readURL(input) {
+  	if (input.files && input.files[0]) {
+    		var reader = new FileReader();
+				reader.onload = function (e) {
+    				$('#pic')
+        		.attr('src', e.target.result);
+    		};
+		reader.readAsDataURL(input.files[0]);
+    }
   }
+
 
 	render() {
 		return (
 			<div className = "Card">
-
-
-
-
-
-
 				<Form>
 			  	<Form.Field control={Input} label='Card title' placeholder='Calculus Tutor' />
 			    <Form.Field control={TextArea} label='Describe the card and any specific requirements you have.' placeholder='Example: I’m looking for someone with experience tutoring college students in advanced calculus and available weekly Monday nights.' />
