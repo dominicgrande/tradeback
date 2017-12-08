@@ -16,6 +16,7 @@ render(
 		<div>
 		<Route exact path='/' component={Home}/>,
 		<Route exact path='/minicard' component={MiniCard}/>,
+		<Route exact path='/create' component={CardCreate}/>,
 		</div>
 	</Router>
 	</div>,
