@@ -1,39 +1,64 @@
 import React, { Component } from 'react'
-import { Input, Form, TextArea, Button } from 'semantic-ui-react'
+import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 
 import styles from './Card.scss'
 
-class CardCreate extends Component {
+const options = [
+	{ key: 'one', text: 'one', value: 'one' },
+	{ key: 'two', text: 'two', value: 'two' },
+	{ key: 'three', text: 'three', value: 'three' },
+	{ key: 'four', text: 'four', value: 'four' },
+	{ key: 'five', text: 'five', value: 'five' },
+]
+
+class Card extends Component {
+
 	constructor(props) {
 		super(props)
+	  this.state = { options }
+
+		this.handleAddition = this.handleAddition.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	//image upload (partially functional)
-	readURL(input) {
-  	if (input.files && input.files[0]) {
-    		var reader = new FileReader();
-				reader.onload = function (e) {
-    				$('#pic')
-        		.attr('src', e.target.result);
-    		};
-		reader.readAsDataURL(input.files[0]);
-    }
+	handleAddition (e, { value }) {
+    this.setState({
+      options: [{ text: value, value }, ...this.state.options],
+    })
   }
 
+	handleChange (e, { value }) {
+		this.setState({ currentValues: value })
+	}
 
 	render() {
+
+		const { currentValues } = this.state
+
 		return (
 			<div className = "Card">
 				<Form>
-			  	<Form.Field control={Input} label='Card title' placeholder='Calculus Tutor' />
+			  	<Form.Field control={Input} label='Card Title' placeholder='Calculus tutoring' />
 			    <Form.Field control={TextArea} label='Describe the card and any specific requirements you have.' placeholder='Example: I’m looking for someone with experience tutoring college students in advanced calculus and available weekly Monday nights.' />
-					<input type='file' onChange={this.readURL(this)} />
-					<img id="pic" src="http://placehold.it/180" alt="your image" />
 					<Form.Group widths='equal'>
 			    		<Form.Field control={Input} label='Your task location' placeholder='Champaign, IL' />
 			       	<Form.Field control={Input} label='Date/Deadline' placeholder='ASAP' />
 			    </Form.Group>
-			    <Form.Field control={TextArea} label='Tags (select up to five)'/>
+			    <Header size='tiny'>Tags (Select up to five)</Header>
+					<Divider hidden/>
+					<Dropdown
+						options={this.state.options}
+						placeholder='add tag'
+						search
+						selection
+						fluid
+						multiple
+						allowAdditions
+						value={currentValues}
+						onAddItem={this.handleAddition}
+						onChange={this.handleChange}
+					/>
+					<Divider hidden/>
 			    <Form.Group inline>
 			        <Form.Field control={Button}>Offer</Form.Field>
 			        <Form.Field control={Button}>Request</Form.Field>
