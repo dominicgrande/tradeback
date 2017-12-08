@@ -1,7 +1,3 @@
-var mongoose = require("mongoose");
-const config = require('../config');
-mongoose.connect(config.passport_db, { useMongoClient: true});
-
 module.exports = function(router, passport) {
 
     router.post('/register',

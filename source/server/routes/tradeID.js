@@ -1,4 +1,4 @@
-Trade/**
+/**
  * @file Handles GET and POST of the /api/users endpoint
  * @author Kevin Wang
  */
@@ -67,7 +67,7 @@ module.exports = function(router) {
     // module.exports = mongoose.model('Trade', tradeSchema);
 
     url.post(function(req, res) {
-        Card.create({
+        Trade.create({
             userOneCard   : req.body.userOneCard,
             userTwoCard   : req.body.userTwoCard,
             dateCompleted : Date.now()
