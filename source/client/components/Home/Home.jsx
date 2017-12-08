@@ -3,7 +3,7 @@ import { Tab } from 'semantic-ui-react'
 
 import OfferList from './OfferList/OfferList.jsx'
 import Nav from '../Nav/Nav.jsx'
-import Card from '../Card/Card.jsx'
+import CardCreate from '../Card/CardCreate.jsx'
 
 import './Home.scss'
 
