@@ -11,7 +11,7 @@ const options = [
 	{ key: 'five', text: 'five', value: 'five' },
 ]
 
-class Card extends Component {
+class CardCreate extends Component {
 
 	constructor(props) {
 		super(props)
@@ -69,4 +69,4 @@ class Card extends Component {
 	}
 }
 
-export default Card
+export default CardCreate
