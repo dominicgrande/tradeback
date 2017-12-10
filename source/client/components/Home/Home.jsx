@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Tab } from 'semantic-ui-react'
 import OfferList from './OfferList/OfferList.jsx'
 import Nav from '../Nav/Nav.jsx'
-import CardCreate from '../Card/CardCreate.jsx'
+import CardCreate from '../CardCreate/CardCreate.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;

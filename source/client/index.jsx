@@ -5,10 +5,11 @@ import {HashRouter as Router, Route, Link, hashHistory, Switch } from 'react-rou
 import 'semantic-ui-css/semantic.min.css';
 
 import Home from './components/Home/Home.jsx'
-import CardCreate from './components/Card/CardCreate.jsx';
+import CardCreate from './components/CardCreate/CardCreate.jsx';
 import MiniCard from './components/MiniCard/MiniCard.jsx'
 import Login from './components/Login/Login.jsx'
 import Register from './components/Register/Register.jsx'
+import Profile from './components/Profile/Profile.jsx'
 
 require('./styles/main.scss')
 
@@ -22,6 +23,7 @@ render(
 		<Route exact path='/create' component={CardCreate}/>
 		<Route exact path='/login' component={Login}/>
 		<Route exact path='/register' component={Register}/>
+		<Route exact path='/profile' component={Profile}/>
 		</div>
 	</Router>
 	</div>,
