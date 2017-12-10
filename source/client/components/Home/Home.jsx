@@ -22,7 +22,7 @@ class Home extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentWillMount() {
         axios.get('http://localhost:3000/auth/profile').then( (res) => {
             console.log(res);
             this.setState({

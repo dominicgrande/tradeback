@@ -35,7 +35,7 @@ class Profile extends Component {
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
             console.log(res);
-            this.setState({isLoggedIn: true, username: res.data.user.email});
+            this.setState({isLoggedIn: true, username: res.data.user.username});
         }).catch((err) => {
             console.log(err);
             console.log("Not logged in");
