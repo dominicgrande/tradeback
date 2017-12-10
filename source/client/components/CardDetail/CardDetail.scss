@@ -1,0 +1,110 @@
+.CardDetail {
+
+  body {
+    margin: 0;
+  }
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    .header {
+      background-color: #82B2FA;
+      color: white;
+      position: absolute;
+      top: 8%;
+      width: 50%;
+
+      .title {
+        float: left;
+        padding: 10px;
+      }
+
+      .author {
+        float: right;
+        padding: 15px;
+      }
+
+    }
+
+    .card {
+      display: flex;
+      position:absolute;
+      height: 300px;
+      width: 50%;
+      top: 16%;
+      left: 25%;
+      overflow: auto;
+      background-color: #ECECEC;
+
+      .left {
+        order: 1;
+        flex-basis: auto;
+
+        .card-pic {
+          float:left;
+        }
+
+      }
+
+      .right {
+        order: 1;
+        background-color: #ECECEC;
+        padding: .5rem;
+
+        .desc {
+          text-align: left;
+          padding: 10px;
+        }
+
+        .location {
+          text-align: left;
+          float: left;
+          padding: 10px;
+        }
+
+        .deadline {
+          text-align: left;
+          float: right;
+          padding: 10px;
+        }
+
+        .tags {
+          p {
+            display: inline;
+          }
+        }
+
+
+      }
+
+    }
+
+    .offer {
+      position:absolute;
+      height: 25%;
+      width: 50%;
+      bottom: 10%;
+
+      .button {
+        padding: 15px 30px;
+        width: 230px;
+        text-align: center;
+        margin: 0 auto;
+        background-color: #ECECEC;
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
