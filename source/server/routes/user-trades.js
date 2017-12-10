@@ -16,40 +16,47 @@ mongoose.Promise = global.Promise;
 var Trade = require('../models/trade')
 
 module.exports = function(router, passport) {
-    var url = router.route('/user-trades');
+    var url = router.route('/user-trades/:id');
 
     /**
-    * userTrades REST API resource end-point
-    * @endpoint /api/user-trades
-    * @name userTrades
-    * @version v1
-    * @since v1
-    * @description Retrieve a list of trades for a specific user
-    */
+     * userTrades REST API resource end-point
+     * @endpoint /api/user-trades
+     * @name userTrades
+     * @version v1
+     * @since v1
+     * @description Retrieve a list of trades for a specific user
+     */
     url.get(function(req, res) {
-        console.log(req.user.id);
-        if (!req.user) {
-            res.status(401).json({message: "You are not logged in"});
-        } else {
-            let queryOne = Trade.find({cardOneOwner: req.user.id});
-            queryOne.exec(function(err, trades) {
-                if (err) {
-                    res.status(500).json({message: "Internal server error"});
-                } else {
-                    Promise.resolve(trades);
-                }
-            }).then(function(queryOneTrades) {
-                let queryTwo = Trade.find({cardTwoOwner: req.user.id});
-                queryTwo.exec(function(err, trades) {
-                    if (err) {
-                        res.status(500).json({message: "Internal server error"});
-                    } else {
-                        let combinedTrades = queryOneTrades.concat(trades);
-                        res.status(200).json({message: "Send array of trades", data: combinedTrades});
-                    }
+
+        let queryOne = Trade.find({
+            cardOneOwner: req.params.username
+        });
+        queryOne.exec(function(err, trades) {
+            if (err) {
+                res.status(500).json({
+                    message: "Internal server error"
                 });
+            } else {
+                Promise.resolve(trades);
+            }
+        }).then(function(queryOneTrades) {
+            let queryTwo = Trade.find({
+                cardTwoOwner: req.params.username
             });
-        }
+            queryTwo.exec(function(err, trades) {
+                if (err) {
+                    res.status(500).json({
+                        message: "Internal server error"
+                    });
+                } else {
+                    let combinedTrades = queryOneTrades.concat(trades);
+                    res.status(200).json({
+                        message: "Send array of trades",
+                        data: combinedTrades
+                    });
+                }
+            });
+        });
     });
 
     return router;
