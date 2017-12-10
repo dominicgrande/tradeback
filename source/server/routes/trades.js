@@ -67,20 +67,23 @@ module.exports = function(router) {
     // module.exports = mongoose.model('Trade', tradeSchema);
 
     url.post(function(req, res) {
-        Card.create({
+      console.log(req.body);
+        Trade.create({
             userOneCard   : req.body.userOneCard,
             userTwoCard   : req.body.userTwoCard,
-            dateCompleted : Date.now()
-        }, function(err, card) {
+            cardOneOwner  : req.body.cardOneOwner,
+            cardTwoOwner  : req.body.cardTwoOwner,
+            dateCompleted : null
+        }, function(err, trade) {
             if (err) {
                 res.status(500).json({
-                    message: 'Failed to POST Card',
+                    message: 'Failed to POST Trade',
                     data: err
                 });
             } else {
                 res.status(201).json({
-                    message: "Succcessful POST Card",
-                    data: card,
+                    message: "Succcessful POST Trade",
+                    data: trade,
                 });
             }
         })

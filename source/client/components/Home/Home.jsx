@@ -1,22 +1,53 @@
+//React components
 import React, { Component } from 'react'
-import { Tab, Modal } from 'semantic-ui-react'
-
+import { Tab } from 'semantic-ui-react'
 import OfferList from './OfferList/OfferList.jsx'
 import Nav from '../Nav/Nav.jsx'
-import CardCreate from '../Card/CardCreate.jsx'
+import CardCreate from '../CardCreate/CardCreate.jsx'
 
+import axios from 'axios'
+axios.defaults.withCredentials = true;
+
+var config = require('../../config');
+
+//Styling
 import './Home.scss'
+
 
 class Home extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
+		this.state = {
+			isLoggedIn: false
+		}
 	}
+
+	componentDidMount() {
+        axios.get('http://localhost:3000/auth/profile').then( (res) => {
+            console.log(res);
+            this.setState({
+                isLoggedIn: true
+            })
+        }).catch( (err) => {
+					console.log(err);
+					console.log("Not logged in");
+            this.setState({
+                isLoggedIn: false
+            })
+        });
+    }
 
 	render() {
 
 		const panes = [
-		  { menuItem: 'Offers', render: () => <Tab.Pane><OfferList /></Tab.Pane> },
-		  { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> }
+		  { menuItem: 'Offers', render: () =>
+				<Tab.Pane>
+					<OfferList />
+				</Tab.Pane> },
+		  { menuItem: 'Tab 2', render: () =>
+				<Tab.Pane>
+					Tab 2 Content
+				</Tab.Pane> }
 		]
 
 		return (
