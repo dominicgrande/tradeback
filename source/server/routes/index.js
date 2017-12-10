@@ -21,5 +21,5 @@ module.exports = function(app, router, passport) {
 
     app.use('/api', require('./user-trades.js')(router, passport));
 
-    app.user('/api', require('./user-cards.js')(router, passport));
+    app.use('/api', require('./user-cards.js')(router, passport));
 };

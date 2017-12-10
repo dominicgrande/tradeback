@@ -30,7 +30,7 @@ module.exports = function(router, passport) {
         if (!req.user) {
             res.status(401).json({message: "You are not logged in"});
         } else {
-            let query = Trade.find({author_id: req.user.id});
+            let query = Card.find({author: req.user.username});
             query.exec(function(err, cards) {
                 if (err) {
                     res.status(500).json({message: "Internal server error"});

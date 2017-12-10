@@ -31,7 +31,7 @@ module.exports = function(router, passport) {
         if (!req.user) {
             res.status(401).json({message: "You are not logged in"});
         } else {
-            let queryOne = Trade.find({cardOneOwner: req.user.id});
+            let queryOne = Trade.find({cardOneOwner: req.user.username});
             queryOne.exec(function(err, trades) {
                 if (err) {
                     res.status(500).json({message: "Internal server error"});
@@ -39,7 +39,7 @@ module.exports = function(router, passport) {
                     Promise.resolve(trades);
                 }
             }).then(function(queryOneTrades) {
-                let queryTwo = Trade.find({cardTwoOwner: req.user.id});
+                let queryTwo = Trade.find({cardTwoOwner: req.user.username});
                 queryTwo.exec(function(err, trades) {
                     if (err) {
                         res.status(500).json({message: "Internal server error"});

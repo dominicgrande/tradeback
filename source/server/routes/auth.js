@@ -1,5 +1,8 @@
 var config = require("../config")
 
+var User = require('../models/user');
+
+
 module.exports = function(router, passport) {
 
     router.post('/register',
@@ -9,8 +12,8 @@ module.exports = function(router, passport) {
         });
     });
 
-    router.post('/login', 
-        passport.authenticate('local-login', { failureRedirect: '/login', failureFlash: true }), 
+    router.post('/login',
+        passport.authenticate('local-login', { failureRedirect: '/login', failureFlash: true }),
         function(req, res){
                 //Once these are on the same domain this will redirect correctly
                 return res.status(200).json({message: 'ok'});
