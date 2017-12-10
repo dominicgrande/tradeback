@@ -6,6 +6,7 @@ import MiniCard from '../../MiniCard/MiniCard.jsx'
 import './OfferList.scss'
 
 import axios from 'axios'
+axios.defaults.withCredentials = true;
 
 //Configuration file
 var config = require('../../../config');
