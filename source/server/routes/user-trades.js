@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 var Trade = require('../models/trade')
 
 module.exports = function(router, passport) {
-    var url = router.route('/user-trades/:id');
+    var url = router.route('/user-trades/');
 
     /**
      * userTrades REST API resource end-point
@@ -27,14 +27,10 @@ module.exports = function(router, passport) {
      * @description Retrieve a list of trades for a specific user
      */
     url.get(function(req, res) {
-        console.log(req.user.id);
-        if (!req.user) {
-            res.status(401).json({
-                message: "You are not logged in"
-            });
-        } else {
+
+
             let queryOne = Trade.find({
-                cardOneOwner: req.user.username
+                cardOneOwner: req.query.username
             });
             queryOne.exec(function(err, trades) {
                 if (err) {
@@ -42,15 +38,11 @@ module.exports = function(router, passport) {
                         message: "Internal server error"
                     });
                 } else {
-                    let combinedTrades = queryOneTrades.concat(trades);
-                    res.status(200).json({
-                        message: "Send array of trades",
-                        data: combinedTrades
-                    });
+                    Promise.resolve(trades);
                 }
             }).then(function(queryOneTrades) {
                 let queryTwo = Trade.find({
-                    cardTwoOwner: req.user.username
+                    cardTwoOwner: req.query.username
                 });
                 queryTwo.exec(function(err, trades) {
                     if (err) {
@@ -66,7 +58,7 @@ module.exports = function(router, passport) {
                     }
                 });
             });
-        }
+
     });
 
     return router;

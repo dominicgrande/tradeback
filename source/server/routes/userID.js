@@ -6,12 +6,13 @@ var mongoose = require('mongoose');
 var User = require('../models/user');
 
 module.exports = function(router) {
-    var url = router.route('/users/:id');
+    var url = router.route('/user/');
 
     // /api/users/* GET Request - returns data for one task
     url.get(function(req, res) {
+        console.log(req.query);
         User.findOne({
-            _id: req.params.id
+            username: req.query.username
         }, function(err, user) {
             if (err) {
                 res.status(404).json({
