@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tab } from 'semantic-ui-react'
+import { Tab, Modal } from 'semantic-ui-react'
 
 import OfferList from './OfferList/OfferList.jsx'
 import Nav from '../Nav/Nav.jsx'
