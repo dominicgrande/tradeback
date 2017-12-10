@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
-import styles from './Card.scss'
+import styles from './CardCreate.scss'
 import TradePage from '../TradePage/TradePage.jsx'
 
 const options = [
