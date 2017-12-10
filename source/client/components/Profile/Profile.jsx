@@ -13,25 +13,25 @@ class Profile extends Component {
         super(props);
         this.state = {
             isLoggedIn: false,
-            userName: ""
+            username: ""
         }
     }
 
     componentWillMount() {
         let webUrl = window.location.href.split("/")
-        let userName = webUrl.pop();
+        let username = webUrl.pop();
         if (webUrl.length > 3) {
-            this.setState({userName: userName});
+            this.setState({username: username});
         }
     }
 
     componentDidMount() {
-        let end_point = config.api_endpoint;
+        let endpoint = config.api_endpoint;
         let _this = this;
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
             console.log(res);
-            this.setState({isLoggedIn: true, userName: res.data.user.email});
+            this.setState({isLoggedIn: true, username: res.data.user.email});
         }).catch((err) => {
             console.log(err);
             console.log("Not logged in");
@@ -50,7 +50,7 @@ class Profile extends Component {
         // });
         // Get User data
 
-        axios.get(end_point + '/api/user/' + this.state.userName).then(function(response) {
+        axios.get(endpoint + '/api/user/' + "?id=" + this.state.username).then(function(response) {
             console.log(response.data.data);
             _this.setState({});
         }).catch(function(error) {

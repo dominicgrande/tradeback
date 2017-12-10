@@ -29,9 +29,13 @@ module.exports = function(router, passport) {
     url.get(function(req, res) {
         console.log(req.user.id);
         if (!req.user) {
-            res.status(401).json({message: "You are not logged in"});
+            res.status(401).json({
+                message: "You are not logged in"
+            });
         } else {
-            let queryOne = Trade.find({cardOneOwner: req.user.username});
+            let queryOne = Trade.find({
+                cardOneOwner: req.user.username
+            });
             queryOne.exec(function(err, trades) {
                 if (err) {
                     res.status(500).json({
@@ -45,17 +49,24 @@ module.exports = function(router, passport) {
                     });
                 }
             }).then(function(queryOneTrades) {
-                let queryTwo = Trade.find({cardTwoOwner: req.user.username});
+                let queryTwo = Trade.find({
+                    cardTwoOwner: req.user.username
+                });
                 queryTwo.exec(function(err, trades) {
                     if (err) {
-                        res.status(500).json({message: "Internal server error"});
+                        res.status(500).json({
+                            message: "Internal server error"
+                        });
                     } else {
                         let combinedTrades = queryOneTrades.concat(trades);
-                        res.status(200).json({message: "Send array of trades", data: combinedTrades});
+                        res.status(200).json({
+                            message: "Send array of trades",
+                            data: combinedTrades
+                        });
                     }
                 });
             });
-        });
+        }
     });
 
     return router;
