@@ -18,7 +18,8 @@ var cardSchema = mongoose.Schema({
         type: Boolean,
         default: true
     },
-    author: String
+    author: String,
+    author_id: String
 });
 
 module.exports = mongoose.model('Card', cardSchema);

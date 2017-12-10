@@ -64,6 +64,7 @@ module.exports = function(router) {
             status: req.body.status,
             offer: req.body.offer,
             author: req.body.author,
+            author_id: req.body.author_id
         }, function(err, card) {
             if (err) {
                 res.status(500).json({
