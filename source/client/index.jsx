@@ -5,7 +5,7 @@ import {HashRouter as Router, Route, Link, hashHistory, Switch } from 'react-rou
 import 'semantic-ui-css/semantic.min.css';
 
 import Home from './components/Home/Home.jsx'
-import CardCreate from './components/Card/CardCreate.jsx';
+import CardCreate from './components/CardCreate/CardCreate.jsx';
 import MiniCard from './components/MiniCard/MiniCard.jsx'
 import Login from './components/Login/Login.jsx'
 import Register from './components/Register/Register.jsx'
