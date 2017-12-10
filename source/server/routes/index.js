@@ -21,7 +21,5 @@ module.exports = function(app, router, passport) {
 
     app.use('/api', require('./user-trades.js')(router, passport));
 
-    //Add auth api
-    // app.use('/auth', require('./auth')(router, passport))
-
+    app.user('/api', require('./user-cards.js')(router, passport));
 };

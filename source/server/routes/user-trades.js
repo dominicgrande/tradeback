@@ -5,7 +5,7 @@
  */
 
 /**
- * @namespace server.usertrades
+ * @namespace server
  */
 
 /**
@@ -36,7 +36,6 @@ module.exports = function(router, passport) {
                 if (err) {
                     res.status(500).json({message: "Internal server error"});
                 } else {
-                    console.log(trades);
                     Promise.resolve(trades);
                 }
             }).then(function(queryOneTrades) {
@@ -45,7 +44,6 @@ module.exports = function(router, passport) {
                     if (err) {
                         res.status(500).json({message: "Internal server error"});
                     } else {
-                        console.log(trades);
                         let combinedTrades = queryOneTrades.concat(trades);
                         res.status(200).json({message: "Send array of trades", data: combinedTrades});
                     }
