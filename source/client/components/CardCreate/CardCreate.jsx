@@ -36,7 +36,7 @@ class CardCreate extends Component {
 		const { currentValues } = this.state
 
 		return (
-			<div className = "Card">
+			<div className = "CardCreate">
 				<Form>
 			  	<Form.Field control={Input} label='Card Title' placeholder='Calculus tutoring' />
 			    <Form.Field control={TextArea} label='Describe the card and any specific requirements you have.' placeholder='Example: I’m looking for someone with experience tutoring college students in advanced calculus and available weekly Monday nights.' />
