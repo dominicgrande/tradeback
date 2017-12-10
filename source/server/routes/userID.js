@@ -24,6 +24,7 @@ module.exports = function(router) {
                     data: []
                 });
             } else {
+                delete user.password;
                 res.status(200).json({
                     message: 'User ID GET Succesful',
                     data: user
