@@ -15,9 +15,9 @@ render(
 	<div>
 	<Router history={hashHistory}>
 		<div>
-		<Route exact path='/' component={Home}/>,
-		<Route exact path='/minicard' component={MiniCard}/>,
-		<Route exact path='/create' component={CardCreate}/>,
+		<Route exact path='/' component={Home}/>
+		<Route exact path='/minicard' component={MiniCard}/>
+		<Route exact path='/create' component={CardCreate}/>
 		<Route exact path='/tradepage' component={TradePage}/>
 		</div>
 	</Router>
