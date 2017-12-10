@@ -9,6 +9,7 @@ import CardCreate from './components/Card/CardCreate.jsx';
 import MiniCard from './components/MiniCard/MiniCard.jsx'
 import Login from './components/Login/Login.jsx'
 import Register from './components/Register/Register.jsx'
+import Profile from './components/Profile/Profile.jsx'
 
 require('./styles/main.scss')
 
@@ -22,6 +23,7 @@ render(
 		<Route exact path='/create' component={CardCreate}/>
 		<Route exact path='/login' component={Login}/>
 		<Route exact path='/register' component={Register}/>
+		<Route exact path='/profile' component={Profile}/>
 		</div>
 	</Router>
 	</div>,
