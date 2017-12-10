@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Tab} from 'semantic-ui-react'
+import ProfileCardList from './ProfileCardList/ProfileCardList.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -13,7 +14,10 @@ class Profile extends Component {
         super(props);
         this.state = {
             isLoggedIn: false,
-            username: ""
+            username: "",
+            user: {},
+            usercards: [],
+            usertrades: []
         }
     }
 
@@ -50,20 +54,37 @@ class Profile extends Component {
         // });
         // Get User data
 
-        axios.get(endpoint + '/api/user/' + "?id=" + this.state.username).then(function(response) {
+        axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
             console.log(response.data.data);
-            _this.setState({});
+            _this.setState({
+              user: response.data.data
+            });
         }).catch(function(error) {
             console.log(error);
         });
-    }
+
+        axios.get(endpoint + '/api/user-cards/'+'?username='+this.state.username).then(function(response){
+          _this.setState({
+            usercards: response.data.data
+          });
+        });
+
+       axios.get(endpoint + '/api/user-trades/'+'?username=' + this.state.username).then(function(response){
+         console.log(response.data.data);
+         _this.setState({
+           usertrades: response.data.data
+         })
+       });
+    };
 
     render() {
 
         const panes = [
             {
                 menuItem: 'Open cards',
-                render: () => <Tab.Pane>Open cards content</Tab.Pane>
+                render: () => <Tab.Pane>
+                <ProfileCardList cards={this.state.usercards}/>
+                </Tab.Pane>
             }, {
                 menuItem: 'Trading activity',
                 render: () => <Tab.Pane>Trading activity content</Tab.Pane>
@@ -73,10 +94,10 @@ class Profile extends Component {
         return (<div className="Profile">
             <div className="userInfo">
                 <img className="profile-pic" src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAloAAAAJDRkZGY2MWZmLTM1NDYtNDBhOS04MjYwLWNkM2UzYjdiZGZmMA.png" alt="profilepic" height="200" width="200"/>
-                <h2 className="username">Jane Doe</h2>
-                <h3 className="location">Champaign, IL</h3>
-                <p className="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis arcu cursus urna euismod molestie.</p>
-                <div className="tags"></div>
+                <h2 className="username">{this.state.user.username}</h2>
+                <h3 className="location">{this.state.user.location}</h3>
+                <p className="description">{this.state.user.description}</p>
+                <div className="tags">{this.state.user.tags}</div>
             </div>
             <Tab className="activity" panes={panes}/>
         </div>)
