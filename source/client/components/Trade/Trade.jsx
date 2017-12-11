@@ -14,18 +14,18 @@ class Trade extends Component {
 	render() {
 		return (
 			<div className = "Trade">
-				<MiniCard key="cardOne" className = "UserCardOne" title = {this.state.trade.userOneCard.title}
-					description = {this.state.trade.userOneCard.description}
-					img = {this.state.trade.userOneCard.image}
+				<MiniCard key="cardOne" className = "UserCardOne" title = {this.state.trade.userOneCardObject.title}
+					description = {this.state.trade.userOneCardObject.description}
+					img = {this.state.trade.userOneCardObject.image}
 					/>
 				<div class = "info">
 					<p>
 						{this.state.trade.cardOneOwner} traded with {this.state.trade.cardTwoOwner}
 					</p>
 				</div>
-				<MiniCard key="cardTwo" className = "UserCardTwo" title = {this.state.trade.userTwoCard.title}
-					description = {this.state.trade.userTwoCard.description}
-					img = {this.state.trade.userTwoCard.image}
+				<MiniCard key="cardTwo" className = "UserCardTwo" title = {this.state.trade.userTwoCardObject.title}
+					description = {this.state.trade.userTwoCardObject.description}
+					img = {this.state.trade.userTwoCardObject.image}
 					/>
 			</div>
 		)

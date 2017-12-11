@@ -8,7 +8,9 @@ var tradeSchema = mongoose.Schema({
     dateCompleted : {
         type: Date,
         default: Date.now
-    }
+    },
+    userOneCardObject : Object,
+    userTwoCardObject : Object
 });
 
 module.exports = mongoose.model('Trade', tradeSchema);
