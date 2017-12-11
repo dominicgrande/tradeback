@@ -17,11 +17,13 @@ class MiniCard extends Component {
 
 		return (
 			<div className = "MiniCard">
-				<img src = {this.state.img} />
-				<div className = "title">
-					<h4>
-						{this.state.title}
-					</h4>
+				<div className="mini-card">
+					<img src = {this.state.img} />
+					<div className = "title">
+						<h4>
+							{this.state.title}
+							</h4>
+					</div>
 				</div>
 			</div>
 		)
