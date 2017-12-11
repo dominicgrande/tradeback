@@ -20,7 +20,8 @@ class Trade extends Component {
 					/>
 				<div class = "info">
 					<p>
-						{this.state.trade.cardOneOwner} traded with {this.state.trade.cardTwoOwner}
+						<a href = {"#/profile/" + this.state.trade.cardOneOwner}>{this.state.trade.cardOneOwner}</a> traded with
+						<a href = {"#/profile/" + this.state.trade.cardTwoOwner}> {this.state.trade.cardTwoOwner}</a>
 					</p>
 				</div>
 				<MiniCard key="cardTwo" className = "UserCardTwo" title = {this.state.trade.userTwoCardObject.title}

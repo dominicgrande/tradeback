@@ -8,6 +8,7 @@ import {
     Button,
     Dropdown
 } from 'semantic-ui-react'
+import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import styles from './CardDetail.scss'
 
@@ -72,6 +73,7 @@ class CardDetail extends Component {
 
     render() {
         return (<div className="CardDetail">
+          <MiniNav />
             <div className="header">
                 <h2 className="title">{this.state.usercard.title}</h2>
                 <p className="author">
@@ -79,12 +81,13 @@ class CardDetail extends Component {
                 </p>
             </div>
             <Divider hidden="hidden"/>
+                        <div className="wrapper">
             <div className="card">
                 <div className="left">
                     <img className="card-pic" src={this.state.usercard.image} alt="card-pic" height="300" width="300"/>
                 </div>
                 <div className="right">
-                    <p className="description">{this.state.usercard.description}</p>
+                    <p className="desc">{this.state.usercard.description}</p>
                     <div className="location">
                         <h3>Location</h3>
                         <p>{this.state.usercard.location}</p>
@@ -106,8 +109,9 @@ class CardDetail extends Component {
             <div className="offer">
                 <h3>Interested in trading this card?</h3>
                 <h2 className="button">Make an Offer</h2>
-                <p>Or keep searching</p>
+                <p>Or <a href = "#/">keep searching</a></p>
             </div>
+          </div>
         </div>)
     }
 }
