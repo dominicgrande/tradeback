@@ -52,7 +52,7 @@ class CardDetail extends Component {
         console.log(this.state.id);
         axios.get(endpoint + '/api/card/' + '?id=' + this.state.id).then(function(response) {
             console.log(response.data);
-            _this.setState({usercard: response.data});
+            _this.setState({usercard: response.data.data});
         });
     }
 
@@ -74,7 +74,9 @@ class CardDetail extends Component {
         return (<div className="CardDetail">
             <div className="header">
                 <h2 className="title">{this.state.usercard.title}</h2>
-                <p className="author">{this.state.usercard.author}</p>
+                <p className="author">
+                    <a href={"#/profile/" + this.state.usercard.author}>{this.state.usercard.author}</a>
+                </p>
             </div>
             <Divider hidden="hidden"/>
             <div className="card">
