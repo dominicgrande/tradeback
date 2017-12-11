@@ -39,13 +39,15 @@ class OfferList extends Component {
 	render() {
 		return (
 			<div className = "OfferList">
-			{
+				<div className="flexcontainer">
+					{
             this.state.card_list.map((element, index) => {
               return (
                 <MiniCard key={element+"MiniCard"} title={element.title} description={element.description} img={element.image} />
               )
             })
          	}
+				</div>
 			</div>
 		)
 	}
