@@ -8,6 +8,7 @@ import {
     Button,
     Dropdown
 } from 'semantic-ui-react'
+import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import styles from './CardCreate.scss'
 
@@ -130,7 +131,8 @@ class CardCreate extends Component {
         const {currentValues} = this.state
 
         return (<div className="CardCreate">
-            <Form>
+            <MiniNav />
+            <Form className="card">
                 <Form.Field id="title" control={Input} label='Card Title' placeholder='Calculus tutoring'/>
                 <Form.Field id="description" control={TextArea} label='Describe the card and any specific requirements you have.' placeholder='Example: I’m looking for someone with experience tutoring college students in advanced calculus and available weekly Monday nights.'/>
                 <Form.Group widths='equal'>

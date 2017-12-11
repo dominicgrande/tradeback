@@ -1,0 +1,55 @@
+@font-face {
+	font-family: Cubano;
+	src: url('assets/Cubano/cubano-regular-webfont.ttf'),
+	url('assets/Cubano/cubano-regular-webfont.eot');
+}
+
+nav {
+	font-size: 1em;
+	position: fixed;
+	z-index: 99;
+	height: 70px;
+	width: 100%;
+	background-color: #275AD7;
+
+	h1 {
+		font-family: 'Cubano';
+		color: white;
+		text-align: left;
+		float: left;
+		padding: 15px 10px 10px 20px;
+		display: inline;
+
+		a, a:hover {
+			color: white;
+		}
+
+	}
+
+	h1:hover {
+		color: #EDF5FF;
+	}
+
+	ul {
+		margin: 1.5em 1em 1em 1em;
+		float: right;
+		list-style-type: none;
+		margin-right: 1em;
+		text-align: right;
+
+		li {
+			display: inline;
+			padding-right: 1.5em;
+
+			a {
+				color: white;
+			}
+
+			a:hover {
+				color: white;
+				text-decoration: underline;
+			}
+
+		}
+	}
+}
