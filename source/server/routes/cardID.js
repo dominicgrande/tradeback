@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Card = require('../models/card');
 
 module.exports = function(router) {
-    var url = router.route('/cards/:id');
+    var url = router.route('/card/:id');
 
     // /api/users/* GET Request - returns data for one task
     url.get(function(req, res) {

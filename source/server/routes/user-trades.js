@@ -29,22 +29,21 @@ module.exports = function(router, passport) {
  */
     url.get(function(req, res) {
         let queryOne = Trade.find({cardOneOwner: req.query.username});
-        queryOne.exec(function(err, trades) {
-            if (err) {
-                res.status(500).json({message: "Internal server error"});
-            } else {
-                Promise.resolve(trades);
-            }
-        }).then(function(queryOneTrades) {
+        queryOne.exec()
+        .then(function(trades){
+            return trades;
+        })
+        .then(function(queryOneTrades) {
             let queryTwo = Trade.find({cardTwoOwner: req.query.username});
-            queryTwo.exec(function(err, trades) {
-                if (err) {
-                    res.status(500).json({message: "Internal server error"});
-                } else {
-                    let combinedTrades = queryOneTrades.concat(trades);
-                    Promise.resolve(combinedTrades);
+            return queryTwo.exec().then(
+                function(trades) {
+                    let new_trades = queryOneTrades.concat(trades);
+                    console.log(new_trades);
+                    return new_trades;
                 }
-            }).then(function(trades) {
+            )
+        }).then(function(trades) {
+                console.log(trades);
 
                 let promise = new Promise((resolve, reject) => {
                   resolve(0);
@@ -65,15 +64,15 @@ module.exports = function(router, passport) {
                     }));
                     promise = promise.then(function(cardOne) {
                         trades[i].userOneCard = cardOne;
-                    });   
-                    
+                    });
+
                     let promiseTwo = new Promise((resolve, reject) => {
                         cardTwoQuery.then(() => cardTwoQuery.exec(function(err, card) {
                             if (err) {
                                 res.status(500).json({message: "Internal server error"});
                                 reject();
                             } else {
-                                resolve(card);                           
+                                resolve(card);
                             }
                         }));
                     });
@@ -93,7 +92,7 @@ module.exports = function(router, passport) {
                     res.status(500).json({message: "Internal server error"});
                 });
             });
-        });
+        // });
     });
 
     return router;
