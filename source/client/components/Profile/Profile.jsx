@@ -20,6 +20,8 @@ class Profile extends Component {
             usercards: [],
             usertrades: []
         }
+        
+        this.updateData = this.updateData.bind(this);
     }
 
     componentWillMount() {
@@ -71,6 +73,63 @@ class Profile extends Component {
             _this.setState({usertrades: response.data.data})
         });
     };
+
+    componentWillReceiveProps(props){
+      console.log("Receive props");
+      let webUrl = window.location.href.split("/")
+      let username = webUrl.pop();
+      if (webUrl.length > 3) {
+          this.setState({username: username}, this.updateData);
+      }
+    }
+
+    updateData(){
+      let endpoint = config.api_endpoint;
+      let _this = this;
+      // Check login
+      axios.get(endpoint + '/auth/profile').then((res) => {
+          console.log(res);
+          this.setState({isLoggedIn: true, username: res.data.user.username});
+      }).catch((err) => {
+          console.log(err);
+          console.log("Not logged in");
+          this.setState({isLoggedIn: false})
+      });
+
+      // var userSchema = mongoose.Schema({
+      //     email		: String,
+      //     password	: String,
+      //     location    : String,
+      //     description : String,
+      //     tags        : [String],
+      //     cards       : [String],
+      //     trades      : [String],
+      //     profile     : String
+      // });
+      // Get User data
+
+      axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
+          console.log(response.data.data);
+          _this.setState({
+            user: response.data.data
+          });
+      }).catch(function(error) {
+          console.log(error);
+      });
+
+      axios.get(endpoint + '/api/user-cards/'+'?username='+this.state.username).then(function(response){
+        _this.setState({
+          usercards: response.data.data
+        });
+      });
+
+     axios.get(endpoint + '/api/user-trades/'+'?username=' + this.state.username).then(function(response){
+       console.log(response.data.data);
+       _this.setState({
+         usertrades: response.data.data
+       })
+     });
+    }
 
     render() {
 

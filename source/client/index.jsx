@@ -25,7 +25,7 @@ render(
 		<Route exact path='/detail' component={CardDetail}/>
 		<Route exact path='/login' component={Login}/>
 		<Route exact path='/register' component={Register}/>
-		<Route exact path='/profile/*' component={Profile}/>
+		<Route path='/profile/' component={Profile}/>
 		</div>
 	</Router>
 	</div>,

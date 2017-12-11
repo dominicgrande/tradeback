@@ -21,8 +21,8 @@ class ProfileCardList extends Component {
 	}
 
 	componentWillReceiveProps(newProps) {
-         this.setState({ card_list: newProps.cards })
-    }
+         this.setState({ card_list: newProps.cards });
+  }
 
 	render() {
 		return (
