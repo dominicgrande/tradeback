@@ -12,6 +12,17 @@ class MiniCard extends Component {
 			img: props.img,
 		}
 	}
+	
+	componentWillReceiveProps(newProps) {
+         	this.setState(
+				{
+					title: newProps.title,
+					description: newProps.description,
+					img: newProps.img
+				}
+		);
+    	}
+
 
 	render() {
 
