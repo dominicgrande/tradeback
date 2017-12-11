@@ -4,24 +4,46 @@
 
 	.mini-card {
 		display: inline-block;
+		position:relative;
 		text-align: center;
 	  flex-basis: 0;
 		height: 256px;
 		width: 256px;
 	}
 
+	.desc {
+    display: none;
+		text-align: left;
+		position:absolute;
+		height: 256px;
+		width: 256px;
+		background: rgba(39, 90, 215, 0.9);
+		color: white;
+		padding: 30px;
+		top:0;
+		left:0;
+		z-index:1;
+		display:none;
+	}
+
 	.mini-card:hover {
 		opacity: 0.8;
 	}
 
+	.mini-card:hover .desc {
+	    display: block;
+	}
+
 	img {
-	//	border: 5px solid red;
 		height: 256px;
 		width: 256px;
 		background-color: #275AD7;
 	}
 
-	#info {
-		background-color: green;
+	.title {
+		margin-top: -6px;
+		background-color: #ECECEC;
+		padding: 15px;
 	}
+
 }
