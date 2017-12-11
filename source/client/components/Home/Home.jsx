@@ -44,7 +44,7 @@ class Home extends Component {
 				<Tab.Pane>
 					<OfferList />
 				</Tab.Pane> },
-		  { menuItem: 'Tab 2', render: () =>
+		  { menuItem: 'Requests', render: () =>
 				<Tab.Pane>
 					Tab 2 Content
 				</Tab.Pane> }
@@ -56,7 +56,6 @@ class Home extends Component {
 				<header>
 					<h1>Tradeback</h1>
 					<h3>A local marketplace where you can share skills and experiences to solve everyday problems</h3>
-
 				</header>
 				<Tab panes = {panes}/>
 			</div>
