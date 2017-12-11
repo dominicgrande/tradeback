@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Tab} from 'semantic-ui-react'
 import ProfileCardList from './ProfileCardList/ProfileCardList.jsx'
 import ProfileTradeList from './ProfileTradeList/ProfileTradeList.jsx'
+import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -20,7 +21,7 @@ class Profile extends Component {
             usercards: [],
             usertrades: []
         }
-        
+
         this.updateData = this.updateData.bind(this);
     }
 
@@ -148,6 +149,7 @@ class Profile extends Component {
         ]
 
         return (<div className="Profile">
+          <MiniNav />
             <div className="userInfo">
                 <img className="profile-pic" src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAloAAAAJDRkZGY2MWZmLTM1NDYtNDBhOS04MjYwLWNkM2UzYjdiZGZmMA.png" alt="profilepic" height="200" width="200"/>
                 <h2 className="username">{this.state.user.username}</h2>

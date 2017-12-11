@@ -8,13 +8,12 @@
     display: flex;
     justify-content: center;
 
-
     .wrapper {
       // position: relative;
     }
 
     .header {
-      background-color: #82B2FA;
+      background-color: #787878;
       color: white;
       position: absolute;
       top: 140px;
@@ -66,7 +65,6 @@
 
       .right {
         order: 1;
-        background-color: #ECECEC;
         padding: .5rem;
 
         .desc {

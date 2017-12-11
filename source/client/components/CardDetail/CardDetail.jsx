@@ -96,14 +96,13 @@ class CardDetail extends Component {
                         <h3>Date/Deadline</h3>
                         <p>{this.state.usercard.deadline}</p>
                     </div>
-                    {/*
+            {/*
 						<div className="tags">
 							<p> One </p>
 							<p> Two </p>
 							<p> Three </p>
 						</div>
-						*/
-                    }
+            */}
                 </div>
             </div>
             <div className="offer">

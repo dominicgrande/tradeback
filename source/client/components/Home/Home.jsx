@@ -57,7 +57,7 @@ class Home extends Component {
 				<form className="bar">
     			<input className="search" type="text" name="search" placeholder="Search"/>
 				</form>
-				<h4>TRENDING</h4>
+				<h4 className="trending">TRENDING</h4>
 				<p className="tags">#tutoring</p>
 				<p className="tags">#labor</p>
 				<p className="tags">#art</p>
