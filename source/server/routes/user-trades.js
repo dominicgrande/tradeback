@@ -63,7 +63,7 @@ module.exports = function(router, passport) {
                         }
                     }));
                     promise = promise.then(function(cardOne) {
-                        trades[i].userOneCard = cardOne;
+                        trades[i].userOneCardObject = cardOne;
                     });
 
                     let promiseTwo = new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ module.exports = function(router, passport) {
                     });
 
                     promiseTwo = promiseTwo.then(function(cardTwo){
-                        trades[i].userTwoCard = cardTwo;
+                        trades[i].userTwoCardObject = cardTwo;
                     })
 
                     promises.push(promise);
