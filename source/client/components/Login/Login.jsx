@@ -84,7 +84,6 @@ class Login extends Component {
                 <p>{this.state.logged_in}</p>
                 <input className="button" type="submit" value="Login" />
                 <h4>No account yet? <a href = "#/register">Register now!</a></h4>
-                <h4><a href = "#/">Go to Homepage</a></h4>
               </form>
               </div>
           </div>
