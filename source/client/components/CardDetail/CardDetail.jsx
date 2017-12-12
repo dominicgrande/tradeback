@@ -100,6 +100,10 @@ class CardDetail extends Component {
     }
 
     render() {
+        let deadline = this.state.usercard.deadline
+        if (deadline !== undefined) {
+            deadline = deadline.substring(0, 10)
+        }
         return (<div className="CardDetail">
             <MiniNav/>
             <div className="header">
@@ -121,8 +125,8 @@ class CardDetail extends Component {
                             <p>{this.state.usercard.location}</p>
                         </div>
                         <div className="deadline">
-                            <h3>Date/Deadline</h3>
-                            <p>{this.state.usercard.deadline}</p>
+                            <h3>Deadline</h3>
+                            <p>{deadline}</p>
                         </div>
                     </div>
                 </div>
