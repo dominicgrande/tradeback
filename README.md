@@ -4,11 +4,12 @@ To run the databse server: `npm start`
 ### To do:
 - [ ] Imgur API
 - [x] Trade page - Sort of. Currently when we hit trade it posts immediately instead of being pending.
-- [ ] Custom create page
+- [x] Custom create page
 - [x] Append make offer
 - [ ] Pending offers page
 - [ ] Settings page
 - [ ] Tags
+- [ ] Nav bars based on if user is logged on or not
 - [x] Search (by title and tag) (tag search still needs to be implemented)
 - [ ] Filter by date
 - [ ] Logout
@@ -16,7 +17,7 @@ To run the databse server: `npm start`
 - [x] Profile card list click -> card detail
 - [x] Profile trade list click -> card detail
 - [ ] Rating system
-- [ ] SCSS styling
+- [ ] SCSS styling and responsiveness
 - [ ] Cross-browser compatibility
 - [ ] Heroku deployment
 - [ ] Video
