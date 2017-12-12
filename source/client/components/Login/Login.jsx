@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-//import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import Nav from '../Nav/Nav.jsx'
@@ -87,31 +86,6 @@ class Login extends Component {
               </form>
               </div>
           </div>
-
-          /*
-
-          <div className = "Login">
-              <Nav />
-            <form className="LoginStyle" action="/" onSubmit={this.onSubmit}>
-            <Card className="Login__content">
-                <div>
-                    <h1>Login</h1>
-                    <Input className="content" label="Username" onChange={this.onChangeEmail} />
-                    <br/><br/>
-                    <Input className="content" label="Password" onChange={this.onChangePassword} />
-                    <br/><br/>
-
-                    <p>{this.state.logged_in}</p>
-                    <Input type="submit" />
-                    <h4>No account yet? Click <Link to="/register">here</Link> to Register!</h4>
-
-                    <Link to="../"><p>Go to Dashboard</p></Link>
-                </div>
-            </Card>
-        </form>
-      </div>
-
-    */
     )
 }
 }
