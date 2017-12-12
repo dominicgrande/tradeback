@@ -84,7 +84,7 @@ class CardDetail extends Component {
                         <div className="wrapper">
             <div className="card">
                 <div className="left">
-                    <img className="card-pic" src={this.state.usercard.image} alt="card-pic" height="300" width="300"/>
+                    <img className="card-pic" src={this.state.usercard.image} height="300" width="300"/>
                 </div>
                 <div className="right">
                     <p className="desc">{this.state.usercard.description}</p>

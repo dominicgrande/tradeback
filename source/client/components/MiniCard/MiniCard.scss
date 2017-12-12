@@ -13,6 +13,8 @@
 
 	.desc {
     display: none;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
 		text-align: left;
 		position:absolute;
 		height: 256px;
@@ -35,13 +37,17 @@
 	}
 
 	img {
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
 		height: 256px;
 		width: 256px;
 		background-color: #275AD7;
 	}
 
 	.title {
-		margin-top: -6px;
+		margin-top: -9px;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
 		background-color: #ECECEC;
 		padding: 15px;
 	}
