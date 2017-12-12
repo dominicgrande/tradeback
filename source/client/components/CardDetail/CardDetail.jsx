@@ -29,6 +29,8 @@ class CardDetail extends Component {
             isLoggedIn: false,
             username: ""
         }
+
+        this.makeOffer = this.makeOffer.bind(this);
     }
 
     componentWillMount() {
@@ -74,6 +76,29 @@ class CardDetail extends Component {
 
     componentDidMount() {}
 
+    makeOffer(){
+        if (this.state.makeoffer){
+            return (
+                <div className="offer">
+                    <MakeOffer otherOffer={this.state.usercard.author} otherCardID={this.state.id}/>  
+                </div>
+            );
+        } else {
+            return (
+                <div className="offer">
+                    <h3>Interested in trading this card?</h3>
+                    <h2 className="button" onClick={()=>{
+                            this.setState({makeoffer: true});
+                        }}>Make a Trade</h2>
+                    <p>Or
+                        <br/>
+                        <a href="#/">keep searching</a>
+                    </p>
+                </div>
+            );
+        }
+    }
+
     render() {
         return (<div className="CardDetail">
             <MiniNav/>
@@ -99,25 +124,12 @@ class CardDetail extends Component {
                             <h3>Date/Deadline</h3>
                             <p>{this.state.usercard.deadline}</p>
                         </div>
-                        {/*
-						<div className="tags">
-							<p> One </p>
-							<p> Two </p>
-							<p> Three </p>
-						</div>
-            */
-                        }
                     </div>
                 </div>
-                <div className="offer">
-                    <h3>Interested in trading this card?</h3>
-                    <h2 className="button">Make an Offer</h2>
-                    <p>Or
-                        <a href="#/">keep searching</a>
-                    </p>
-                </div>
-                {/*}<MakeOffer/>*/}
             </div>
+            {
+                this.makeOffer()
+            }
         </div>)
     }
 }

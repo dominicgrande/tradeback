@@ -16,7 +16,10 @@ class MakeOffer extends Component {
             isLoggedIn: false,
             username: "",
             user: {},
-            usercards: []
+            usercards: [],
+            currentlySelectedCard: "",
+            otherAuthor: props.otherAuthor,
+            otherCardID: props.otherCardID
         }
         this.updateData = this.updateData.bind(this);
     }
@@ -41,7 +44,7 @@ class MakeOffer extends Component {
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
             console.log(res);
-            this.setState({isLoggedIn: true, username: res.data.user.username});
+            this.setState({isLoggedIn: true, username: res.data.user.username}, this.populate_data.bind(this));
         }).catch((err) => {
             console.log(err);
             console.log("Not logged in");
@@ -59,9 +62,12 @@ class MakeOffer extends Component {
         //     profile     : String
         // });
         // Get User data
+    }
 
+    populate_data(){
+        let endpoint = config.api_endpoint;
+        let _this = this;
         axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
-            console.log(response.data.data);
             _this.setState({user: response.data.data});
         }).catch(function(error) {
             console.log(error);
@@ -69,7 +75,6 @@ class MakeOffer extends Component {
 
         axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username).then(function(response) {
             _this.setState({usercards: response.data.data});
-            console.log("=======fsadfasf========")
         });
     }
 
@@ -110,11 +115,32 @@ class MakeOffer extends Component {
         });
     }
 
+    handleTrade(){
+        //Do post
+        let endpoint = config.api_endpoint;
+        let _this = this;
+        console.log("Handle trade");
+        axios.post(endpoint + '/api/trades', {
+            userOneCard: this.state.currentlySelectedCard,
+            userTwoCard: this.state.otherCardID,
+            cardOneOwner: this.state.username,
+            cardTwoOwner: this.state.otherAuthor
+        }).then(function(response) {
+            console.log(response);
+        });
+    }
+
+    getSelected(val){
+        this.setState({
+            currentlySelectedCard: val
+        });
+    }
+
     render() {
         return (<div className="MakeOffer">
-            <ProfileCardList cards={this.state.usercards}/>
+            <ProfileCardList receiveSelected={this.getSelected.bind(this)} cards={this.state.usercards}/>
             <textarea placeholder="Personalize your offer (optional)"/>
-            <h2 className="button">Trade</h2>
+            <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>
             <p className="exit">Cancel</p>
         </div>)
     }
