@@ -76,25 +76,26 @@ class CardCreate extends Component {
 
     render() {
 
-        return (<div className="CardCreate">
+        return (
+          <div className="CardCreate">
             <MiniNav />
-          <div className="card">
+            <div className="card">
               <input type="text" id="title" placeholder="Enter Card Title"/>
               <br/><br/>
               <div id="image"><p>Upload image</p></div>
-              <div className="desc-area">
-                <label className="desc-label"> Describe the card and any requirements you have.
+              <div id="desc-area">
+                <label id = "desc-label"> Describe the card and any requirements you have.
                   <br/><br/>
                   <textarea id="description" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
-                  </label>
+                </label>
               </div>
-                  <br/><br/>
-              <label className="location-label"> Your task location
               <br/><br/>
+              <label className="location-label"> Your task location
+                <br/><br/>
                 <input type="text" id="location" placeholder="Champaign, IL"/>
               </label>
               <label className="deadline-label"> Date/Deadline (if applicable)
-              <br/><br/>
+                <br/><br/>
                 <input type="text" id="deadline" placeholder="ASAP"/>
               </label>
               <div className="submission">

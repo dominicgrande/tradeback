@@ -1,7 +1,9 @@
 .CardCreate {
 
+  $image-height: 256px;
+
   .card {
-    text-align: center;
+    text-align: left;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -14,7 +16,7 @@
     border-radius: 8px;
 
     #image {
-        height: 256px;
+        height: $image-height;
         width: 40%;
         float: left;
         background-color: #DEDEDE;
@@ -39,36 +41,29 @@
       background-color: #ECECEC;
     }
 
-    .desc-area {
+    #desc-area {
       float: right;
       width: 60%;
-      height: 256px;
-    }
-
-    .desc-label {
-      position: relative;
-      white-space: nowrap;
-      width: 100%;
-      max-height: 15px;
+      height: $image-height;
       padding: 15px;
-      display: inline;
-      font-size: 0.9em;
-      float: left;
       display: inline-block;
     }
 
-    textarea {
+    #desc-label {
+      font-size: 0.9em;
+    }
+
+    #description {
       border: 1.5px solid #ECECEC;
       line-height: 1.5em;
       border-radius: 8px;
       padding: 10px;
     //  resize: none;
-      min-height: 195px;
-      max-height: 195px;
-    //  height: 195px;
+      height: 195px;
       width: 100%;
       max-width: 100%;
       float: right;
+      resize: none;
     }
 
     .location-label, .deadline-label {
@@ -83,11 +78,6 @@
       border: 1.5px solid #ECECEC;
       border-radius: 8px;
       padding: 8px;
-    }
-
-    .submission {
-      position: relative;
-      top: 25px;
     }
 
     .offerButton, .requestButton {
