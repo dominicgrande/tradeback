@@ -61,7 +61,10 @@ module.exports = function(router, passport) {
                         } else {
                             resolve(card);
                         }
-                    }));
+                    })).catch(() => {
+                        console.log("Reject");
+                        next();
+                    });;
                     promise = promise.then(function(cardOne) {
                         trades[i].userOneCardObject = cardOne;
                     });
@@ -75,6 +78,9 @@ module.exports = function(router, passport) {
                                 resolve(card);
                             }
                         }));
+                    }).catch(() => {
+                        console.log("Reject");
+                        next();
                     });
 
                     promiseTwo = promiseTwo.then(function(cardTwo){
