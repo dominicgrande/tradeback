@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Input, Card } from 'semantic-ui-react'
+//import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import Nav from '../Nav/Nav.jsx'
 
 import styles from './Login.scss'
 var config = require('../../config');
@@ -13,28 +14,28 @@ class Login extends Component {
 
         this.state = {
             user: {
-                password: '',
-                email: ''
+                username: '',
+                password: ''
             },
 
             message: ''
         }
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        const email = encodeURIComponent(this.state.user.email);
+        const username = encodeURIComponent(this.state.user.username);
         const password = encodeURIComponent(this.state.user.password);
-        const formData = `email=${email}&password=${password}`;
+        const formData = `username=${username}&password=${password}`;
 
         // create an AJAX request (This should probably done with Axios instead)
         const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;        
+        xhr.withCredentials = true;
         xhr.open('post', config.api_endpoint+'/auth/login');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.responseType = 'json';
@@ -54,9 +55,9 @@ class Login extends Component {
         xhr.send(formData);
     }
 
-    onChangeEmail(e) {
+    onChangeUsername(e) {
         const user = this.state.user;
-        user.email = e.target.value;
+        user.username = e.target.value;
         this.setState({
             user
         })
@@ -72,23 +73,46 @@ class Login extends Component {
 
     render() {
         return(
-            <form className="Login" action="/" onSubmit={this.onSubmit}>
+          <div className = "Login">
+            <Nav />
+              <div className="content">
+              <form action="/" onSubmit={this.onSubmit}>
+                <h1>Login</h1>
+                <input type="text" onChange={this.onChangeUsername} placeholder="username"/>
+                <br/><br/>
+                <input type="password" onChange={this.onChangePassword} placeholder="password"/>
+                <p>{this.state.logged_in}</p>
+                <input className="button" type="submit" value="Login" />
+                <h4>No account yet? <a href = "#/register">Register now!</a></h4>
+                <h4><a href = "#/">Go to Homepage</a></h4>
+              </form>
+              </div>
+          </div>
+
+          /*
+
+          <div className = "Login">
+              <Nav />
+            <form className="LoginStyle" action="/" onSubmit={this.onSubmit}>
             <Card className="Login__content">
                 <div>
                     <h1>Login</h1>
-                    <Input label="Email" onChange={this.onChangeEmail} />
+                    <Input className="content" label="Username" onChange={this.onChangeEmail} />
                     <br/><br/>
-                    <Input label="Password" onChange={this.onChangePassword} />
+                    <Input className="content" label="Password" onChange={this.onChangePassword} />
                     <br/><br/>
 
                     <p>{this.state.logged_in}</p>
                     <Input type="submit" />
                     <h4>No account yet? Click <Link to="/register">here</Link> to Register!</h4>
 
-                    <Link to="/"><p>Go to Dashboard</p></Link>
+                    <Link to="../"><p>Go to Dashboard</p></Link>
                 </div>
             </Card>
         </form>
+      </div>
+
+    */
     )
 }
 }

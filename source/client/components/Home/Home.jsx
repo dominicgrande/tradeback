@@ -22,7 +22,7 @@ class Home extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentWillMount() {
         axios.get('http://localhost:3000/auth/profile').then( (res) => {
             console.log(res);
             this.setState({
@@ -44,9 +44,17 @@ class Home extends Component {
 				<Tab.Pane>
 					<OfferList />
 				</Tab.Pane> },
-		  { menuItem: 'Tab 2', render: () =>
+		  { menuItem: 'Requests', render: () =>
 				<Tab.Pane>
-					Tab 2 Content
+				<form className="bar">
+    			<input className="search" type="text" name="search" placeholder="Search"/>
+				</form>
+				<h4 className="trending">TRENDING</h4>
+				<p className="tags">#tutoring</p>
+				<p className="tags">#labor</p>
+				<p className="tags">#art</p>
+				<p className="tags">#textbooks</p>
+					Request cards
 				</Tab.Pane> }
 		]
 
@@ -55,8 +63,7 @@ class Home extends Component {
 				<Nav />
 				<header>
 					<h1>Tradeback</h1>
-					<h3>A local marketplace where you can share skills and experiences to solve everyday problems</h3>
-
+					<h3>A marketplace for trading items, skills, and experiences to solve everyday problems</h3>
 				</header>
 				<Tab panes = {panes}/>
 			</div>

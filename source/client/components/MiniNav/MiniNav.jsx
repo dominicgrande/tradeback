@@ -1,22 +1,30 @@
-import React, { Component } from 'react'
+//React imports
+import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 
-import './Nav.scss'
+//Styling
+import './MiniNav.scss'
 
-//Auth
+// Auth
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 var config = require('../../config');
 
-class Nav extends Component {
-	constructor(props) {
-		super(props)
+class MiniNav extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false,
+            username: "",
+            user: {},
+            id: null
+        }
 
-		this.state = {
-			isLoggedIn: false
-		}
-	}
+        this.logged_in_render = this.logged_in_render.bind(this);
+        this.logout = this.logout.bind(this);
+    }
 
-	componentDidMount() {
+    componentDidMount() {
         let endpoint = config.api_endpoint;
         let _this = this;
         // Check login
@@ -30,7 +38,17 @@ class Nav extends Component {
         });
     }
 
-	logged_in_render(){
+    logout(){
+        let endpoint = config.api_endpoint;
+        let _this = this;
+        axios.get(endpoint+'/auth/logout').then(()=> {
+            console.log("Succesfully logged out");
+            const { history: { push } } = _this.props;
+			push('/#');
+        });
+    }
+
+    logged_in_render(){
         if (this.state.isLoggedIn) { 
             return (
                 <ul>
@@ -41,7 +59,7 @@ class Nav extends Component {
                         <a href={"#/profile/" + this.state.username}>My Profile</a>
                     </li>
                     <li>
-                        <a href="#" onClick={this.logout}>Logout</a>
+                        <a onClick={this.logout}>Logout</a>
                     </li>
                 </ul>
                 );
@@ -55,15 +73,16 @@ class Nav extends Component {
         }
     }
 
-	render() {
-		return (
-			<nav id = "nav-bar" className = "Nav">
-				{
-					this.logged_in_render()
-				}
-			</nav>
-		)
-	}
+    render() {
+        return (<nav id="header" className="MiniNav">
+            <h1>
+                <a href="#/">Tradeback</a>
+            </h1>
+                {
+                    this.logged_in_render()
+                }
+        </nav>)
+    }
 }
 
-export default Nav
+export default withRouter(MiniNav)

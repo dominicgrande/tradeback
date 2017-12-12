@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 var Card = require('../models/card')
 
 module.exports = function(router, passport) {
-    var url = router.route('/user-cards/:id');
+    var url = router.route('/user-cards/');
 
     /**
      * userCards REST API resource end-point
@@ -27,12 +27,9 @@ module.exports = function(router, passport) {
      * @description Retrieve a list of cards owned by a specific
      */
     url.get(function(req, res) {
-        if (!req.user) {
-            res.status(401).json({message: "You are not logged in"});
-        } else {
-            let query = Card.find({author: req.user.username});
-            query.exec(function(err, cards) {
-                if (err) {
+          let query = Card.find({author: req.query.username});
+          query.exec(function(err, cards) {
+              if (err) {
                     res.status(500).json({message: "Internal server error"});
                 } else {
                     res.status(200).json({
@@ -41,7 +38,7 @@ module.exports = function(router, passport) {
                     });
                 }
             });
-        }
+
     });
 
     return router;

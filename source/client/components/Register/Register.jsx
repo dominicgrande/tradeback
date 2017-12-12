@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Nav from '../Nav/Nav.jsx'
 
 import styles from './Register.scss'
 var config = require('../../config');
@@ -13,7 +14,7 @@ class Register extends Component {
         this.state = {
             user: {
                 password: '',
-                email: ''
+                username: ''
             },
 
             message: ''
@@ -21,7 +22,7 @@ class Register extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
     }
 
     onSubmit(e) {
@@ -29,9 +30,9 @@ class Register extends Component {
 
         // create a string for an HTTP body message
         const name = encodeURIComponent(this.state.user.username);
-        const email = encodeURIComponent(this.state.user.email);
+        const username = encodeURIComponent(this.state.user.username);
         const password = encodeURIComponent(this.state.user.password);
-        const formData = `name=${name}&email=${email}&password=${password}`;
+        const formData = `name=${name}&username=${username}&password=${password}`;
 
         // create an AJAX POST request (This should probably done with Axios instead)
         const xhr = new XMLHttpRequest();
@@ -53,9 +54,9 @@ class Register extends Component {
         xhr.send(formData);
     }
 
-    onChangeEmail(e) {
+    onChangeUsername(e) {
         const user = this.state.user;
-        user.email = e.target.value;
+        user.username = e.target.value;
         this.setState({
             user
         })
@@ -71,22 +72,42 @@ class Register extends Component {
 
     render() {
         return(
-            <form className="Register" action="/" onSubmit={this.onSubmit}>
+          <div className = "Register">
+            <Nav />
+              <div className="content">
+              <form action="/" onSubmit={this.onSubmit}>
+                <h1>Register</h1>
+                <input type="text" onChange={this.onChangeUsername} placeholder="username"/>
+                <br/><br/>
+                <input type="password" onChange={this.onChangePassword} placeholder="password"/>
+                <p>{this.state.logged_in}</p>
+                <input className="button" type="submit" value="Register" />
+                <h4>Already have an account? <a href = "#/login">Log in!</a></h4>
+                <h4><a href = "#/">Go to Homepage</a></h4>
+              </form>
+              </div>
+          </div>
+          /*
+          <div className = "Register">
+              <Nav />
+            <form className="RegisterStyle" action="/" onSubmit={this.onSubmit}>
                 <Card className="Register__content">
                     <div>
                         <h1>Register</h1>
-                        <Input label="Email" onChange={this.onChangeEmail} />
+                        <Input className="content" label="Username" onChange={this.onChangeEmail} />
                         <br/><br/>
-                        <Input label="Password" onChange={this.onChangePassword} />
+                        <Input className="content" label="Password" onChange={this.onChangePassword} />
                         <br/><br/>
                         <p>{this.state.message}</p>
                         <Input type="submit" />
                         <h4>Already registered? Click <Link to="/login">here</Link> to Log-in!</h4>
 
-                        <Link to="/dashboard"><p>Go to Dashboard</p></Link>
+                        <Link to="../"><p>Go to Dashboard</p></Link>
                     </div>
                 </Card>
             </form>
+          </div>
+        */
     )
 }
 }

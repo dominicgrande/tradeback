@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {Tab} from 'semantic-ui-react'
+import ProfileCardList from './ProfileCardList/ProfileCardList.jsx'
+import ProfileTradeList from './ProfileTradeList/ProfileTradeList.jsx'
+import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -13,25 +16,30 @@ class Profile extends Component {
         super(props);
         this.state = {
             isLoggedIn: false,
-            userName: ""
+            username: "",
+            user: {},
+            usercards: [],
+            usertrades: []
         }
+
+        this.updateData = this.updateData.bind(this);
     }
 
     componentWillMount() {
         let webUrl = window.location.href.split("/")
-        let userName = webUrl.pop();
+        let username = webUrl.pop();
         if (webUrl.length > 3) {
-            this.setState({userName: userName});
+            this.setState({username: username});
         }
     }
 
     componentDidMount() {
-        let end_point = config.api_endpoint;
+        let endpoint = config.api_endpoint;
         let _this = this;
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
             console.log(res);
-            this.setState({isLoggedIn: true, userName: res.data.user.email});
+            this.setState({isLoggedIn: true, username: res.data.user.username});
         }).catch((err) => {
             console.log(err);
             console.log("Not logged in");
@@ -50,12 +58,78 @@ class Profile extends Component {
         // });
         // Get User data
 
-        axios.get(end_point + '/api/user/' + this.state.userName).then(function(response) {
+        axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
             console.log(response.data.data);
-            _this.setState({});
+            _this.setState({user: response.data.data});
         }).catch(function(error) {
             console.log(error);
         });
+
+        axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username).then(function(response) {
+            _this.setState({usercards: response.data.data});
+        });
+
+        axios.get(endpoint + '/api/user-trades/' + '?username=' + this.state.username).then(function(response) {
+            console.log(response.data.data);
+            _this.setState({usertrades: response.data.data})
+        });
+    };
+
+    componentWillReceiveProps(props){
+      console.log("Receive props");
+      let webUrl = window.location.href.split("/")
+      let username = webUrl.pop();
+      if (webUrl.length > 3) {
+          this.setState({username: username}, this.updateData);
+      }
+    }
+
+    updateData(){
+      let endpoint = config.api_endpoint;
+      let _this = this;
+      // Check login
+      axios.get(endpoint + '/auth/profile').then((res) => {
+          console.log(res);
+          this.setState({isLoggedIn: true, username: res.data.user.username});
+      }).catch((err) => {
+          console.log(err);
+          console.log("Not logged in");
+          this.setState({isLoggedIn: false})
+      });
+
+      // var userSchema = mongoose.Schema({
+      //     email		: String,
+      //     password	: String,
+      //     location    : String,
+      //     description : String,
+      //     tags        : [String],
+      //     cards       : [String],
+      //     trades      : [String],
+      //     profile     : String
+      // });
+      // Get User data
+
+      axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
+          console.log(response.data.data);
+          _this.setState({
+            user: response.data.data
+          });
+      }).catch(function(error) {
+          console.log(error);
+      });
+
+      axios.get(endpoint + '/api/user-cards/'+'?username='+this.state.username).then(function(response){
+        _this.setState({
+          usercards: response.data.data
+        });
+      });
+
+     axios.get(endpoint + '/api/user-trades/'+'?username=' + this.state.username).then(function(response){
+       console.log(response.data.data);
+       _this.setState({
+         usertrades: response.data.data
+       })
+     });
     }
 
     render() {
@@ -63,20 +137,25 @@ class Profile extends Component {
         const panes = [
             {
                 menuItem: 'Open cards',
-                render: () => <Tab.Pane>Open cards content</Tab.Pane>
+                render: () => <Tab.Pane>
+                        <ProfileCardList cards={this.state.usercards}/>
+                    </Tab.Pane>
             }, {
                 menuItem: 'Trading activity',
-                render: () => <Tab.Pane>Trading activity content</Tab.Pane>
+                render: () => <Tab.Pane>
+                        <ProfileTradeList trades={this.state.usertrades}/>
+                    </Tab.Pane>
             }
         ]
 
         return (<div className="Profile">
+          <MiniNav />
             <div className="userInfo">
                 <img className="profile-pic" src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAloAAAAJDRkZGY2MWZmLTM1NDYtNDBhOS04MjYwLWNkM2UzYjdiZGZmMA.png" alt="profilepic" height="200" width="200"/>
-                <h2 className="username">Jane Doe</h2>
-                <h3 className="location">Champaign, IL</h3>
-                <p className="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis arcu cursus urna euismod molestie.</p>
-                <div className="tags"></div>
+                <h2 className="username">{this.state.user.username}</h2>
+                <h3 className="location">{this.state.user.location}</h3>
+                <p className="description">{this.state.user.description}</p>
+                {/*<div className="tags">{this.state.user.tags}</div>*/}
             </div>
             <Tab className="activity" panes={panes}/>
         </div>)
