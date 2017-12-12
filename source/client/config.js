@@ -1,3 +1,3 @@
 module.exports = {
-  api_endpoint: "http://tradeback.herokuapp.com"
+  api_endpoint: "http://localhost:3000"
 };

@@ -23,7 +23,7 @@ class Home extends Component {
 	}
 
 	componentWillMount() {
-        axios.get('http://tradeback.herokuapp.com/auth/profile').then( (res) => {
+        axios.get('http://localhost:3000/auth/profile').then( (res) => {
             console.log(res);
             this.setState({
                 isLoggedIn: true
