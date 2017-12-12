@@ -1,13 +1,5 @@
 import React, {Component} from 'react'
-import {
-    Header,
-    Divider,
-    Input,
-    Form,
-    TextArea,
-    Button,
-    Dropdown
-} from 'semantic-ui-react'
+//import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import styles from './CardCreate.scss'
@@ -17,41 +9,13 @@ axios.defaults.withCredentials = true;
 
 var config = require('../../config');
 
-const options = [
-    {
-        key: 'one',
-        text: 'one',
-        value: 'one'
-    }, {
-        key: 'two',
-        text: 'two',
-        value: 'two'
-    }, {
-        key: 'three',
-        text: 'three',
-        value: 'three'
-    }, {
-        key: 'four',
-        text: 'four',
-        value: 'four'
-    }, {
-        key: 'five',
-        text: 'five',
-        value: 'five'
-    }
-]
-
 class CardCreate extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            options,
             username: ""
         }
-
-        this.handleAddition = this.handleAddition.bind(this);
-        this.handleChange = this.handleChange.bind(this);
         this.handleOffer = this.handleOffer.bind(this);
         this.handleRequest = this.handleRequest.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
@@ -66,22 +30,6 @@ class CardCreate extends Component {
             console.log("Not logged in");
             this.setState({isLoggedIn: false})
         });
-    }
-
-    handleAddition(e, {value}) {
-        this.setState({
-            options: [
-                {
-                    text: value,
-                    value
-                },
-                ...this.state.options
-            ]
-        })
-    }
-
-    handleChange(e, {value}) {
-        this.setState({currentValues: value})
     }
 
     handleOffer() {
@@ -128,10 +76,35 @@ class CardCreate extends Component {
 
     render() {
 
-        const {currentValues} = this.state
-
         return (<div className="CardCreate">
             <MiniNav />
+          <div className="card">
+              <input type="text" id="title" placeholder="Enter Card Title"/>
+              <br/><br/>
+              <div id="image"><p>Upload image</p></div>
+              <div className="desc-area">
+                <label className="desc-label"> Describe the card and any requirements you have.
+                  <br/><br/>
+                  <textarea id="description" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+                  </label>
+              </div>
+                  <br/><br/>
+              <label className="location-label"> Your task location
+              <br/><br/>
+                <input type="text" id="location" placeholder="Champaign, IL"/>
+              </label>
+              <label className="deadline-label"> Date/Deadline (if applicable)
+              <br/><br/>
+                <input type="text" id="deadline" placeholder="ASAP"/>
+              </label>
+              <div className="submission">
+                <input className="offerButton" onClick={this.handleOffer} type="submit" value="Offer" />
+                <br/>
+                <input className="requestButton" onClick={this.handleRequest} type="submit" value="Request" />
+              </div>
+          </div>
+
+          {/*
             <Form className="card">
                 <Form.Field id="title" control={Input} label='Card Title' placeholder='Calculus tutoring'/>
                 <Form.Field id="description" control={TextArea} label='Describe the card and any specific requirements you have.' placeholder='Example: I’m looking for someone with experience tutoring college students in advanced calculus and available weekly Monday nights.'/>
@@ -148,6 +121,7 @@ class CardCreate extends Component {
                     <Form.Field control={Button} onClick={this.handleRequest}>Request</Form.Field>
                 </Form.Group>
             </Form>
+          */}
         </div>)
     }
 }
