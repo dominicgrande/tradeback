@@ -14,7 +14,7 @@ var config = require('../../../config');
 class OfferList extends Component {
     constructor(props) {
         super(props);
-		console.log(props.history)
+        console.log(props.history)
         this.state = {
             card_list: []
         };
@@ -37,7 +37,12 @@ class OfferList extends Component {
             <div className="flexcontainer">
                 {
                     this.state.card_list.map((element, index) => {
-                        return (<MiniCard key={element + "MiniCard"} title={element.title} description={element.description} img={element.image} id={element._id}/>)
+                        return (<MiniCard key={element + "MiniCard"}
+                            title={element.title}
+                            description={element.description}
+                            img={element.image}
+                            id={element._id}
+                            />)
                     })
                 }
             </div>
