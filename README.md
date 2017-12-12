@@ -3,9 +3,9 @@ To run webpack server: `npm run dev`
 To run the databse server: `npm start`
 ### To do:
 - [ ] Imgur API
-- [ ] Trade page
+- [x] Trade page - Sort of. Currently when we hit trade it posts immediately instead of being pending.
 - [ ] Custom create page
-- [ ] Append make offer
+- [x] Append make offer
 - [ ] Pending offers page
 - [ ] Settings page
 - [ ] Tags
