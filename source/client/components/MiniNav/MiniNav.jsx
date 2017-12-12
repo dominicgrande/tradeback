@@ -1,6 +1,9 @@
 //React imports
 import React, {Component} from 'react'
-import {withRouter} from 'react-router'
+
+//React component imports
+import NavBarLogin from '../NavBarLogin/NavBarLogin.jsx'
+
 
 //Styling
 import './MiniNav.scss'
@@ -14,17 +17,16 @@ class MiniNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: false,
+            isLoggedIn: true,
             username: "",
             user: {},
             id: null
         }
 
-        this.logged_in_render = this.logged_in_render.bind(this);
-        this.logout = this.logout.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let endpoint = config.api_endpoint;
         let _this = this;
         // Check login
@@ -38,39 +40,10 @@ class MiniNav extends Component {
         });
     }
 
-    logout(){
-        let endpoint = config.api_endpoint;
-        let _this = this;
-        axios.get(endpoint+'/auth/logout').then(()=> {
-            console.log("Succesfully logged out");
-            const { history: { push } } = _this.props;
-			push('/#');
+    handleLogout(){
+        this.setState({
+            isLoggedIn: false
         });
-    }
-
-    logged_in_render(){
-        if (this.state.isLoggedIn) { 
-            return (
-                <ul>
-                    <li>
-                        <a href="#/create">Create Card</a>
-                    </li>
-                    <li>
-                        <a href={"#/profile/" + this.state.username}>My Profile</a>
-                    </li>
-                    <li>
-                        <a onClick={this.logout}>Logout</a>
-                    </li>
-                </ul>
-                );
-        } else {
-            return (
-                <ul>
-					<li><a href = "#/login">Log in</a></li>
-					<li><a href = "#/register">Sign up</a></li>
-				</ul>
-            )
-        }
     }
 
     render() {
@@ -78,11 +51,9 @@ class MiniNav extends Component {
             <h1>
                 <a href="#/">Tradeback</a>
             </h1>
-                {
-                    this.logged_in_render()
-                }
+                <NavBarLogin isLoggedIn={this.state.isLoggedIn} receiveLogout={this.handleLogout}/>
         </nav>)
     }
 }
 
-export default withRouter(MiniNav)
+export default MiniNav

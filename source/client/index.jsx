@@ -14,7 +14,6 @@ import Profile from './components/Profile/Profile.jsx'
 
 require('./styles/main.scss')
 
-
 render(
 	<div>
 	<Router>

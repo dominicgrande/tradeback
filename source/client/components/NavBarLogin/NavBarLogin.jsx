@@ -1,37 +1,27 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router'
 
-import './Nav.scss'
-
-//React component imports
-import NavBarLogin from '../NavBarLogin/NavBarLogin.jsx'
+// import './Nav.scss'
 
 //Auth
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 var config = require('../../config');
 
-class Nav extends Component {
+class NavBarLogin extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			isLoggedIn: true
+			isLoggedIn: props.isLoggedIn
         }
         
-        this.handleLogout = this.handleLogout.bind(this);
+        this.logout = this.logout.bind(this);
     }
     
-    componentWillMount(){
-        let endpoint = config.api_endpoint;
-        let _this = this;
-        // Check login
-        axios.get(endpoint + '/auth/profile').then((res) => {
-            console.log(res);
-            this.setState({isLoggedIn: true, username: res.data.user.username});
-        }).catch((err) => {
-            console.log(err);
-            console.log("Not logged in");
-            this.setState({isLoggedIn: false})
+    componentWillReceiveProps(props) {
+        this.setState({
+            isLoggedIn: props.isLoggedIn
         });
     }
 
@@ -40,8 +30,9 @@ class Nav extends Component {
         let _this = this;
         axios.get(endpoint+'/auth/logout').then(()=> {
             console.log("Succesfully logged out");
+            _this.props.receiveLogout(false);            
             const { history: { push } } = _this.props;
-			push('/#');
+            push('/#');
         });
     }
 
@@ -70,19 +61,15 @@ class Nav extends Component {
         }
     }
 
-    handleLogout(){
-        this.setState({
-            isLoggedIn: false
-        });
-    }
-
 	render() {
 		return (
 			<nav id = "nav-bar" className = "Nav">
-                <NavBarLogin isLoggedIn={this.state.isLoggedIn} receiveLogout={this.handleLogout}/>
+				{
+					this.logged_in_render()
+				}
 			</nav>
 		)
 	}
 }
 
-export default Nav
+export default withRouter(NavBarLogin)
