@@ -9,6 +9,7 @@ import {
     Dropdown
 } from 'semantic-ui-react'
 import MiniNav from '../MiniNav/MiniNav.jsx'
+import MakeOffer from './MakeOffer/MakeOffer.jsx'
 
 import styles from './CardDetail.scss'
 
@@ -24,7 +25,9 @@ class CardDetail extends Component {
         super(props)
         this.state = {
             id: props.id,
-            usercard: {}
+            usercard: {},
+            isLoggedIn: false,
+            username: ""
         }
     }
 
@@ -34,6 +37,18 @@ class CardDetail extends Component {
         this.setState({
             id: id
         }, this.populate_data.bind(this));
+
+        let endpoint = config.api_endpoint;
+        let _this = this;
+        // Check login
+        axios.get(endpoint + '/auth/profile').then((res) => {
+            console.log(res);
+            this.setState({isLoggedIn: true, username: res.data.user.username});
+        }).catch((err) => {
+            console.log(err);
+            console.log("Not logged in");
+            this.setState({isLoggedIn: false})
+        });
     }
 
     populate_data() {
@@ -57,60 +72,52 @@ class CardDetail extends Component {
         });
     }
 
-    componentDidMount() {
-        let endpoint = config.api_endpoint;
-        let _this = this;
-        // Check login
-        axios.get(endpoint + '/auth/profile').then((res) => {
-            console.log(res);
-            this.setState({isLoggedIn: true, username: res.data.user.username});
-        }).catch((err) => {
-            console.log(err);
-            console.log("Not logged in");
-            this.setState({isLoggedIn: false})
-        });
-    };
+    componentDidMount() {}
 
     render() {
         return (<div className="CardDetail">
-          <MiniNav />
+            <MiniNav/>
             <div className="header">
                 <h2 className="title">{this.state.usercard.title}</h2>
                 <p className="author">
                     <a href={"#/profile/" + this.state.usercard.author}>{this.state.usercard.author}</a>
                 </p>
             </div>
-            <Divider hidden="hidden"/>
-                        <div className="wrapper">
-            <div className="card">
-                <div className="left">
-                    <img className="card-pic" src={this.state.usercard.image} height="300" width="300"/>
-                </div>
-                <div className="right">
-                    <p className="desc">{this.state.usercard.description}</p>
-                    <div className="location">
-                        <h3>Location</h3>
-                        <p>{this.state.usercard.location}</p>
+            <Divider hidden/>
+            <div className="wrapper">
+                <div className="card">
+                    <div className="left">
+                        <img className="card-pic" src={this.state.usercard.image} height="300" width="300"/>
                     </div>
-                    <div className="deadline">
-                        <h3>Date/Deadline</h3>
-                        <p>{this.state.usercard.deadline}</p>
-                    </div>
-            {/*
+                    <div className="right">
+                        <p className="desc">{this.state.usercard.description}</p>
+                        <div className="location">
+                            <h3>Location</h3>
+                            <p>{this.state.usercard.location}</p>
+                        </div>
+                        <div className="deadline">
+                            <h3>Date/Deadline</h3>
+                            <p>{this.state.usercard.deadline}</p>
+                        </div>
+                        {/*
 						<div className="tags">
 							<p> One </p>
 							<p> Two </p>
 							<p> Three </p>
 						</div>
-            */}
+            */
+                        }
+                    </div>
                 </div>
+                <div className="offer">
+                    <h3>Interested in trading this card?</h3>
+                    <h2 className="button">Make an Offer</h2>
+                    <p>Or
+                        <a href="#/">keep searching</a>
+                    </p>
+                </div>
+                {/*}<MakeOffer/>*/}
             </div>
-            <div className="offer">
-                <h3>Interested in trading this card?</h3>
-                <h2 className="button">Make an Offer</h2>
-                <p>Or <a href = "#/">keep searching</a></p>
-            </div>
-          </div>
         </div>)
     }
 }
