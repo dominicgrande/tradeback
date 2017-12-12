@@ -83,7 +83,6 @@ class Register extends Component {
                 <p>{this.state.logged_in}</p>
                 <input className="button" type="submit" value="Register" />
                 <h4>Already have an account? <a href = "#/login">Log in!</a></h4>
-                <h4><a href = "#/">Go to Homepage</a></h4>
               </form>
               </div>
           </div>
