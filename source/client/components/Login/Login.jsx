@@ -45,7 +45,7 @@ class Login extends Component {
                 this.setState({
                     logged_in: true
                 });
-                // this.props.history.push('/');
+                this.props.history.push('/#');
             } else {
                 this.setState({
                     logged_in: false
