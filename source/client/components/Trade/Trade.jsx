@@ -14,6 +14,7 @@ class Trade extends Component {
 	render() {
 		return (
 			<div className = "Trade">
+				<div className="flexcontainer">
 				<MiniCard key="cardOne"
 					className = "UserCardOne"
 					title = {this.state.trade.userOneCardObject.title}
@@ -34,6 +35,7 @@ class Trade extends Component {
 					img = {this.state.trade.userTwoCardObject.image}
 					id = {this.state.trade.userTwoCardObject._id}
 					/>
+				</div>
 			</div>
 		)
 	}

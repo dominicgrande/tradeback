@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import Trade from '../../Trade/Trade.jsx'
 
 //Styling
-// import './OfferList.scss'
+import './ProfileTradeList.scss'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -24,12 +24,14 @@ class ProfileTradeList extends Component {
     }
 
     render() {
-        return (<div className="OfferList">
+        return (<div className="ProfileTradeList">
+          <div className="flexcontainer">
             {
                 this.state.trade_list.map((element, index) => {
                     return (<Trade key={element + "Trade"} trade={element}/>)
                 })
             }
+          </div>
         </div>)
     }
 }

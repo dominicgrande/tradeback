@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import MiniCard from '../../MiniCard/MiniCard.jsx'
 
 //Styling
-// import './OfferList.scss'
+import './ProfileCardList.scss'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -24,7 +24,8 @@ class ProfileCardList extends Component {
     }
 
     render() {
-        return (<div className="OfferList">
+        return (<div className="ProfileCardList">
+          <div className="flexcontainer">
             {
                 this.state.card_list.map((element, index) => {
                     return (<MiniCard key={element + "MiniCard"}
@@ -34,6 +35,7 @@ class ProfileCardList extends Component {
 						id={element._id}/>)
                 })
             }
+          </div>
         </div>)
     }
 }
