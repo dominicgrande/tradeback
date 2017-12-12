@@ -9,7 +9,7 @@ To run the databse server: `npm start`
 - [ ] Pending offers page
 - [ ] Settings page
 - [ ] Tags
-- [ ] Search (by title and tag)
+- [x] Search (by title and tag) (tag search still needs to be implemented)
 - [ ] Filter by date
 - [ ] Logout
 - [ ] Homepage "requests" tab
