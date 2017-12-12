@@ -4,6 +4,8 @@ To run the databse server: `npm start`
 ### To do:
 - Imgur API 
 - Trade page
+- Custom create page
+- Append make offer
 - Pending offers page
 - Settings page
 - Tags
@@ -13,7 +15,7 @@ To run the databse server: `npm start`
 - Homepage "requests" tab
 - Profile card list click -> card detail
 - Profile trade list click -> card detail
-- Add headers 
 - Rating system
-- Heroku hosting
 - SCSS styling
+- Heroku deployment
+- Video

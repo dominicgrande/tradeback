@@ -14,7 +14,7 @@ class Register extends Component {
         this.state = {
             user: {
                 password: '',
-                email: ''
+                username: ''
             },
 
             message: ''
@@ -22,7 +22,7 @@ class Register extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
     }
 
     onSubmit(e) {
@@ -30,9 +30,9 @@ class Register extends Component {
 
         // create a string for an HTTP body message
         const name = encodeURIComponent(this.state.user.username);
-        const email = encodeURIComponent(this.state.user.email);
+        const username = encodeURIComponent(this.state.user.username);
         const password = encodeURIComponent(this.state.user.password);
-        const formData = `name=${name}&email=${email}&password=${password}`;
+        const formData = `name=${name}&username=${username}&password=${password}`;
 
         // create an AJAX POST request (This should probably done with Axios instead)
         const xhr = new XMLHttpRequest();
@@ -54,9 +54,9 @@ class Register extends Component {
         xhr.send(formData);
     }
 
-    onChangeEmail(e) {
+    onChangeUsername(e) {
         const user = this.state.user;
-        user.email = e.target.value;
+        user.username = e.target.value;
         this.setState({
             user
         })
@@ -77,7 +77,7 @@ class Register extends Component {
               <div className="content">
               <form action="/" onSubmit={this.onSubmit}>
                 <h1>Register</h1>
-                <input type="text" onChange={this.onChangeEmail} placeholder="username"/>
+                <input type="text" onChange={this.onChangeUsername} placeholder="username"/>
                 <br/><br/>
                 <input type="password" onChange={this.onChangePassword} placeholder="password"/>
                 <p>{this.state.logged_in}</p>
