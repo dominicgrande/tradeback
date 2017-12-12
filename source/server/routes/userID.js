@@ -1,17 +1,37 @@
 /**
- * @file Handles GET, PUT, and DELETE of the /api/users/* endpoint
- * @author Kevin Wang
+ * @file Defines route to fetch trades for current logged in users
+ * @name server.userID.js
+ * @author Kevin Wang and Dominic Grande
+ */
+
+/**
+ * @namespace server
+ */
+
+/**
+ * @module server/userID
  */
 var mongoose = require('mongoose');
 var User = require('../models/user');
 
 module.exports = function(router) {
-    var url = router.route('/users/:id');
+    var url = router.route('/user/');
 
-    // /api/users/* GET Request - returns data for one task
+    /**
+     * @name userID-Get
+     * @function
+     * @version v1
+     * @since v1
+     * @inner
+     * @param {string} path - /api/user/:id
+     * @param {string} username - Unique username
+     * @return {Object} User - User model excluding password information
+     * @description Retrieve a user's information given their username
+     */
     url.get(function(req, res) {
+        console.log(req.query);
         User.findOne({
-            _id: req.params.id
+            username: req.query.username
         }, function(err, user) {
             if (err) {
                 res.status(404).json({
@@ -24,6 +44,7 @@ module.exports = function(router) {
                     data: []
                 });
             } else {
+                delete user.password;
                 res.status(200).json({
                     message: 'User ID GET Succesful',
                     data: user
@@ -32,7 +53,18 @@ module.exports = function(router) {
         });
     });
 
-    // /api/users/* PUT Request - updates data for one task
+    /**
+     * @name userID-Post
+     * @function
+     * @version v1
+     * @since v1
+     * @inner
+     * @param {string} path - /api/user/:id
+     * @param {string} username - Unique username
+     * @param {Object} UserUpdates - Updates to user object
+     * @return {Number} Status Code - 200 on success
+     * @description Retrieve a user's information given their username
+     */
     url.put(function(req, res) {
         User.findByIdAndUpdate(req.params.id, req.body, {
             new: true

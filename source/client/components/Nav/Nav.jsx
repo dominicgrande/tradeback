@@ -11,8 +11,8 @@ class Nav extends Component {
 		return (
 			<nav id = "nav-bar" className = "Nav">
 				<ul>
-					<li><a href = "#">Log in</a></li>
-					<li><a href = "#">Sign up</a></li>
+					<li><a href = "#/login">Log in</a></li>
+					<li><a href = "#/register">Sign up</a></li>
 				</ul>
 			</nav>
 		)

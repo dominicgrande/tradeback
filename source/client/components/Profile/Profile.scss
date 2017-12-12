@@ -1,0 +1,36 @@
+.Profile {
+	text-align: center;
+	margin: 0 auto;
+
+  .userInfo {
+		margin-top: 60px;
+    position:relative;
+    float: left;
+    width: 20%;
+    padding: 5%;;
+
+    .profile-pic, .username, .location, .bio {
+      float: left;
+      text-align: left;
+      width: 200px;
+    }
+
+  }
+
+  .activity {
+		margin-top: 60px;
+    position: relative;
+    width: 75%;
+    float: right;
+    padding: 5%;;
+  }
+
+	.tab {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.tabs {
+		flex: 1;
+	}
+}

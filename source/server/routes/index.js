@@ -17,7 +17,9 @@ module.exports = function(app, router, passport) {
     //GET, PUT, and DELETE for a User
     app.use('/api', require('./userID.js')(router));
 
-    //Add auth api
-    app.use('/auth', require('./auth.js')(router, passport))
+    app.use('/auth', require('./auth.js')(router, passport));
 
+    app.use('/api', require('./user-trades.js')(router, passport));
+
+    app.use('/api', require('./user-cards.js')(router, passport));
 };

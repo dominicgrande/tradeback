@@ -2,8 +2,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 
 /**
-* Specifies what strategy we'll use
-*/
+ * Specifies what strategy we'll use
+ */
 module.exports = function(passport) {
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -17,43 +17,47 @@ module.exports = function(passport) {
 
     // Registration Strategy
     passport.use('local-signup', new LocalStrategy({
-        usernameField : 'email',
-        passwordField : 'password',
-    },
-    function(email, password, done) {
-        User.findOne({'email' : email}, function(err, user) {
-            if ( err ) {
-                return done(err);
-            } else if ( user ) {
-                return done(null, false);
-            } else {
-                var newUser = new User();
+            usernameField: 'username',
+            passwordField: 'password',
+        },
+        function(username, password, done) {
+            User.findOne({
+                'username': username
+            }, function(err, user) {
+                if (err) {
+                    return done(err);
+                } else if (user) {
+                    return done(null, false);
+                } else {
+                    var newUser = new User();
 
-                newUser.email = email;
-                newUser.password = newUser.generateHash(password);
+                    newUser.username = username;
+                    newUser.password = newUser.generateHash(password);
 
-                newUser.save(function(err) {
-                    console.log(err);
-                    return done(null, newUser);
-                });
-            }
-        });
-    }));
+                    newUser.save(function(err) {
+                        console.log(err);
+                        return done(null, newUser);
+                    });
+                }
+            });
+        }));
 
     // Login Strategy
     passport.use('local-login', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-    },
-    function(email, password, done) {
-        User.findOne({'email': email}, function(err, user) {
-            if ( err ) {
-                return done(err);
-            } else if ( !user || !user.validPassword(password) ) {
-                return done(null, false);
-            }
+            usernameField: 'username',
+            passwordField: 'password',
+        },
+        function(username, password, done) {
+            User.findOne({
+                'username': username
+            }, function(err, user) {
+                if (err) {
+                    return done(err);
+                } else if (!user || !user.validPassword(password)) {
+                    return done(null, false);
+                }
 
-            return done(null, user);
-        });
-    }));
+                return done(null, user);
+            });
+        }));
 };

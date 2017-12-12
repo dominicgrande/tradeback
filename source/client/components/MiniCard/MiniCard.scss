@@ -1,17 +1,56 @@
 .MiniCard {
 	width: 256px;
+	margin: 30px;
 
-	img {
-		width: 100%;
-		height: 192px;
-		background-color: purple;
+	.mini-card {
+		display: inline-block;
+		position:relative;
+		text-align: center;
+	  flex-basis: 0;
+		height: 256px;
+		width: 256px;
 	}
 
-	img:hover {
+	.desc {
+    display: none;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+		text-align: left;
+		position:absolute;
+		height: 256px;
+		width: 256px;
+		background: rgba(39, 90, 215, 0.9);
+		color: white;
+		padding: 30px;
+		top:0;
+		left:0;
+		z-index:1;
+		display:none;
+		overflow: auto;
+	}
+
+	.mini-card:hover {
 		opacity: 0.8;
 	}
 
-	#info {
-		background-color: green;
+	.mini-card:hover .desc {
+	    display: block;
 	}
+
+	img {
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+		height: 256px;
+		width: 256px;
+		background-color: #275AD7;
+	}
+
+	.title {
+		margin-top: -9px;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
+		background-color: #ECECEC;
+		padding: 15px;
+	}
+
 }
