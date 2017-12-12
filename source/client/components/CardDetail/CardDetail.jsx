@@ -74,13 +74,15 @@ class CardDetail extends Component {
         });
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+         window.scrollTo(0, 0)
+    }
 
     makeOffer(){
         if (this.state.makeoffer){
             return (
                 <div className="offer">
-                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id}/>  
+                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id}/>
                 </div>
             );
         } else {

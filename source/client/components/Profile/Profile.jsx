@@ -150,14 +150,16 @@ class Profile extends Component {
 
         return (<div className="Profile">
           <MiniNav />
-            <div className="userInfo">
+            <div className="profile-content">
+              <div className="userInfo">
                 <img className="profile-pic" src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAloAAAAJDRkZGY2MWZmLTM1NDYtNDBhOS04MjYwLWNkM2UzYjdiZGZmMA.png" alt="profilepic" height="200" width="200"/>
                 <h2 className="username">{this.state.user.username}</h2>
                 <h3 className="location">{this.state.user.location}</h3>
                 <p className="description">{this.state.user.description}</p>
                 {/*<div className="tags">{this.state.user.tags}</div>*/}
-            </div>
+              </div>
             <Tab className="activity" panes={panes}/>
+          </div>
         </div>)
     }
 }
