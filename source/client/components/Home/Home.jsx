@@ -42,14 +42,6 @@ class Home extends Component {
 		const panes = [
 		  { menuItem: 'Offers', render: () =>
 				<Tab.Pane>
-				<form className="bar">
-    			<input className="search" type="text" name="search" placeholder="Search"/>
-				</form>
-				<h4 className="trending">TRENDING</h4>
-				<p className="tags">#tutoring</p>
-				<p className="tags">#labor</p>
-				<p className="tags">#art</p>
-				<p className="tags">#textbooks</p>
 					<OfferList />
 				</Tab.Pane> },
 		  { menuItem: 'Requests', render: () =>

@@ -1,7 +1,12 @@
 .OfferList {
 
-  padding: 80px 40px 80px 40px;
+  padding: 0 40px 80px 40px;
   width:100%;
+
+  .bar {
+    padding: 28px 20px 27px 20px;
+  }
+
 
   .flexcontainer {
     display: flex;
@@ -9,6 +14,39 @@
     flex-wrap:wrap;
     justify-content: center;
     align-items: center;
+  }
+
+  .search {
+    width: 450px;
+    padding: 7px;
+    border-style:none;
+    box-shadow: 2px 3px #ECECEC;
+  }
+
+  .trending {
+    display: inline;
+    padding: 7px;
+    text-decoration: underline;
+    font-size: 13px;
+  }
+
+  .tags {
+    display: inline;
+    font-weight: bold;
+    color: white;
+    font-size: 12.5px;
+    background-color: #275AD7;
+    border: 2px solid white;
+    border-radius: 8px;
+    margin-left: 9px;
+    margin-right: 9px;
+    padding: 6px 8px 6px 8px;
+  }
+
+  .tags:hover {
+    background-color: white;
+    border: 2px solid #275AD7;
+    color: #275AD7;
   }
 
   /*
