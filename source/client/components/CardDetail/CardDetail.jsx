@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 
 import styles from './CardDetail.scss'
+import TradePage from '../TradePage/TradePage.jsx'
 
 class CardDetail extends Component {
 
@@ -45,6 +46,7 @@ class CardDetail extends Component {
 					<h2 className="button">Make an Offer</h2>
 					<p>Or keep searching</p>
 				</div>
+				<TradePage />
 			</div>
 		)
 	}
