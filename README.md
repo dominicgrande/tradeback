@@ -9,7 +9,7 @@ To run the databse server: `npm start`
 - [ ] Pending offers page
 - [ ] Settings page
 - [ ] Tags
-- [ ] Nav bars based on if user is logged on or not
+- [x] Nav bars based on if user is logged on or not
 - [x] Search (by title and tag) (tag search still needs to be implemented)
 - [ ] Filter by date
 - [ ] Logout
