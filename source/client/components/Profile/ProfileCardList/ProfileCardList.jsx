@@ -25,9 +25,11 @@ class ProfileCardList extends Component {
         this.setState({card_list: newProps.cards});
     }
 
-    isSelected(event){
-        console.log("In is selected");        
-        this.props.receiveSelected("hi");
+    isSelected(event, data){
+        console.log("In is selected"); 
+        console.log(data);       
+        this.props.receiveId(data._id);
+        this.props.receiveAuthor(data.author)
     }
 
     render() {
@@ -39,7 +41,7 @@ class ProfileCardList extends Component {
                         <div onClick={(event) => {
                                 console.log("???")
                                 event.stopPropagation();
-                                this.isSelected(event);
+                                this.isSelected(event, element);
                             }}>
                             <MiniCard key={index + "MiniCard"}
                             title={element.title}

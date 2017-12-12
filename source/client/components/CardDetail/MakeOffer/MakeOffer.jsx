@@ -121,24 +121,30 @@ class MakeOffer extends Component {
         let _this = this;
         console.log("Handle trade");
         axios.post(endpoint + '/api/trades', {
-            userOneCard: this.state.currentlySelectedCard,
+            userOneCard: this.state.currentlySelectedCardId,
             userTwoCard: this.state.otherCardID,
-            cardOneOwner: this.state.username,
+            cardOneOwner: this.state.currentlySelectedCardAuthor,
             cardTwoOwner: this.state.otherAuthor
         }).then(function(response) {
             console.log(response);
         });
     }
 
-    getSelected(val){
+    getId(val){
         this.setState({
-            currentlySelectedCard: val
+            currentlySelectedCardId: val
+        });
+    }
+
+    getAuthor(val){
+        this.setState({
+            currentlySelectedCardAuthor: val
         });
     }
 
     render() {
         return (<div className="MakeOffer">
-            <ProfileCardList receiveSelected={this.getSelected.bind(this)} cards={this.state.usercards}/>
+            <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
             <textarea placeholder="Personalize your offer (optional)"/>
             <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>
             <p className="exit">Cancel</p>

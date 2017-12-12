@@ -1,5 +1,8 @@
+//React imports
 import React, {Component} from 'react'
+import {withRouter} from 'react-router'
 
+//Styling
 import './MiniNav.scss'
 
 // Auth
@@ -16,6 +19,9 @@ class MiniNav extends Component {
             user: {},
             id: null
         }
+
+        this.logged_in_render = this.logged_in_render.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -32,24 +38,51 @@ class MiniNav extends Component {
         });
     }
 
+    logout(){
+        let endpoint = config.api_endpoint;
+        let _this = this;
+        axios.get(endpoint+'/auth/logout').then(()=> {
+            console.log("Succesfully logged out");
+            const { history: { push } } = _this.props;
+			push('/#');
+        });
+    }
+
+    logged_in_render(){
+        if (this.state.isLoggedIn) { 
+            return (
+                <ul>
+                    <li>
+                        <a href="#/create">Create Card</a>
+                    </li>
+                    <li>
+                        <a href={"#/profile/" + this.state.username}>My Profile</a>
+                    </li>
+                    <li>
+                        <a onClick={this.logout}>Logout</a>
+                    </li>
+                </ul>
+                );
+        } else {
+            return (
+                <ul>
+					<li><a href = "#/login">Log in</a></li>
+					<li><a href = "#/register">Sign up</a></li>
+				</ul>
+            )
+        }
+    }
+
     render() {
         return (<nav id="header" className="MiniNav">
             <h1>
                 <a href="#/">Tradeback</a>
             </h1>
-            <ul>
-                <li>
-                    <a href="#/create">Create Card</a>
-                </li>
-                <li>
-                    <a href={"#/profile/" + this.state.username}>My Profile</a>
-                </li>
-                <li>
-                    <a href="#">Logout</a>
-                </li>
-            </ul>
+                {
+                    this.logged_in_render()
+                }
         </nav>)
     }
 }
 
-export default MiniNav
+export default withRouter(MiniNav)
