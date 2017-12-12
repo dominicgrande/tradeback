@@ -6,17 +6,20 @@ To run the databse server: `npm start`
 - [x] Trade page - Sort of. Currently when we hit trade it posts immediately instead of being pending.
 - [x] Custom create page
 - [x] Append make offer
-- [ ] Pending offers page
+- [ ] Append pending offers 
 - [ ] Settings page
 - [ ] Tags
+- [ ] Hide cards from completed trades in homepage
+- [ ] Create default monetary card on user creation
 - [x] Nav bars based on if user is logged on or not
 - [x] Search (by title and tag) (tag search still needs to be implemented)
-- [ ] Filter by date
-- [ ] Logout
-- [ ] Homepage "requests" tab
+- [ ] Date posted
+- [ ] Filter by date posted and deadline
+- [ ] Rating system
+- [x] Logout
+- [x] Homepage "requests" tab
 - [x] Profile card list click -> card detail
 - [x] Profile trade list click -> card detail
-- [ ] Rating system
 - [ ] SCSS styling and responsiveness
 - [ ] Cross-browser compatibility
 - [ ] Heroku deployment
