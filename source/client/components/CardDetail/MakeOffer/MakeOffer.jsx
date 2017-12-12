@@ -68,7 +68,7 @@ class MakeOffer extends Component {
     populate_data(){
         let endpoint = config.api_endpoint;
         let _this = this;
-        let type = this.state.offer === true ? 'true' : 'false';
+        let type = this.state.offer === true ? 'false' : 'true';
 
 
         axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
