@@ -82,7 +82,7 @@ class CardDetail extends Component {
         if (this.state.makeoffer){
             return (
                 <div className="offer">
-                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id}/>
+                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id} offer={this.state.usercard.offer}/>  
                 </div>
             );
         } else {

@@ -11,23 +11,28 @@ axios.defaults.withCredentials = true;
 //Configuration file
 var config = require('../../../config');
 
+const CardListType = {
+    OFFERS: 0,
+    REQUESTS: 1,
+    BOTH: 2
+}
+
 class ProfileCardList extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             card_list: props.cards
         };
 
-        this.isSelected = this.isSelected.bind(this);
+        this.isSelected = this.isSelected.bind(this);        
     }
 
     componentWillReceiveProps(newProps) {
         this.setState({card_list: newProps.cards});
     }
 
-    isSelected(event, data){
-        console.log("In is selected"); 
-        console.log(data);       
+    isSelected(event, data){ 
         this.props.receiveId(data._id);
         this.props.receiveAuthor(data.author)
     }
@@ -39,7 +44,6 @@ class ProfileCardList extends Component {
                 this.state.card_list.map((element, index) => {
                     return (
                         <div onClick={(event) => {
-                                console.log("???")
                                 event.stopPropagation();
                                 this.isSelected(event, element);
                             }}>
