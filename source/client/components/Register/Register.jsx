@@ -86,27 +86,6 @@ class Register extends Component {
               </form>
               </div>
           </div>
-          /*
-          <div className = "Register">
-              <Nav />
-            <form className="RegisterStyle" action="/" onSubmit={this.onSubmit}>
-                <Card className="Register__content">
-                    <div>
-                        <h1>Register</h1>
-                        <Input className="content" label="Username" onChange={this.onChangeEmail} />
-                        <br/><br/>
-                        <Input className="content" label="Password" onChange={this.onChangePassword} />
-                        <br/><br/>
-                        <p>{this.state.message}</p>
-                        <Input type="submit" />
-                        <h4>Already registered? Click <Link to="/login">here</Link> to Log-in!</h4>
-
-                        <Link to="../"><p>Go to Dashboard</p></Link>
-                    </div>
-                </Card>
-            </form>
-          </div>
-        */
     )
 }
 }
