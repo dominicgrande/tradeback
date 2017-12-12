@@ -67,26 +67,36 @@ module.exports = function(router) {
     // module.exports = mongoose.model('Trade', tradeSchema);
 
     url.post(function(req, res) {
-      console.log(req.body);
-        Trade.create({
-            userOneCard   : req.body.userOneCard,
-            userTwoCard   : req.body.userTwoCard,
-            cardOneOwner  : req.body.cardOneOwner,
-            cardTwoOwner  : req.body.cardTwoOwner,
-            dateCompleted : null
-        }, function(err, trade) {
-            if (err) {
-                res.status(500).json({
-                    message: 'Failed to POST Trade',
-                    data: err
-                });
-            } else {
-                res.status(201).json({
-                    message: "Succcessful POST Trade",
-                    data: trade,
-                });
-            }
-        })
+
+        if (
+            !req.body.userOneCard || !req.body.userTwoCard || 
+            !req.body.cardOneOwner || !req.body.cardTwoOwner
+            ) 
+        {
+            res.status(400).json({
+                message: 'Bad trade'
+            });
+        } else {
+            Trade.create({
+                userOneCard   : req.body.userOneCard,
+                userTwoCard   : req.body.userTwoCard,
+                cardOneOwner  : req.body.cardOneOwner,
+                cardTwoOwner  : req.body.cardTwoOwner,
+                dateCompleted : null
+            }, function(err, trade) {
+                if (err) {
+                    res.status(500).json({
+                        message: 'Failed to POST Trade',
+                        data: err
+                    });
+                } else {
+                    res.status(201).json({
+                        message: "Succcessful POST Trade",
+                        data: trade,
+                    });
+                }
+            });
+        }
     });
 
     return router;

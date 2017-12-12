@@ -27,7 +27,13 @@ module.exports = function(router, passport) {
      * @description Retrieve a list of cards owned by a specific
      */
     url.get(function(req, res) {
-          let query = Card.find({author: req.query.username});
+        let query;
+        if (req.query.type){
+            query = Card.find({author: req.query.username, offer: req.query.type});            
+        } else {
+            query = Card.find({author: req.query.username});
+        }
+
           query.exec(function(err, cards) {
               if (err) {
                     res.status(500).json({message: "Internal server error"});
