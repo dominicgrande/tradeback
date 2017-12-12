@@ -14,24 +14,24 @@ class Login extends Component {
 
         this.state = {
             user: {
-                password: '',
-                email: ''
+                username: '',
+                password: ''
             },
 
             message: ''
         }
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        const email = encodeURIComponent(this.state.user.email);
+        const username = encodeURIComponent(this.state.user.username);
         const password = encodeURIComponent(this.state.user.password);
-        const formData = `email=${email}&password=${password}`;
+        const formData = `username=${username}&password=${password}`;
 
         // create an AJAX request (This should probably done with Axios instead)
         const xhr = new XMLHttpRequest();
@@ -55,9 +55,9 @@ class Login extends Component {
         xhr.send(formData);
     }
 
-    onChangeEmail(e) {
+    onChangeUsername(e) {
         const user = this.state.user;
-        user.email = e.target.value;
+        user.username = e.target.value;
         this.setState({
             user
         })
@@ -78,7 +78,7 @@ class Login extends Component {
               <div className="content">
               <form action="/" onSubmit={this.onSubmit}>
                 <h1>Login</h1>
-                <input type="text" onChange={this.onChangeEmail} placeholder="username"/>
+                <input type="text" onChange={this.onChangeUsername} placeholder="username"/>
                 <br/><br/>
                 <input type="password" onChange={this.onChangePassword} placeholder="password"/>
                 <p>{this.state.logged_in}</p>
