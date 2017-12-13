@@ -250,25 +250,26 @@ class Profile extends Component {
 
             let new_panes = panes.concat([{
                 menuItem: 'Settings',
-                render: () => <Tab.Pane>
-                  <div className="settings">
-                      <h4>Here, you can change how you appear on your public profile.</h4>
-                      <br/>
-                      <div id="image">
-                            <canvas id='image-canvas' width={256} height={256}></canvas>
-                      </div>
-                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
-                      <br/><br/>
-                      <label> Your location:</label>
-                        <input id="location-input" type="text" placeholder={this.state.user.location}/>
-                      <br/><br/>
-                      <label>Your Bio: </label>
-                      <br/><br/>
-                        <textarea id="description-input" placeholder={this.state.user.description}/>
-                      <input className="submit-button" type="submit" value="save" onClick={this.handleSubmission}/>
-                  </div>
-                </Tab.Pane>
-                }]);
+                render: () => 
+                  <Tab.Pane>
+                    <div id="settings">
+                        <h4>Here, you can change how you appear on your public profile.</h4>
+                        <label className = "input-box"> Your location
+                          <input id="location-input" type="text" placeholder={this.state.user.location}/>
+                        </label>
+                          
+                        <label className = "input-box">Your Bio: 
+                          <textarea id="description-input" placeholder={this.state.user.description}/>
+                        </label>
+                        
+                        <input className="submit-button" type="submit" value="save" onClick={this.handleSubmission}/>
+                        <div id="image">
+                              <canvas id='image-canvas' width={256} height={256}></canvas>
+                        </div>
+                        <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
+                    </div>
+                  </Tab.Pane>
+                });
 
             this.setState({
                 panes: new_panes
@@ -295,21 +296,19 @@ class Profile extends Component {
             , {
                 menuItem: 'Settings',
                 render: () => <Tab.Pane>
-                  <div className="settings">
+                  <div id="settings">
                       <h4>Here, you can change how you appear on your public profile.</h4>
-                      <br/>
-                      <div id="image">
-                            <canvas id='image-canvas' width={256} height={256}></canvas>
-                      </div>
-                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
-                      <br/><br/>
-                      <label> Your location:</label>
-                        <input type="text" placeholder={this.state.user.location}/>
-                      <br/><br/>
-                      <label>Your Bio: </label>
-                      <br/><br/>
-                        <textarea placeholder={this.state.user.description}/>
-                      <input className="submit-button" type="submit" value="save"/>
+                      <section id = "input-settings">
+                        <div id="image">
+                              <canvas id='image-canvas' width={256} height={256}></canvas>
+                        </div>
+                        <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
+                        <label> Your location:</label>
+                          <input type="text" placeholder={this.state.user.location}/>
+                        <label>Your Bio: </label>
+                          <textarea placeholder={this.state.user.description}/>
+                        <input className="submit-button" type="submit" value="save"/>
+                      </section>
                   </div>
                 </Tab.Pane>
 
