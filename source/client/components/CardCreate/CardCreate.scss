@@ -1,6 +1,7 @@
 .CardCreate {
 
   $image-height: 256px;
+  $card-background-color: none;
 
   .card {
     text-align: left;
@@ -9,10 +10,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    max-height: 70%;
-    overflow: auto;
     border: 2px solid #ECECEC;
     border-radius: 8px;
+    overflow: auto;
 
     input, label {
       display: block;
@@ -21,29 +21,11 @@
     input {
       border: 1.5px solid #ECECEC;
       border-radius: 8px;
-      padding: 8px;
+      padding: 10px;
     }
 
     label {
       font-size: 0.9rem;
-    }
-
-    #image {
-        height: $image-height;
-        width: 40%;
-        float: left;
-        background-color: #DEDEDE;
-        display: inline-block;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        p {
-          margin: 0 auto;
-          padding: 10px;
-          background-color: white;
-        }
-
     }
 
     #title {
@@ -52,70 +34,122 @@
       padding: 20px;
       width: 100%;
       background-color: #ECECEC;
-    }
+    }  
 
-    #desc-area {
-      float: right;
-      width: 60%;
-      height: $image-height;
-      padding: 15px 15px 0 15px;
+    #top-row {
+      width: 100%;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
 
-      textarea {
-        position: relative;
+      #image-area {
+        display: block;
+
+        #image {
+          background-color: #DEDEDE;
+        }
+
+        p {
+          margin: 0 auto;
+          padding: 10px;
+          background-color: white;
+        }
+
+      }
+
+      #desc-area {
         width: 100%;
-        height: 100%;
-        resize: none;
-        border: none;
+        padding: 15px 15px 0 15px;
+
+        textarea {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          resize: none;
+          border: none;
+        }
+
+        #description {
+          height: $image-height;
+          border: 1.5px solid #ECECEC;
+          line-height: 1.5em;
+          border-radius: 8px;
+        //  resize: none;
+        }
+      }
+
+    }  
+
+    #bottom-row {
+      width: 100%;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+
+      #label-area {
+        font-size: 0.9rem;
+        display: inline-block;
+      }
+
+      #tag-area {
+        flex: 0 0 40%;
+
+        #tag-input {
+          width: 100%;
+        }
+
+        #tag-box {
+          width: 100%;
+          margin-top: 8px;
+          display: inline-flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+        }
+
+        .tags {
+          display: inline;
+          font-weight: bold;
+          color: white;
+          font-size: 12.5px;
+          background-color: #275AD7;
+          border: 2px solid white;
+          border-radius: 8px;
+          padding: 6px 8px 6px 8px;
+        }
+
+        .tags:hover {
+          background-color: white;
+          opacity: 0.5;
+          border: 2px solid #275AD7;
+          color: #275AD7;
+        }
+
+        .tags:hover:before {
+          content: "x ";
+          color: red;
+        }
+      }
+
+      #submission {
+
+        .submit-button {
+          margin-top: 8px;
+          width: 150px;
+          padding: 10px 20px 10px 20px;
+          border: 2px solid white;
+          background-color: #275AD7;
+          font-family: 'Cubano';
+          color: white;
+        }
+
+        .submit-button:hover {
+          color: #275AD7;
+          border: 2px solid #275AD7;
+          background-color: white;
+        }
       }
     }
-
-    #description {
-      position: relative;
-      border: 1.5px solid #ECECEC;
-      line-height: 1.5em;
-      border-radius: 8px;
-    //  resize: none;
-      height: 205px;
-    }
-
-    #label-area {
-      float: left;
-      margin-top: 20px;
-      padding: 10px;
-      font-size: 0.9rem;
-      display: inline-block;
-
-      #location {
-        float: left;
-        margin-right: 8px;
-      }
-
-      #deadline {
-        float: left;
-      }
-    }
-
-    #submission {
-      float: right;
-      margin: 10px;
-
-      .submit-button {
-        margin-top: 8px;
-        width: 150px;
-        padding: 10px 20px 10px 20px;
-        border: 2px solid white;
-        background-color: #275AD7;
-        font-family: 'Cubano';
-        color: white;
-      }
-
-      .submit-button:hover {
-        color: #275AD7;
-        border: 2px solid #275AD7;
-        background-color: white;
-      }
-    }
-
   }
 
 }

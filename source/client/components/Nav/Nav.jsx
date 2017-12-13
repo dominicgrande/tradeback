@@ -15,7 +15,8 @@ class Nav extends Component {
 		super(props)
 
 		this.state = {
-			isLoggedIn: true
+            isLoggedIn: true,
+            username: props.username
         }
         
         this.handleLogout = this.handleLogout.bind(this);
@@ -44,6 +45,13 @@ class Nav extends Component {
 			push('/#');
         });
     }
+
+
+    componentWillReceiveProps(newProps) {
+        console.log("New user name" + newProps.username)
+        this.setState({username: newProps.username});
+    }
+
 
 	logged_in_render(){
         if (this.state.isLoggedIn) { 
@@ -79,7 +87,7 @@ class Nav extends Component {
 	render() {
 		return (
 			<nav id = "nav-bar" className = "Nav">
-                <NavBarLogin isLoggedIn={this.state.isLoggedIn} receiveLogout={this.handleLogout}/>
+                <NavBarLogin isLoggedIn={this.state.isLoggedIn} receiveLogout={this.handleLogout} username={this.state.username}/>
 			</nav>
 		)
 	}

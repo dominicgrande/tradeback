@@ -17,12 +17,15 @@ class CardCreate extends Component {
         super(props)
         this.state = {
             username: "",
+            tags: [],
             imageUploaded: false, 
             imageUrl: ""
         }
         this.handleOffer = this.handleOffer.bind(this);
         this.handleRequest = this.handleRequest.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
+        this.addTag = this.addTag.bind(this);
+        this.removeTag = this.removeTag.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
         this.dataURItoBlob = this.dataURItoBlob.bind(this);
     }
@@ -103,6 +106,7 @@ class CardCreate extends Component {
     handleSubmission(value, imgur_url) {
         axios.post(config.api_endpoint + '/api/cards', {
             title: document.getElementById('title').value,
+            tags: this.state.tags,
             description: document.getElementById('description-input').value,
             image: imgur_url,
             location: document.getElementById('location-input').value,
@@ -110,6 +114,35 @@ class CardCreate extends Component {
             offer: value,
             author: this.state.username
         });
+    }
+
+    removeTag(e) {
+      let parent = e.target.parentNode;
+      let tag = e.target.innerHTML;
+      parent.removeChild(e.target);
+
+      let index = this.state.tags.indexOf(tag);
+      this.setState({tag: this.state.tags.splice(index, 1)})
+    }
+
+    addTag(e) {
+      let key = e.which
+      if (key === 13) { // 13 is enter
+        let input = e.target.value.trim();
+        if (input.length === 0) {
+          return;
+        }
+
+        let tagBox = document.getElementById('tag-box')
+        let tag = document.createElement("span");
+        tag.className = "tags";
+        tag.addEventListener('click', this.removeTag)
+        tag.innerHTML = input;
+        tagBox.appendChild(tag);
+        e.target.value = '';
+
+        this.setState({tags: this.state.tags.concat(input)})
+      }
     }
 
     //Cited from 
@@ -152,32 +185,45 @@ class CardCreate extends Component {
             <div className="card">
               <input type="text" id="title" placeholder="Enter Card Title"/>
               <br/><br/>
-              <div id="image">
-                    <canvas id='image-canvas' width={256} height={256}></canvas>
-              </div>
-              <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/> 
-
-              <div id="desc-area">
-                <label> Describe the card and any requirements you have.
-                  <br/><br/>
-                  <div id = "description">
-                    <textarea id="description-input" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+              <div id = "top-row">
+                  <div id = "image-area">
+                      <div id="image">
+                            <canvas id='image-canvas' width={256} height={256}></canvas>
+                      </div>
+                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/> 
                   </div>
-                </label>
+
+                  <div id="desc-area">
+                    <label> Describe the card and any requirements you have.
+                      <br/><br/>
+                      <div id = "description">
+                        <textarea id="description-input" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+                      </div>
+                    </label>
+                  </div>
               </div>
 
-              <div id = "label-area">
-                <label id = "location"> Your task location
-                  <input id="location-input" type="text" placeholder="Champaign, IL"/>
-                </label>
-                <label id = "deadline"> Date/Deadline (if applicable)
-                  <input id = "deadline-input" type="text" placeholder="ASAP"/>
-                </label>
-              </div>
+              <div id = "bottom-row">
+                <div id = "label-area">
+                  <label id = "location"> Your task location
+                    <input id="location-input" type="text" placeholder="Champaign, IL"/>
+                  </label>
+                  <label id = "deadline"> Date/Deadline (if applicable)
+                    <input id = "deadline-input" type="text" placeholder="ASAP"/>
+                  </label>
+                </div>
 
-              <div id="submission">
-                <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
-                <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
+                <div id = "tag-area">
+                  <label>Tags
+                    <input type = "text" id = "tag-input" onKeyPress = {this.addTag}/>
+                  </label>
+                  <div id = "tag-box"></div>
+                </div>
+
+                <div id="submission">
+                  <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
+                  <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
+                </div>
               </div>
           </div>
         </div>)

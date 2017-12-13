@@ -13,7 +13,8 @@ class NavBarLogin extends Component {
 		super(props)
 
 		this.state = {
-			isLoggedIn: props.isLoggedIn
+            isLoggedIn: props.isLoggedIn,
+            username: props.username
         }
         
         this.logout = this.logout.bind(this);
@@ -21,7 +22,8 @@ class NavBarLogin extends Component {
     
     componentWillReceiveProps(props) {
         this.setState({
-            isLoggedIn: props.isLoggedIn
+            isLoggedIn: props.isLoggedIn,
+            username: props.username
         });
     }
 
@@ -35,6 +37,7 @@ class NavBarLogin extends Component {
             push('/#');
         });
     }
+    
 
 	logged_in_render(){
         if (this.state.isLoggedIn) { 
@@ -47,7 +50,7 @@ class NavBarLogin extends Component {
                         <a href={"#/profile/" + this.state.username}>My Profile</a>
                     </li>
                     <li>
-                        <a href="#" onClick={this.logout}>Logout</a>
+                        <a onClick={this.logout}>Logout</a>
                     </li>
                 </ul>
                 );

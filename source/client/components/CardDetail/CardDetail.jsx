@@ -126,12 +126,23 @@ class CardDetail extends Component {
             </div>
         );
     }
+    deadlineLogic(){
+        if (this.state.deadline){
+            
+        }
+    }
 
     render() {
         let deadline = this.state.usercard.deadline;
         let isOwner = this.state.isOwner;
         if (deadline !== undefined) {
-            deadline = deadline.substring(0, 10)
+            if (deadline !== null) {
+                deadline = deadline.substring(0, 10);
+            } else {
+                deadline = "None";
+            }
+        } else {
+            deadline = "None";
         }
         return (<div className="CardDetail">
             <MiniNav/>

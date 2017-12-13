@@ -11,11 +11,13 @@ module.exports = function(router) {
     // /api/users GET Request - returns list of users
     url.get(function(req, res) {
         var payload;
+        var payload2;
 
-        if (req.query.where) {
-            payload = Card.find(JSON.parse(req.query.where));
+        if (req.query.includeCard){
+            payload = Trade.find({userOneCard: req.query.includeCard});
+            payload2 = Trade.find({userTwoCard: req.query.includeCard});
         } else {
-            payload = Trade.find({});
+            payload = Trade.find({});            
         }
 
         if (req.query.sort) {
@@ -38,19 +40,48 @@ module.exports = function(router) {
             payload.count();
         }
 
-        payload.exec(function(err, trades) {
-            if (err) {
-                res.status(500).json({
-                    message: 'Failed Trades GET',
-                    data: err
-                });
-            } else {
-                res.status(200).json({
-                    message: 'Trades GET successful',
-                    data: trades
-                });
-            }
-        })
+        if (req.query.includeCard){
+            payload.exec(function(err, trades) {
+                if (err) {
+                    res.status(500).json({
+                        message: 'Failed Trades GET',
+                        data: err
+                    });
+                    return;
+                } else {
+                    Promise.resolve(trades);
+                }
+            }).then((offerOneTrades) => {
+                payload2.exec(function(err, offerTwoTrades){
+                    if (err) {
+                        res.status(500).json({
+                            message: 'Failed trades get'
+                        });
+                    } else {
+                        let newArray = offerOneTrades.concat(offerTwoTrades);
+                        res.status(200).json({
+                            message: 'Trades get succesful',
+                            data: newArray
+                        });
+                    }
+                })
+            });
+            return;
+        } else {
+            payload.exec(function(err, trades) {
+                if (err) {
+                    res.status(500).json({
+                        message: 'Failed Trades GET',
+                        data: err
+                    });
+                } else {
+                    res.status(200).json({
+                        message: 'Trades GET successful',
+                        data: trades
+                    });
+                }
+            });
+        }
     });
 
     // var mongoose = require('mongoose');
@@ -67,6 +98,10 @@ module.exports = function(router) {
     // module.exports = mongoose.model('Trade', tradeSchema);
 
     url.post(function(req, res) {
+        if (!req.isAuthenticated()) {
+            res.status(403).json({message: "Please login"});
+            return;
+        }
 
         if (
             !req.body.userOneCard || !req.body.userTwoCard || 
