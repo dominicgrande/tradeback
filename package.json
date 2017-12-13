@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-        "build-css": "NODE_ENV='production' node-sass-chokidar src/ -o src/",
-        "watch-css": "NODE_ENV='production' npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-         "start-js": "NODE_ENV='production' react-scripts start",
-         "start": "NODE_ENV='production' npm-run-all -p watch-css start-js build",
-         "build-js": "NODE_ENV='production' react-scripts build",
-         "build": "NODE_ENV='production' npm-run-all build-css build-js",
-         "test": "NODE_ENV='production' react-scripts test --env=jsdom",
-         "eject": "NODE_ENV='production' react-scripts eject"
+        "build-css": "node-sass-chokidar src/ -o src/",
+        "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+         "start-js": "react-scripts start",
+         "start": "npm-run-all -p watch-css start-js",
+         "build-js": "react-scripts build",
+         "build": "npm-run-all build-css build-js",
+         "test": "react-scripts test --env=jsdom",
+         "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "Divya Polson, Dominic Grande, Jon Hu, Kevin Wang, Ziwei Ba",
