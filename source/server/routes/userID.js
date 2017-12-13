@@ -66,7 +66,15 @@ module.exports = function(router) {
      * @description Retrieve a user's information given their username
      */
     url.put(function(req, res) {
-        User.findByIdAndUpdate(req.params.id, req.body, {
+        if (!req.isAuthenticated()) {
+            res.status(403).json({
+                message: "Please login"
+            });
+            return;
+        }
+        console.log(req.query.id)
+
+        User.findOneAndUpdate({username: req.query.id}, req.body, {
             new: true
         }, function(err, user) {
             if (err) {
@@ -82,30 +90,6 @@ module.exports = function(router) {
             } else {
                 res.status(200).json({
                     message: 'User ID PUT Succesful',
-                    data: user,
-                });
-            }
-        })
-    });
-
-    // /api/users/* DELETE Request - deletes one task
-    url.delete(function(req, res) {
-        User.deleteOne({
-            _id: req.params.id
-        }, function(err, user) {
-            if (err) {
-                res.status(404).json({
-                    message: 'Failed User ID DELETE',
-                    data: err
-                });
-            } else if (user.deletedCount == 0) {
-                res.status(404).json({
-                    message: 'Not Found User ID DELETE',
-                    data: null
-                });
-            } else {
-                res.status(200).json({
-                    message: 'User ID DELETE Succesful',
                     data: user,
                 });
             }
