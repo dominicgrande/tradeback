@@ -1,0 +1,21 @@
+.Home {
+  text-align: center;
+  margin: 0 auto;
+  background-color: #275AD7; }
+  .Home header {
+    width: 100%;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+    color: white; }
+    .Home header h1 {
+      font-family: 'Cubano';
+      font-size: 5rem;
+      margin: 0 auto; }
+    .Home header h3 {
+      font-size: 1.2rem;
+      margin: 0 auto; }
+  .Home .tab {
+    display: flex;
+    flex-direction: column; }
+  .Home .tabs {
+    flex: 1; }

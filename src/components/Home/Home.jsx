@@ -4,7 +4,7 @@ import { Tab } from 'semantic-ui-react'
 import CardList from './CardList/CardList.jsx'
 import Nav from '../Nav/Nav.jsx'
 import CardCreate from '../CardCreate/CardCreate.jsx'
-import './Home.scss'
+import './Home.css'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 

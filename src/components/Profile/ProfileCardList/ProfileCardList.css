@@ -1,0 +1,21 @@
+.ProfileCardList {
+  width: 100%; }
+  .ProfileCardList .flexcontainer {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 1000px; }
+  .ProfileCardList .cancel {
+    padding: 15px 30px;
+    border-radius: 8px;
+    width: 230px;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    border: 2px solid white;
+    background-color: #275AD7; }
+  .ProfileCardList .cancel:hover {
+    background-color: white;
+    color: #275AD7;
+    border: 2px solid #275AD7; }

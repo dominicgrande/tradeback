@@ -1,0 +1,48 @@
+.Profile {
+  text-align: center;
+  margin: 0 auto; }
+  .Profile .profile-content {
+    margin: 0 auto;
+    height: 100%;
+    min-width: 1000px; }
+  .Profile .userInfo {
+    margin-top: 60px;
+    float: left;
+    width: 20%;
+    padding: 5%; }
+    .Profile .userInfo .profile-pic, .Profile .userInfo .username, .Profile .userInfo .location, .Profile .userInfo .description {
+      padding: 6px;
+      float: left;
+      text-align: left;
+      width: 200px; }
+  .Profile .activity {
+    margin-top: 60px;
+    height: 100%;
+    width: 75%;
+    float: right;
+    padding: 5% 5% 5% 2%; }
+  .Profile .tab {
+    display: flex;
+    flex-direction: column;
+    overflow: auto; }
+  .Profile .tabs {
+    flex: 1; }
+  .Profile #settings {
+    text-align: left;
+    margin: 0 auto;
+    width: 100%; }
+    .Profile #settings h4 {
+      margin-bottom: 20px; }
+    .Profile #settings #image {
+      position: relative;
+      margin-top: 5%;
+      margin-left: 2%;
+      height: 200px;
+      width: 200px;
+      background-color: #DEDEDE; }
+    .Profile #settings #input-settings {
+      width: 80%; }
+      .Profile #settings #input-settings .input-box {
+        margin: 0 auto;
+        width: 100%;
+        float: left; }

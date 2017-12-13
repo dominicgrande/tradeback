@@ -1,0 +1,21 @@
+.Nav {
+  font-size: 1em;
+  height: 70px;
+  width: 100%;
+  background-color: #275AD7; }
+  .Nav h1:hover {
+    color: #EDF5FF; }
+  .Nav ul {
+    margin: 1.8em 1em 1em 1em;
+    float: right;
+    list-style-type: none;
+    margin-right: 1em;
+    text-align: right; }
+    .Nav ul li {
+      display: inline;
+      padding-right: 1.5em; }
+      .Nav ul li a {
+        color: white; }
+      .Nav ul li a:hover {
+        color: white;
+        text-decoration: underline; }

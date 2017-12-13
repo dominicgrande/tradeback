@@ -1,0 +1,91 @@
+.CardDetail {
+  text-align: center;
+  display: flex;
+  justify-content: center; }
+  .CardDetail body {
+    margin: 0 auto; }
+  .CardDetail .header {
+    background-color: #787878;
+    color: white;
+    position: absolute;
+    top: 140px;
+    width: 50%;
+    height: 80px; }
+    .CardDetail .header .title {
+      float: left;
+      padding: 14px 10px 10px 15px; }
+    .CardDetail .header .author {
+      float: right;
+      padding: 15px; }
+      .CardDetail .header .author a {
+        color: white;
+        font-weight: bold; }
+      .CardDetail .header .author a:hover {
+        text-decoration: underline; }
+  .CardDetail .card {
+    display: flex;
+    position: absolute;
+    height: 300px;
+    width: 50%;
+    margin-top: 195px;
+    left: 25%;
+    overflow: auto;
+    background-color: #ECECEC; }
+    .CardDetail .card .left {
+      order: 1;
+      flex-basis: auto; }
+      .CardDetail .card .left .card-pic {
+        float: left;
+        background-color: #275AD7; }
+    .CardDetail .card .right {
+      order: 1;
+      padding: .5rem; }
+      .CardDetail .card .right .desc {
+        text-align: left;
+        padding: 10px;
+        max-height: 135px;
+        overflow: auto; }
+      .CardDetail .card .right .location {
+        text-align: left;
+        float: left;
+        padding: 10px; }
+        .CardDetail .card .right .location .tags-box {
+          margin-top: 15px; }
+          .CardDetail .card .right .location .tags-box .detail-tags {
+            display: inline;
+            font-weight: bold;
+            color: white;
+            font-size: 12.5px;
+            background-color: #275AD7;
+            border: 2px solid #ECECEC;
+            border-radius: 8px;
+            margin-right: 9px;
+            padding: 6px 8px 6px 8px; }
+          .CardDetail .card .right .location .tags-box .detail-tags:hover {
+            background-color: #ECECEC;
+            border: 2px solid #275AD7;
+            color: #275AD7; }
+      .CardDetail .card .right .deadline {
+        text-align: left;
+        float: right;
+        padding: 10px; }
+  .CardDetail .offer {
+    position: relative;
+    margin-top: 540px;
+    height: 300px;
+    width: 100%; }
+    .CardDetail .offer p {
+      padding: 8px; }
+    .CardDetail .offer .button {
+      padding: 15px 30px;
+      border-radius: 8px;
+      width: 230px;
+      text-align: center;
+      margin: 0 auto;
+      color: white;
+      border: 2px solid white;
+      background-color: #275AD7; }
+    .CardDetail .offer .button:hover {
+      background-color: white;
+      color: #275AD7;
+      border: 2px solid #275AD7; }

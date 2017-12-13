@@ -1,0 +1,106 @@
+.CardCreate .card {
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  border: 2px solid #ECECEC;
+  border-radius: 8px;
+  overflow: auto; }
+  .CardCreate .card input, .CardCreate .card label {
+    display: block; }
+  .CardCreate .card input {
+    border: 1.5px solid #ECECEC;
+    border-radius: 8px;
+    padding: 10px; }
+  .CardCreate .card label {
+    font-size: 0.9rem; }
+  .CardCreate .card #title {
+    float: left;
+    border: none;
+    padding: 20px;
+    width: 100%;
+    background-color: #ECECEC; }
+  .CardCreate .card #top-row {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .CardCreate .card #top-row #image-area {
+      display: block; }
+      .CardCreate .card #top-row #image-area #image {
+        text-align: center; }
+      .CardCreate .card #top-row #image-area canvas {
+        background-color: #DEDEDE; }
+      .CardCreate .card #top-row #image-area p {
+        margin: 0 auto;
+        padding: 10px;
+        background-color: white; }
+    .CardCreate .card #top-row #desc-area {
+      width: 100%;
+      padding: 15px 15px 0 15px; }
+      .CardCreate .card #top-row #desc-area textarea {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border: none; }
+      .CardCreate .card #top-row #desc-area #description {
+        height: 256px;
+        border: 1.5px solid #ECECEC;
+        line-height: 1.5em;
+        border-radius: 8px; }
+  .CardCreate .card #bottom-row {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px; }
+    .CardCreate .card #bottom-row #label-area {
+      font-size: 0.9rem;
+      display: inline-block; }
+      .CardCreate .card #bottom-row #label-area #deadline {
+        margin-top: 12px; }
+      .CardCreate .card #bottom-row #label-area #deadline-input::-webkit-inner-spin-button {
+        display: none; }
+    .CardCreate .card #bottom-row #tag-area {
+      flex: 0 0 40%; }
+      .CardCreate .card #bottom-row #tag-area #tag-input {
+        width: 100%; }
+      .CardCreate .card #bottom-row #tag-area #tag-box {
+        width: 100%;
+        margin-top: 8px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        flex-direction: row; }
+      .CardCreate .card #bottom-row #tag-area .tags {
+        display: inline;
+        font-weight: bold;
+        color: white;
+        font-size: 12.5px;
+        background-color: #275AD7;
+        border: 2px solid white;
+        border-radius: 8px;
+        padding: 6px 8px 6px 8px; }
+      .CardCreate .card #bottom-row #tag-area .tags:hover {
+        background-color: white;
+        opacity: 0.5;
+        border: 2px solid #275AD7;
+        color: #275AD7;
+        cursor: pointer; }
+      .CardCreate .card #bottom-row #tag-area .tags:hover:before {
+        content: "x ";
+        color: red; }
+    .CardCreate .card #bottom-row #submission .submit-button {
+      margin-top: 8px;
+      width: 150px;
+      padding: 10px 20px 10px 20px;
+      border: 2px solid white;
+      background-color: #275AD7;
+      font-family: 'Cubano';
+      color: white; }
+    .CardCreate .card #bottom-row #submission .submit-button:hover {
+      color: #275AD7;
+      border: 2px solid #275AD7;
+      background-color: white; }
