@@ -19,6 +19,7 @@ var cardSchema = mongoose.Schema({
         default: true
     },
     author: String,
+    dateCreated: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('Card', cardSchema);

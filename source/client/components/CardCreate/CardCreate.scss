@@ -46,8 +46,11 @@
         display: block;
 
         #image {
-          background-color: #DEDEDE;
           text-align: center;
+        }
+
+        canvas {
+          background-color: #DEDEDE;
         }
 
         p {
@@ -94,6 +97,10 @@
 
         #deadline {
           margin-top: 12px;
+        }
+
+        #deadline-input::-webkit-inner-spin-button {
+          display: none;
         }
       }
 

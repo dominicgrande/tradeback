@@ -9,6 +9,14 @@ var tradeSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    userOneSatisfied: {
+        type: Boolean,
+        default: false
+    },
+    userTwoSatisfied: {
+        type: Boolean,
+        default: false
+    },
     userOneCardObject : Object,
     userTwoCardObject : Object
 });
