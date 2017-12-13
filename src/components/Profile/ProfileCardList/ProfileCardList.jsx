@@ -42,7 +42,7 @@ class ProfileCardList extends Component {
     }
 
     isSelected(event, data){
-        if (!this.props.receiveId){
+        if (typeof(this.props.receiveId) == 'function'){
             this.props.receiveId(data._id);
             this.props.receiveAuthor(data.author);
         }
