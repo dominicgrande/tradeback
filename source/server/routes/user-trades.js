@@ -95,7 +95,7 @@ module.exports = function(router, passport) {
 
                 Promise.all(promises).then(() => {
                     console.log(trades);
-                    res.status(200).json({message: "trades", data: trades});
+                    res.status(200).json({message: "trades", data: trades.reverse()});
                 }).catch(() => {
                     res.status(500).json({message: "Internal server error"});
                 });
