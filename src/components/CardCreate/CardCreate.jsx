@@ -33,7 +33,7 @@ class CardCreate extends Component {
     }
 
     componentWillMount() {
-        axios.get('http://localhost:3000/auth/profile').then((res) => {
+        axios.get(config.api_endpoint+'/auth/profile').then((res) => {
             console.log(res);
             this.setState({isLoggedIn: true, username: res.data.user.username})
         }).catch((err) => {
