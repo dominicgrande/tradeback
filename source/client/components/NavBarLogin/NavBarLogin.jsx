@@ -50,7 +50,7 @@ class NavBarLogin extends Component {
                         <a href={"#/profile/" + this.state.username}>My Profile</a>
                     </li>
                     <li>
-                        <a href="#" onClick={this.logout}>Logout</a>
+                        <a onClick={this.logout}>Logout</a>
                     </li>
                 </ul>
                 );
