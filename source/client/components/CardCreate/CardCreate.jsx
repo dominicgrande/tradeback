@@ -183,18 +183,15 @@ class CardCreate extends Component {
         return (
           <div className="CardCreate">
             <MiniNav />
-            <div className="card">
+            <div className="card col-6">
               <input type="text" id="title" placeholder="Enter Card Title"/>
-              <br/><br/>
               <div id = "top-row">
-                  <div id = "image-area">
-                      <div id="image">
-                            <canvas id='image-canvas' width={256} height={256}></canvas>
-                      </div>
+                  <div id = "image-area" className = "">
+                      <canvas id='image-canvas'></canvas>
                       <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/> 
                   </div>
 
-                  <div id="desc-area">
+                  <div id="desc-area" className = "">
                     <label> Describe the card and any requirements you have.
                       <br/><br/>
                       <div id = "description">

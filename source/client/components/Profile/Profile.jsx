@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Tab} from 'semantic-ui-react'
+import {Tab, Form, Button, Item} from 'semantic-ui-react'
 import ProfileCardList from './ProfileCardList/ProfileCardList.jsx'
 import ProfileTradeList from './ProfileTradeList/ProfileTradeList.jsx'
 import MiniNav from '../MiniNav/MiniNav.jsx'
@@ -251,24 +251,23 @@ class Profile extends Component {
 
             let new_panes = panes.concat([{
                 menuItem: 'Settings',
-                render: () => <Tab.Pane>
-                  <div className="settings">
-                      <h4>Here, you can change how you appear on your public profile.</h4>
-                      <br/>
-                      <div id="image">
-                            <canvas id='image-canvas' width={256} height={256}></canvas>
-                      </div>
-                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
-                      <br/><br/>
-                      <label> Your location:</label>
-                        <input id="location-input" type="text" placeholder={this.state.user.location}/>
-                      <br/><br/>
-                      <label>Your Bio: </label>
-                      <br/><br/>
-                        <textarea id="description-input" placeholder={this.state.user.description}/>
-                      <input className="submit-button" type="submit" value="save" onClick={this.handleSubmission}/>
-                  </div>
-                </Tab.Pane>
+                render: () => 
+                  <Tab.Pane>
+                    <div id="settings">
+                        <h3>Here, you can change how you appear on your public profile.</h3>
+                        <div id="image">
+                              <canvas id='image-canvas' width={256} height={256}></canvas>
+                        </div>
+                        <Form.Input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
+                        <Form id = "input-settings">
+                          <Form.Input id = 'location-input' label = 'Your location' placeholder = {this.state.user.location} />
+                          <Form.TextArea id = 'description-input' label = 'Bio' placeholder = {this.state.user.description} />
+                        </Form>
+                        
+                        <Button className="submit-button" type="submit" content="Save" onClick={this.handleSubmission}/>
+                        
+                    </div>
+                  </Tab.Pane>
                 }]);
 
             this.setState({
@@ -281,7 +280,7 @@ class Profile extends Component {
 
     render() {
 
-        var panes = [
+        let panes = [
             {
                 menuItem: 'Open cards',
                 render: () => <Tab.Pane>
@@ -296,38 +295,37 @@ class Profile extends Component {
             , {
                 menuItem: 'Settings',
                 render: () => <Tab.Pane>
-                  <div className="settings">
+                  <div id="settings">
                       <h4>Here, you can change how you appear on your public profile.</h4>
-                      <br/>
-                      <div id="image">
-                            <canvas id='image-canvas' width={256} height={256}></canvas>
-                      </div>
-                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
-                      <br/><br/>
-                      <label> Your location:</label>
-                        <input type="text" placeholder={this.state.user.location}/>
-                      <br/><br/>
-                      <label>Your Bio: </label>
-                      <br/><br/>
-                        <textarea placeholder={this.state.user.description}/>
-                      <input className="submit-button" type="submit" value="save"/>
+                      <section id = "input-settings">
+                        <div id="image">
+                              <canvas id='image-canvas' width={256} height={256}></canvas>
+                        </div>
+                        <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
+                        <label> Your location:</label>
+                          <input type="text" placeholder={this.state.user.location}/>
+                        <label>Your Bio: </label>
+                          <textarea placeholder={this.state.user.description}/>
+                        <input className="submit-button" type="submit" value="save"/>
+                      </section>
                   </div>
                 </Tab.Pane>
 
             }
         ]
 
-        return (<div className="Profile">
-          <MiniNav />
+        return (
+          <div className="Profile">
+            <MiniNav />
             <div className="profile-content">
-              <div className="userInfo">
+              <div className="userInfo col-3">
                 <img className="profile-pic" src={this.state.user.profile_image} alt="profilepic" height="200" width="200"/>
                 <h2 className="username">{this.state.user.username}</h2>
                 <h3 className="location">{this.state.user.location}</h3>
                 <p className="description">{this.state.user.description}</p>
                 {/*<div className="tags">{this.state.user.tags}</div>*/}
               </div>
-            <Tab className="activity" panes={this.state.panes}/>
+            <Tab className="activity col-8" menu = {{secondary:true, pointing: true}} panes={this.state.panes}/>
           </div>
         </div>)
     }

@@ -143,41 +143,44 @@ class CardDetail extends Component {
         } else {
             deadline = "None";
         }
-        if (tags == undefined) {
+        if (tags === undefined) {
           tags = [];
         }
-        return (<div className="CardDetail">
-            <MiniNav/>
-            <div className="header">
-                <h2 className="title">{this.state.usercard.title}</h2>
-                <p className="author">
-                    <a href={"#/profile/" + this.state.usercard.author}>{this.state.usercard.author}</a>
-                </p>
-            </div>
-            <Divider hidden/>
-            <div className="wrapper">
-                <div className="card">
-                    <div className="left">
-                        <img className="card-pic" src={this.state.usercard.image} height="300" width="300"/>
-                    </div>
-                    <div className="right">
-                        <p className="desc">{this.state.usercard.description}</p>
-                        <div className="location">
-                            <h3>Location</h3>
-                            <p>{this.state.usercard.location}</p>
-                            <div className="tags-box">
+        return (
+            <div className="CardDetail">
+                <MiniNav/>
+                <div id = "card" className = "col-6">
+                    <section id="header">
+                        <h2 id="title">{this.state.usercard.title}</h2>
+                        <p id="author">
+                            <a href={"#/profile/" + this.state.usercard.author}>{this.state.usercard.author}</a>
+                        </p>
+                    </section>
+                    <Divider hidden/>
+                    <section id="info">
+                        <div id="left" className = "col-3">
+                            <img id="card-pic" src={this.state.usercard.image}/>
+                        </div>
+                        <div id="right" className = "col-8">
+                            <p id="desc">{this.state.usercard.description}</p>
+                            <div id = "loc-date">
+                                <div id="location">
+                                    <h3>Location</h3>
+                                    <p>{this.state.usercard.location}</p>
+                                </div>
+                                <div id="deadline">
+                                    <h3>Deadline</h3>
+                                    <p>{deadline}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tags-box">
                             {tags.map((element, index) => {
                               return (<p className="detail-tags">#{element}</p>);
                             })}
-                            </div>
                         </div>
-                        <div className="deadline">
-                            <h3>Deadline</h3>
-                            <p>{deadline}</p>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-            </div>
             {(isOwner)?this.pendingOffers():this.makeOffer()}
         </div>)
     }

@@ -28,6 +28,8 @@ class CardList extends Component {
 
         this.updateCards = this.updateCards.bind(this);
         this.search = this.search.bind(this);
+        this.onTagClick = this.onTagClick.bind(this);
+        this.onSearchChange = this.onSearchChange.bind(this);
     }
 
     updateCards(){
@@ -54,8 +56,8 @@ class CardList extends Component {
         }, this.updateCards);
     }
 
-    search(e) {
-        let input = e.target.value.toLowerCase();
+    search(input) {
+        input = input.replace('#', '');
         if (input.length === 0) {
             this.setState({filtered_list: this.state.card_list})
             return;
@@ -88,16 +90,24 @@ class CardList extends Component {
         this.setState({filtered_list: result})
     }
 
+    onTagClick(e) {
+        this.search(e.target.innerHTML);
+    }
+
+    onSearchChange(e) {
+        this.search(e.target.value);
+    }
+
     render() {
         return (<div className="OfferList">
             <form className="bar">
-                <input id="search" type="text" name="search" placeholder="Search" onChange = {this.search}/>
+                <input id="search" type="text" name="search" placeholder="Search" onChange = {this.onSearchChange}/>
             </form>
             <h4 className="trending">TRENDING</h4>
-            <p className="tags">#tutoring</p>
-            <p className="tags">#labor</p>
-            <p className="tags">#art</p>
-            <p className="tags">#textbooks</p>
+            <p className="tags" onClick = {this.onTagClick}>#tutoring</p>
+            <p className="tags" onClick = {this.onTagClick}>#labor</p>
+            <p className="tags" onClick = {this.onTagClick}>#art</p>
+            <p className="tags" onClick = {this.onTagClick}>#textbooks</p>
 
             <div className="flexcontainer">
                 {
