@@ -8,7 +8,7 @@ To run the databse server: `npm start`
 - [x] Append make offer
 - [ ] Append pending offers 
 - [ ] Settings page
-- [ ] Tags
+- [x] Tags
 - [ ] Hide cards from completed trades in homepage
 - [ ] Create default monetary card on user creation
 - [x] Nav bars based on if user is logged on or not
