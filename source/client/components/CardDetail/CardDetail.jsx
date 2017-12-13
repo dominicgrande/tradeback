@@ -120,6 +120,7 @@ class CardDetail extends Component {
         console.log(this.state.currentOffers);
         return (
             <div className="pendingOffer">
+                <br/><br/>
                 <h3>Pending Offer List</h3>
                 <PendingOffers offers={this.state.currentOffers} sourceId={this.state.id} />
             </div>
