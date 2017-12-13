@@ -160,7 +160,9 @@ class CardDetail extends Component {
                     <Divider hidden/>
                     <section id="info">
                         <div id="left" className = "col-3">
+                          <div className="cardbox">
                             <img id="card-pic" src={this.state.usercard.image}/>
+                          </div>
                         </div>
                         <div id="right" className = "col-8">
                             <p id="desc">{this.state.usercard.description}</p>

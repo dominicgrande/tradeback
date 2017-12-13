@@ -1,5 +1,13 @@
 .CardDetail {
 
+  @media only screen and (max-width: 768px) {
+      /* For mobile phones: */
+      #card-pic {
+        min-width: 100vw;
+        min-height: 100vw;
+      }
+  }
+
   text-align: center;
 
   #card {
@@ -45,13 +53,25 @@
 
       #left {
 
+        .cardbox {
+        //  height: 0;
+        //  width:100%;
+        //  padding-bottom:100%;
+          //width: 20vw;
+          //height: 20vw;
+        }
+
         #card-pic {
-          width: 100%;
+        //  width: 100%;
+        //  padding-bottom: 50%;
+          width: 15vw;
+          height: 15vw;
         }
       }
 
       #right {
         padding-top: 5%;
+        padding-left: 50px;
         position: relative;
         margin: 0 auto;
 
