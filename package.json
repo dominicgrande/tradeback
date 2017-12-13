@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack -d --watch",
-    "build": "webpack",
-    "dev": "webpack-dev-server --content-base public/ --history-api-fallback",
-    "start": "nodemon --exec node source/server/server.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "Divya Polson, Dominic Grande, Jon Hu, Kevin Wang, Ziwei Ba",
