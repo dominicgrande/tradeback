@@ -185,18 +185,22 @@ class CardCreate extends Component {
             <div className="card">
               <input type="text" id="title" placeholder="Enter Card Title"/>
               <br/><br/>
-              <div id="image">
-                    <canvas id='image-canvas' width={256} height={256}></canvas>
-              </div>
-              <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/> 
-
-              <div id="desc-area">
-                <label> Describe the card and any requirements you have.
-                  <br/><br/>
-                  <div id = "description">
-                    <textarea id="description-input" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+              <div id = "top-row">
+                  <div id = "image-area">
+                      <div id="image">
+                            <canvas id='image-canvas' width={256} height={256}></canvas>
+                      </div>
+                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/> 
                   </div>
-                </label>
+
+                  <div id="desc-area">
+                    <label> Describe the card and any requirements you have.
+                      <br/><br/>
+                      <div id = "description">
+                        <textarea id="description-input" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+                      </div>
+                    </label>
+                  </div>
               </div>
 
               <div id = "bottom-row">
