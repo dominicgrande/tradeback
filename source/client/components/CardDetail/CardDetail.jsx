@@ -30,7 +30,8 @@ class CardDetail extends Component {
             isLoggedIn: false,
             username: "",
             isOwner: true,
-            currentOffers: []
+            currentOffers: [],
+            hasLoaded: false
         }
 
         this.makeOffer = this.makeOffer.bind(this);
@@ -48,11 +49,8 @@ class CardDetail extends Component {
         let _this = this;
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
-            console.log(res);
             this.setState({isLoggedIn: true, username: res.data.user.username});
         }).catch((err) => {
-            console.log(err);
-            console.log("Not logged in");
             this.setState({isLoggedIn: false})
         });
     }
@@ -73,15 +71,22 @@ class CardDetail extends Component {
         // Get User data
         console.log(this.state.id);
         axios.get(endpoint + '/api/card/' + '?id=' + this.state.id).then(function(response) {
-            console.log(response.data);
             const isOwner = response.data.data.author === _this.state.username;
-            console.log(isOwner)
             _this.setState({usercard: response.data.data, isOwner});
         });
         axios.get(endpoint + '/api/trades/' + '?includeCard=' + this.state.id).then((response) => {
-            console.log(response.data);
+            const offerList = response.data.data;
+            console.log(offerList);
+            offerList.forEach((offer) => {
+                axios.get(endpoint + '/api/card/' + '?id=' + offer.userOneCard).then((res) => {
+                    let currentOffers = _this.state.currentOffers;
+                    console.log(res);
+                    console.log(res.data.data);
+                    currentOffers.push(res.data.data);
+                    _this.setState({currentOffers, hasLoaded:true});
+                });
+            });
         });
-
     }
 
     componentDidMount() {
@@ -112,9 +117,11 @@ class CardDetail extends Component {
     <PendingOffers offers={this.state.currentOffers} />
     */
     pendingOffers(){
+        console.log(this.state.currentOffers);
         return (
             <div className="pendingOffer">
-                <h2>Offers here</h2>
+                <h3>Pending Offer List</h3>
+                <PendingOffers offers={this.state.currentOffers} sourceId={this.state.id} />
             </div>
         );
     }
@@ -125,9 +132,8 @@ class CardDetail extends Component {
     }
 
     render() {
-        let deadline = this.state.usercard.deadline;
-        let isOwner = this.state.isOwner;
-        let tags = this.state.usercard.tags;
+        let { deadline, tags } = this.state.usercard;
+        let { isOwner, hasLoaded } = this.state;
         if (deadline !== undefined) {
             if (deadline !== null) {
                 deadline = deadline.substring(0, 10);
@@ -172,7 +178,7 @@ class CardDetail extends Component {
                     </div>
                 </div>
             </div>
-            {isOwner?this.pendingOffers():this.makeOffer()}
+            {(isOwner)?this.pendingOffers():this.makeOffer()}
         </div>)
     }
 }

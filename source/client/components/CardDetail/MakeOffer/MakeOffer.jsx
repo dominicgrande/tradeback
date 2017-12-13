@@ -123,11 +123,19 @@ class MakeOffer extends Component {
         let endpoint = config.api_endpoint;
         let _this = this;
         console.log("Handle trade");
+        let u1sat = false;
+        let u2sat = true;
+
+        if (this.state.offer) {
+            let u1sat = true;
+        }
         axios.post(endpoint + '/api/trades', {
             userOneCard: this.state.currentlySelectedCardId,
             userTwoCard: this.state.otherCardID,
             cardOneOwner: this.state.currentlySelectedCardAuthor,
-            cardTwoOwner: this.state.otherAuthor
+            cardTwoOwner: this.state.otherAuthor,
+            userOneSatisfied: u1sat,
+            userTwoSatisfied: u2sat
         }).then(function(response) {
             console.log(response);
         });

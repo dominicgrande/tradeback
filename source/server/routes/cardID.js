@@ -29,7 +29,24 @@ module.exports = function(router) {
 
     // /api/users/* PUT Request - updates data for one task
     url.put(function(req, res) {
-        Card.findByIdAndUpdate(req.query.id, req.body, {
+        if (req.query.status){
+            Card.findByIdAndUpdate({_id: req.query.id}, {"status": 1}, {upsert: true, new: true}, function(err, card){
+                if (err) {
+                    res.status(404).json({
+                        message: 'Failed Card ID PUT',
+                        data: err
+                    });
+                } else {
+                    res.status(200).json({
+                        message: 'Card ID PUT Succesful With Status',
+                        data: card,
+                    });
+                }
+            });
+            return;
+        }
+        else {
+           Card.findByIdAndUpdate(req.query.id, req.body, {
             new: true
         }, function(err, card) {
             if (err) {
@@ -43,7 +60,9 @@ module.exports = function(router) {
                     data: card,
                 });
             }
-        })
+        }) 
+        }
+        
     });
 
     // /api/users/* DELETE Request - deletes one task

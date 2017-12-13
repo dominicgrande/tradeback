@@ -1,8 +1,10 @@
-.ProfileCardList {
+.PendingOfferList {
 
   width:100%;
+  margin-top: 540px;
+  z-index: -200;
 
-  .flexcontainer {
+  .pendingflexcontainer {
     display: flex;
     margin: 0 auto;
     flex-wrap:wrap;
@@ -10,9 +12,7 @@
     width: 1000px;
   }
 
-
-
-  .cancel {
+  .cancel, .confirm {
         padding: 15px 30px;
         border-radius: 8px;
         width: 230px;
@@ -23,7 +23,7 @@
         background-color: #275AD7;
       }
 
-      .cancel:hover {
+      .cancel:hover, .confirm:hover {
         background-color: white;
         color: #275AD7;
         border: 2px solid #275AD7;

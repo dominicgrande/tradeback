@@ -1,15 +1,44 @@
 import React, {Component} from 'react';
 import MiniCard from '../../MiniCard/MiniCard.jsx';
+import axios from 'axios'
+
+import './PendingOffers.scss';
+
+var config = require('../../../config');
 
 class PendingOffers extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+            showAll: true,
 			offer_cards: this.props.offers,
-			selected_offer: {},
-			selectedindex: 0
+			selected: {},
+			selectedindex: 0,
+            sourceId: this.props.sourceId
 		}
+
+        this.updateTrades = this.updateTrades.bind(this);
 	}
+
+    updateTrades() {
+        let endpoint = config.api_endpoint;
+        
+        axios.put(endpoint + '/api/trades/' + '?includeCard=' + this.state.selected._id, {
+            params: {
+                userOneSatisfied: true,
+                userTwoSatisfied: true
+            }
+        }).then((response) => {
+           console.log(response);
+        });
+        
+        axios.put(endpoint + '/api/card/' + '?id=' + this.state.selected._id + '&status=1').then((response) => {
+            console.log(response);
+        });
+        axios.put(endpoint + '/api/card/' + '?id=' + this.state.sourceId + '&status=1').then((response) => {
+            console.log(response);
+        });
+    }
 
 	render() {
         const { showAll, selected } = this.state;
@@ -30,22 +59,30 @@ class PendingOffers extends Component {
                         )
                 });
         return (
-        <div className="ProfileCardList">
-            <div className= "flexcontainer">
+        <div className="PendingOfferList">
+
+            <div className= "pendingflexcontainer">
                 {showAll && slides}
                 {!showAll && 
                     <div className="selectedCard">
-                    <MiniCard key={this.state.selectedindex + "MiniCard"}
-                            title={selected.title}
-                            description={selected.description}
-                            img={selected.image}
-                            id={selected._id}
-                            tags={element.tags}
-                            />
-                    <div className="cancel" onClick={(event) => {
-                        event.stopPropagation();
-                        this.setState({selected_offer: {}, showAll: true, selectedindex: 0});
-                    }}>Select Another Card</div>
+                        <MiniCard key={this.state.selectedindex + "MiniCard"}
+                                title={selected.title}
+                                description={selected.description}
+                                img={selected.image}
+                                id={selected._id}
+                                tags={selected.tags}
+                                />
+                        <div className="buttons">
+                            <div className="cancel" onClick={(event) => {
+                                event.stopPropagation();
+                                this.setState({selected: {}, showAll: true, selectedindex: 0});
+                            }}>Select Another Card
+                            </div>
+                            <div className="confirm" onClick={(event) => {
+                                this.updateTrades();
+                            }}>Confirm Trade
+                            </div>
+                        </div>
                     </div>
                 }
             </div>

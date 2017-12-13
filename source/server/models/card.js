@@ -11,8 +11,8 @@ var cardSchema = mongoose.Schema({
     deadline    : Date,
     tags        : [String],
     status      : {
-        type: Boolean,
-        default: false
+        type: Number,
+        default: 0
     },
     offer       : {
         type: Boolean,
