@@ -111,16 +111,19 @@ class Profile extends Component {
       console.log("Receive props");
       let webUrl = window.location.href.split("/")
       let username = webUrl.pop();
-      if (webUrl.length > 3) {
-          this.setState({username: username}, () => {
-              this.updateData();
-              this.display_settings();
-          });
-      }
+
+      this.setState({
+          panes: this.original_panes
+      }, () => {
+          console.log("HERE HERE HERE");
+            this.setState({username: username}, () => {
+                this.updateData();
+                this.display_settings();
+            });
+        });
     }
 
     updateData(){
-        console.log("here!");
       let endpoint = config.api_endpoint;
       let _this = this;
 
@@ -239,9 +242,9 @@ class Profile extends Component {
 
     display_settings(){
         if (this.state.loggedin_username == this.state.username){
-            let panes = this.state.panes;
+            let panes = this.original_panes;
 
-            panes.push({
+            let new_panes = panes.concat([{
                 menuItem: 'Settings',
                 render: () => <Tab.Pane>
                   <div className="settings">
@@ -261,13 +264,13 @@ class Profile extends Component {
                       <input className="submit-button" type="submit" value="save" onClick={this.handleSubmission}/>
                   </div>
                 </Tab.Pane>
-                });
+                }]);
 
             this.setState({
-                panes: panes
+                panes: new_panes
             });
         } else {
-            this.setState({panes: this.original_panes})
+            this.setState({panes: this.original_panes});
         }
     }
 
