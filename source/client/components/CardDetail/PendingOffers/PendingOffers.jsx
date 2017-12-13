@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MiniCard from '../../MiniCard/MiniCard.jsx';
 import axios from 'axios'
+import {withRouter} from 'react-router'
 
 import './PendingOffers.scss';
 
@@ -14,14 +15,24 @@ class PendingOffers extends Component {
 			offer_cards: this.props.offers,
 			selected: {},
 			selectedindex: 0,
-            sourceId: this.props.sourceId
+            sourceId: this.props.sourceId,
+            username: this.props.username
 		}
 
         this.updateTrades = this.updateTrades.bind(this);
-	}
+    }
+    
+    componentWillReceiveProps(props){
+        this.setState({
+            offer_cards: this.props.offers,
+            sourceId: this.props.sourceId,
+            username: this.props.username
+        });
+    }
 
     updateTrades() {
         let endpoint = config.api_endpoint;
+        let _this = this;
         
         axios.put(endpoint + '/api/trades/' + '?includeCard=' + this.state.selected._id, {
             params: {
@@ -37,6 +48,10 @@ class PendingOffers extends Component {
         });
         axios.put(endpoint + '/api/card/' + '?id=' + this.state.sourceId + '&status=1').then((response) => {
             console.log(response);
+        }).then(() => {
+            const { history: { push } } = _this.props;
+            console.log(this.state.username)
+            push('/profile/'+this.state.username);
         });
     }
 
@@ -91,4 +106,4 @@ class PendingOffers extends Component {
     }
 }
 
-export default PendingOffers;
+export default withRouter(PendingOffers);

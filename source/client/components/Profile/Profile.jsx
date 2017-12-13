@@ -40,7 +40,8 @@ class Profile extends Component {
             usercards: [],
             usertrades: [],
             panes: this.original_panes, 
-            isImage: false
+            isImage: false,
+            showTrades: false
         }
 
         this.updateData = this.updateData.bind(this);
@@ -48,6 +49,35 @@ class Profile extends Component {
         this.handleUpload = this.handleUpload.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
         this.dataURItoBlob = this.dataURItoBlob.bind(this);
+        this.markTab = this.markTab.bind(this);
+    }
+
+    markTab(){
+        let panesCopy = this.state.panes;
+        console.log("Mark tab");
+        
+        let original_zero = {
+                    menuItem: 'Open cards',
+                    render: () => <Tab.Pane>
+                            <ProfileCardList cards={this.state.usercards}/>
+                        </Tab.Pane>
+                };
+
+        let new_one = {
+            menuItem: 'Trading activity',
+            render: () => <Tab.Pane active>
+                    <ProfileTradeList trades={this.state.usertrades}/>
+                </Tab.Pane>
+        };
+
+        if (this.state.showTrades){
+            panesCopy[0] = original_zero;
+            panesCopy[1] = new_one;
+        }
+
+        this.setState({
+            panes: panesCopy
+        });
     }
 
     componentWillMount() {
@@ -57,6 +87,21 @@ class Profile extends Component {
         let username = webUrl.pop();
         if (webUrl.length > 3) {
             this.setState({username: username});
+        }
+
+        webUrl = window.location.href.split("?")
+        let show_trades = webUrl.pop();
+        if (webUrl.length > 0) {
+            console.log("here");
+            if (show_trades == "trades"){
+                this.setState({
+                    showTrades: true
+                }, this.markTab);
+            }
+        } else {
+            this.setState({
+                showTrades: false
+            }, this.markTab);
         }
 
        
