@@ -1,3 +1,44 @@
+.settings {
+
+	h4 {
+		float:left;
+		padding: 20px;
+	}
+
+	#image {
+			position: relative;
+			margin-top: 5%;
+			margin-left: 2%;
+			height: 200px;
+			width: 200px;
+			background-color: #DEDEDE;
+	}
+
+/*
+
+	input[type=file] {
+		position: relative;
+		text-align: left;
+	//	float: left;
+		padding: 10px;
+	}
+
+
+
+	input[type=textarea] {
+		float: left;
+		padding: 10px;
+	}
+
+	#location {
+		float: left;
+	}
+
+	*/
+
+}
+
+
 .Profile {
 	text-align: center;
 	margin: 0 auto;
@@ -28,12 +69,13 @@
 		height: 100%;
     width: 75%;
     float: right;
-    padding: 5%;
+    padding: 5% 5% 5% 2%;
   }
 
 	.tab {
 		display: flex;
 		flex-direction: column;
+		overflow: auto;
 	}
 
 	.tabs {

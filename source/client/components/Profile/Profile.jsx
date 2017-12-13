@@ -146,6 +146,28 @@ class Profile extends Component {
                         <ProfileTradeList trades={this.state.usertrades}/>
                     </Tab.Pane>
             }
+            , {
+                menuItem: 'Settings',
+                render: () => <Tab.Pane>
+                  <div className="settings">
+                      <h4>Here, you can change how you appear on your public profile.</h4>
+                      <br/>
+                      <div id="image">
+                            <canvas id='image-canvas' width={256} height={256}></canvas>
+                      </div>
+                      <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
+                      <br/><br/>
+                      <label> Your location:</label>
+                        <input type="text" placeholder={this.state.user.location}/>
+                      <br/><br/>
+                      <label>Your Bio: </label>
+                      <br/><br/>
+                        <textarea placeholder={this.state.user.description}/>
+                      <input className="submit-button" type="submit" value="save"/>
+                  </div>
+                </Tab.Pane>
+
+            }
         ]
 
         return (<div className="Profile">
