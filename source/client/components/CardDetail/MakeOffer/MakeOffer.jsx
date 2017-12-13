@@ -16,32 +16,7 @@ class MakeOffer extends Component {
             isLoggedIn: false,
             username: "",
             user: {},
-            usercards: [
-                {
-                    title: "Card 1",
-                    description: "Sample card",
-                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
-                    id: "234"
-                },
-                {
-                    title: "Card 2",
-                    description: "Sample card",
-                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
-                    id: "345"
-                },
-                {
-                    title: "Card 3",
-                    description: "Sample card",
-                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
-                    id: "456"
-                },
-                {
-                    title: "Card 4",
-                    description: "Sample card",
-                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
-                    id: "567"
-                },
-            ],
+            usercards: [],
             currentlySelectedCard: "",
             otherAuthor: props.otherAuthor,
             otherCardID: props.otherCardID,
