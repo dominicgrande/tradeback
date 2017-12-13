@@ -1,5 +1,5 @@
 module.exports = {
-  api_endpoint: "http://tradeback.herokuapp.com:3000",
+  api_endpoint: "https://tradeback.herokuapp.com",
   aws: {
   	region: "us-west-2",
   	credentials: {
