@@ -21,7 +21,7 @@ class Trade extends Component {
 					description = {this.state.trade.userOneCardObject.description}
 					img = {this.state.trade.userOneCardObject.image}
 					id = {this.state.trade.userOneCardObject._id}
-					tags = {this.state.trade.userOneardObject.tags}
+					tags = {this.state.trade.userOneCardObject.tags}
 					/>
 				<div class = "info">
 					<p>
