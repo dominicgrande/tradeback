@@ -30,6 +30,7 @@ class CardList extends Component {
         this.search = this.search.bind(this);
         this.onTagClick = this.onTagClick.bind(this);
         this.onSearchChange = this.onSearchChange.bind(this);
+        console.log(process.env.NODE_ENV);
     }
 
     updateCards(){

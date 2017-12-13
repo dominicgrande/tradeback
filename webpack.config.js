@@ -61,7 +61,13 @@ const config = {
             name: 'vendor',
             minChunks: Infinity,
             filename: 'vendor.bundle.js'
-        })
+        }),
+
+        new webpack.DefinePlugin({
+            "process.env": {
+              NODE_ENV: JSON.stringify("production")
+            }
+          })
     ]
 };
 
