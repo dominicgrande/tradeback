@@ -11,7 +11,7 @@ const APP_DIR = path.resolve(__dirname, 'source/client');
 const config = {
 
     entry: {
-        app: [APP_DIR + '/index.jsx'],
+        app: [APP_DIR + '/index.js'],
         vendor: ['react', 'react-dom', 'react-router', 'react-router-dom']
     },
 
