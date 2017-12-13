@@ -70,7 +70,6 @@ class MakeOffer extends Component {
         let _this = this;
         let type = this.state.offer === true ? 'false' : 'true';
 
-
         axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
             _this.setState({user: response.data.data});
         }).catch(function(error) {
@@ -148,6 +147,8 @@ class MakeOffer extends Component {
 
     render() {
         return (<div className="MakeOffer">
+            <h2>Which card would you like to trade?</h2>
+            <h5>Select an open card that you would like completed in exchange for this task. You will be notified if your offer is accepted.</h5>
             <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
             <textarea placeholder="Personalize your offer (optional)"/>
             <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>

@@ -12,6 +12,7 @@ import MiniNav from '../MiniNav/MiniNav.jsx'
 import MakeOffer from './MakeOffer/MakeOffer.jsx'
 
 import styles from './CardDetail.scss'
+import TradePage from '../TradePage/TradePage.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -19,7 +20,6 @@ axios.defaults.withCredentials = true;
 var config = require('../../config');
 
 class CardDetail extends Component {
-
     constructor(props) {
         console.log("CardDetail constructor ran");
         super(props)
