@@ -204,7 +204,7 @@ class Profile extends Component {
         let new_descr = document.getElementById("description-input").value;
         let new_location = document.getElementById("location-input").value;
         new_location = new_location == "" ? undefined : new_location;
-        new_descr = new_location == "" ? undefined : new_descr;
+        new_descr = new_descr == "" ? undefined : new_descr;
 
         //Special logic if there is an image due to it needing to be uploaded to S3
         if (this.state.isImage){
