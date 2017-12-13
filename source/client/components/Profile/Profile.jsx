@@ -225,6 +225,8 @@ class Profile extends Component {
                         description: new_descr,
                         location: new_location,
                         profile_image: data.Location
+                    }).then(() => {
+                        _this.updateData();
                     });            
                 });
                 return;
@@ -235,9 +237,11 @@ class Profile extends Component {
             axios.put(config.api_endpoint+'/api/user/?id='+_this.state.loggedin_username, {
                     description: new_descr,
                     location: new_location
+            }).then(() => {
+                _this.updateData();
             });  
         }
-   
+        console.log("here!");
     }
 
     display_settings(){

@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import MiniNav from '../MiniNav/MiniNav.jsx'
 import styles from './CardCreate.scss'
 import TradePage from '../TradePage/TradePage.jsx'
+import {withRouter} from 'react-router'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -59,10 +60,7 @@ class CardCreate extends Component {
 
         let s3 = new AWS.S3({
             region: AWS_SETTINGS.region,            
-            credentials: {
-                accessKeyId: AWS_SETTINGS.accessKeyId, 
-                secretAccessKey: AWS_SETTINGS.secretAccessKey
-            }
+            credentials: AWS_SETTINGS.credentials
         });
 
         let temp_canvas = document.getElementById("image-canvas");
@@ -85,10 +83,7 @@ class CardCreate extends Component {
 
         let s3 = new AWS.S3({
             region: AWS_SETTINGS.region,            
-            credentials: {
-                accessKeyId: AWS_SETTINGS.accessKeyId, 
-                secretAccessKey: AWS_SETTINGS.secretAccessKey
-            }
+            credentials: AWS_SETTINGS.credentials
         });
 
         let temp_canvas = document.getElementById("image-canvas");
@@ -106,6 +101,7 @@ class CardCreate extends Component {
     }
 
     handleSubmission(value, imgur_url) {
+        let _this = this;
         axios.post(config.api_endpoint + '/api/cards', {
             title: document.getElementById('title').value,
             tags: this.state.tags,
@@ -115,6 +111,9 @@ class CardCreate extends Component {
             deadline: document.getElementById('deadline-input').value,
             offer: value,
             author: this.state.username
+        }).then((res) => {
+            const { history: { push } } = _this.props;
+            push('/detail?id=' + res.data.data._id)
         });
     }
 
@@ -232,4 +231,4 @@ class CardCreate extends Component {
     }
 }
 
-export default CardCreate
+export default withRouter(CardCreate)
