@@ -237,6 +237,7 @@ class Profile extends Component {
 
         let new_descr = document.getElementById("description-input").value;
         let new_location = document.getElementById("location-input").value;
+        let new_fb_name = document.getElementById("facebook-input").value;
         new_location = new_location == "" ? undefined : new_location;
         new_descr = new_descr == "" ? undefined : new_descr;
 
@@ -255,6 +256,7 @@ class Profile extends Component {
                     axios.put(config.api_endpoint+'/api/user/?id='+_this.state.loggedin_username, {
                         description: new_descr,
                         location: new_location,
+                        fb_name: new_fb_name,
                         profile_image: data.Location
                     }).then(() => {
                         _this.updateData();
@@ -267,6 +269,7 @@ class Profile extends Component {
             //Otherwise just update the description and the location
             axios.put(config.api_endpoint+'/api/user/?id='+_this.state.loggedin_username, {
                     description: new_descr,
+                    fb_name: new_fb_name,
                     location: new_location
             }).then(() => {
                 _this.updateData();
@@ -291,6 +294,7 @@ class Profile extends Component {
                         <Form.Input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
                         <Form id = "input-settings">
                           <Form.Input id = 'location-input' label = 'Your location' placeholder = {this.state.user.location} />
+                          <Form.Input id = 'facebook-input' label = 'Facebook Username' placeholder = {this.state.user.fb_name} />                          
                           <Form.TextArea id = 'description-input' label = 'Bio' placeholder = {this.state.user.description} />
                         </Form>
 
@@ -309,41 +313,6 @@ class Profile extends Component {
     }
 
     render() {
-
-        let panes = [
-            {
-                menuItem: 'Open cards',
-                render: () => <Tab.Pane>
-                        <ProfileCardList cards={this.state.usercards}/>
-                    </Tab.Pane>
-            }, {
-                menuItem: 'Trading activity',
-                render: () => <Tab.Pane>
-                        <ProfileTradeList trades={this.state.usertrades}/>
-                    </Tab.Pane>
-            }
-            , {
-                menuItem: 'Settings',
-                render: () => <Tab.Pane>
-                  <div id="settings">
-                      <h4>Here, you can change how you appear on your public profile.</h4>
-                      <section id = "input-settings">
-                        <div id="image">
-                              <canvas id='image-canvas' width={256} height={256}></canvas>
-                        </div>
-                        <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
-                        <label> Your location:</label>
-                          <input type="text" placeholder={this.state.user.location}/>
-                        <label>Your Bio: </label>
-                          <textarea placeholder={this.state.user.description}/>
-                        <input className="submit-button" type="submit" value="save"/>
-                      </section>
-                  </div>
-                </Tab.Pane>
-
-            }
-        ]
-
         return (
           <div className="Profile">
             <MiniNav />
