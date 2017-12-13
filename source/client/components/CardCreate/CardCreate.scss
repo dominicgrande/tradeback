@@ -47,6 +47,7 @@
 
         #image {
           background-color: #DEDEDE;
+          text-align: center;
         }
 
         p {
@@ -90,6 +91,10 @@
       #label-area {
         font-size: 0.9rem;
         display: inline-block;
+
+        #deadline {
+          margin-top: 12px;
+        }
       }
 
       #tag-area {

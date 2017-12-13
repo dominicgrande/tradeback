@@ -175,6 +175,9 @@ class CardCreate extends Component {
         this.setState({
             imageFile: dataurl
         })
+
+        let image = document.getElementById('image');
+        image.style.backgroundColor = 'white';
     } 
 
     render() {
