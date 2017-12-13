@@ -4,11 +4,8 @@ To run the databse server: `npm start`
 ### To do:
 - [ ] Append pending trades 
 - [ ] Monetary card in make trade options
-- [ ] Hide cards from completed trades in homepage
-- [ ] Settings page
-- [ ] Date posted
-- [ ] Filter by date posted and deadline
-- [ ] Rating system
+- [ ] Hide cards from completed trades in homepage/open cards list
+- [ ] Contact system
 - [ ] Responsiveness
   - [ ] Desktop
   - [ ] Tablet 
@@ -30,3 +27,7 @@ To run the databse server: `npm start`
 - [x] Add "Tradeback" title to navbar when not on homepage
 - [x] Click on homepage trending tags to search by that tag
 
+Cancelled/Low priority:
+- [ ] Date posted
+- [ ] Filter by date posted and deadline
+- [ ] Rating system
