@@ -95,7 +95,6 @@ class MakeOffer extends Component {
         let _this = this;
         let type = this.state.offer === true ? 'false' : 'true';
 
-
         axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
             _this.setState({user: response.data.data});
         }).catch(function(error) {
