@@ -14,8 +14,15 @@ module.exports = function(router) {
         var payload2;
 
         if (req.query.includeCard){
-            payload = Trade.find({userOneCard: req.query.includeCard});
-            payload2 = Trade.find({userTwoCard: req.query.includeCard});
+            console.log(req.query.includeCard)
+            payload = Trade.find(
+                {
+                    $or:[
+                        {userOneCard: req.query.includeCard, userTwoSatisfied: false}, 
+                        {userTwoCard: req.query.includeCard, userTwoSatisfied: false}
+                    ]
+                }
+            );
         } else {
             payload = Trade.find({});            
         }
@@ -40,48 +47,22 @@ module.exports = function(router) {
             payload.count();
         }
 
-        if (req.query.includeCard){
-            payload.exec(function(err, trades) {
-                if (err) {
-                    res.status(500).json({
-                        message: 'Failed Trades GET',
-                        data: err
-                    });
-                    return;
-                } else {
-                    Promise.resolve(trades);
-                }
-            }).then((offerOneTrades) => {
-                payload2.exec(function(err, offerTwoTrades){
-                    if (err) {
-                        res.status(500).json({
-                            message: 'Failed trades get'
-                        });
-                    } else {
-                        let newArray = offerOneTrades.concat(offerTwoTrades);
-                        res.status(200).json({
-                            message: 'Trades get succesful',
-                            data: newArray
-                        });
-                    }
-                })
-            });
-            return;
-        } else {
-            payload.exec(function(err, trades) {
-                if (err) {
-                    res.status(500).json({
-                        message: 'Failed Trades GET',
-                        data: err
-                    });
-                } else {
-                    res.status(200).json({
-                        message: 'Trades GET successful',
-                        data: trades
-                    });
-                }
-            });
-        }
+        payload.exec(function(err, trades) {
+            if (err) {
+                res.status(500).json({
+                    message: 'Failed Trades GET',
+                    data: err
+                });
+                return;
+            } else {
+                console.log(trades);
+                res.status(200).json({
+                    message: 'Trades get succesful',
+                    data: trades
+                });
+            }
+        });
+
     });
 
     // var mongoose = require('mongoose');
