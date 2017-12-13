@@ -24,9 +24,10 @@ class Home extends Component {
 
 	componentWillMount() {
         axios.get('http://localhost:3000/auth/profile').then( (res) => {
-            console.log(res);
+			console.log(res);
             this.setState({
-                isLoggedIn: true
+				isLoggedIn: true,
+				username: res.data.user.username
             })
         }).catch( (err) => {
 					console.log(err);
@@ -52,7 +53,7 @@ class Home extends Component {
 
 		return (
 			<div className = "Home">
-				<Nav />
+				<Nav username={this.state.username}/>
 				<header>
 					<h1>Tradeback</h1>
 					<h3>A marketplace for trading items, skills, and experiences to solve everyday problems</h3>

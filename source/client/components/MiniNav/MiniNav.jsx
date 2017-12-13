@@ -51,7 +51,7 @@ class MiniNav extends Component {
             <h1>
                 <a href="#/">Tradeback</a>
             </h1>
-                <NavBarLogin isLoggedIn={this.state.isLoggedIn} receiveLogout={this.handleLogout}/>
+                <NavBarLogin isLoggedIn={this.state.isLoggedIn} receiveLogout={this.handleLogout} username={this.state.username}/>
         </nav>)
     }
 }
