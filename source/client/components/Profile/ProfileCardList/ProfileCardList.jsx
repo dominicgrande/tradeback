@@ -25,7 +25,7 @@ const CardListType = {
 class ProfileCardList extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             card_list: props.cards,
             showAll: true,
@@ -44,19 +44,21 @@ class ProfileCardList extends Component {
         this.setState({card_list: newProps.cards});
     }
 
-    isSelected(event, data){ 
+    isSelected(event, data){
         this.props.receiveId(data._id);
         this.props.receiveAuthor(data.author)
     }
 
     render() {
         const { showAll, selected } = this.state;
-        const slides = this.state.card_list.map((element, index) => {
+        let slides;
+        if (this.state.card_list.length > 0){
+            slides = this.state.card_list.map((element, index) => {
                     return (
                         <div onClick={(event) => {
                                 event.stopPropagation();
                                 this.isSelected(event, element);
-                                this.setState({selected: element, showAll: false, selectedindex: index});   
+                                this.setState({selected: element, showAll: false, selectedindex: index});
                             }}>
                             <MiniCard key={index + "MiniCard"}
                             title={element.title}
@@ -68,11 +70,15 @@ class ProfileCardList extends Component {
                         </div>
                         )
                 });
+        } else {
+            return (<p>You currently do not have any cards.</p>)
+        }
+
         return (
         <div className="ProfileCardList">
             <div className= "flexcontainer">
                 {showAll && slides}
-                {!showAll && 
+                {!showAll &&
                     <div className="selectedCard">
                     <MiniCard key={this.state.selectedindex + "MiniCard"}
                             title={selected.title}

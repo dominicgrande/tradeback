@@ -8,7 +8,9 @@
     display: flex;
     margin: 0 auto;
     flex-wrap:wrap;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    //align-items: flex-start;
     width: 1000px;
   }
 

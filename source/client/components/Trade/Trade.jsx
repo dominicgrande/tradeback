@@ -25,7 +25,7 @@ class Trade extends Component {
 					/>
 				<div className = "info">
 					<p>
-						<a href = {"#/profile/" + this.state.trade.cardOneOwner}>{this.state.trade.cardOneOwner}</a> 
+						<a href = {"#/profile/" + this.state.trade.cardOneOwner}>{this.state.trade.cardOneOwner} </a> 
 						traded with
 						<a href = {"#/profile/" + this.state.trade.cardTwoOwner}> {this.state.trade.cardTwoOwner}</a>
 					</p>

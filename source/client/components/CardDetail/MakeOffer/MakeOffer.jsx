@@ -162,8 +162,9 @@ class MakeOffer extends Component {
                  <h2>Offer is pending approval.</h2> : <div className="MakeOffer">
             <h2>Which card would you like to trade?</h2>
             <h5>Select an open card that you would like completed in exchange for this task. You will be notified if your offer is accepted.</h5>
-            <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
-            <textarea placeholder="Personalize your offer (optional)"/>
+            <div className="offerlist">
+              <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
+            </div>
             <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>
             <p className="exit"><a href="#/">Cancel</a></p>
         </div>}
