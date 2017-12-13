@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 //import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 import MiniNav from '../MiniNav/MiniNav.jsx'
 import styles from './CardCreate.scss'
-import TradePage from '../TradePage/TradePage.jsx'
 import {withRouter} from 'react-router'
 
 import axios from 'axios'

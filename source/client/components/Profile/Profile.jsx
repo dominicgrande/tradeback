@@ -50,6 +50,35 @@ class Profile extends Component {
         this.handleUpload = this.handleUpload.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
         this.dataURItoBlob = this.dataURItoBlob.bind(this);
+        this.markTab = this.markTab.bind(this);
+    }
+
+    markTab(){
+        let panesCopy = this.state.panes;
+        console.log("Mark tab");
+        
+        let original_zero = {
+                    menuItem: 'Open cards',
+                    render: () => <Tab.Pane>
+                            <ProfileCardList cards={this.state.usercards}/>
+                        </Tab.Pane>
+                };
+
+        let new_one = {
+            menuItem: 'Trading activity',
+            render: () => <Tab.Pane active>
+                    <ProfileTradeList trades={this.state.usertrades}/>
+                </Tab.Pane>
+        };
+
+        if (this.state.showTrades){
+            panesCopy[0] = original_zero;
+            panesCopy[1] = new_one;
+        }
+
+        this.setState({
+            panes: panesCopy
+        });
     }
 
     componentWillMount() {
@@ -60,7 +89,6 @@ class Profile extends Component {
         if (webUrl.length > 3) {
             this.setState({username: username});
         }
-
 
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
