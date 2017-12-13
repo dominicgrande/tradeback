@@ -82,20 +82,17 @@ class CardDetail extends Component {
         if (this.state.makeoffer){
             return (
                 <div className="offer">
-                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id} offer={this.state.usercard.offer}/>  
+                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id} offer={this.state.usercard.offer}/>
                 </div>
             );
         } else {
             return (
                 <div className="offer">
-                    <h3>Interested in trading this card?</h3>
+                    <h3>Interested in trading this card?</h3><br/>
                     <h2 className="button" onClick={()=>{
                             this.setState({makeoffer: true});
                         }}>Make a Trade</h2>
-                    <p>Or
-                        <br/>
-                        <a href="#/">keep searching</a>
-                    </p>
+                    <p>Or <a href="#/"> keep searching</a></p>
                 </div>
             );
         }
@@ -103,7 +100,7 @@ class CardDetail extends Component {
 
     deadlineLogic(){
         if (this.state.deadline){
-            
+
         }
     }
 
