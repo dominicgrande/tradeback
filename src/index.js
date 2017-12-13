@@ -13,7 +13,7 @@ import Login from './components/Login/Login.jsx'
 import Register from './components/Register/Register.jsx'
 import Profile from './components/Profile/Profile.jsx'
 
-require('./styles/main.scss')
+require('./styles/main.css')
 
 render(
 	<div>
