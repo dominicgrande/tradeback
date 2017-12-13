@@ -152,7 +152,7 @@ class MakeOffer extends Component {
             <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
             <textarea placeholder="Personalize your offer (optional)"/>
             <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>
-            <p className="exit">Cancel</p>
+            <p className="exit"><a href="#/">Cancel</a></p>
         </div>)
     }
 }
