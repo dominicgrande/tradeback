@@ -16,7 +16,32 @@ class MakeOffer extends Component {
             isLoggedIn: false,
             username: "",
             user: {},
-            usercards: [],
+            usercards: [
+                {
+                    title: "Card 1",
+                    description: "Sample card",
+                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
+                    id: "234"
+                },
+                {
+                    title: "Card 2",
+                    description: "Sample card",
+                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
+                    id: "345"
+                },
+                {
+                    title: "Card 3",
+                    description: "Sample card",
+                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
+                    id: "456"
+                },
+                {
+                    title: "Card 4",
+                    description: "Sample card",
+                    img: "http://www.behindthevoiceactors.com/_img/chars/hanayo-koizumi--7.15.jpg",
+                    id: "567"
+                },
+            ],
             currentlySelectedCard: "",
             otherAuthor: props.otherAuthor,
             otherCardID: props.otherCardID
@@ -144,6 +169,8 @@ class MakeOffer extends Component {
 
     render() {
         return (<div className="MakeOffer">
+            <h2>Which card would you like to trade?</h2>
+            <h5>Select an open card that you would like completed in exchange for this task. You will be notified if your offer is accepted.</h5>
             <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
             <textarea placeholder="Personalize your offer (optional)"/>
             <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>

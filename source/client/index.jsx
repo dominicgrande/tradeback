@@ -23,7 +23,6 @@ render(
 		<Route exact path='/' component={Home}/>
 		<Route exact path='/minicard' component={MiniCard}/>
 		<Route exact path='/create' component={CardCreate}/>
-		<Route exact path='/tradepage' component={TradePage}/>
 		<Route path='/detail/' component={CardDetail}/>
 		<Route exact path='/login' component={Login}/>
 		<Route exact path='/register' component={Register}/>
