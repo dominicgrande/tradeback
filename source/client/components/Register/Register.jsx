@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Nav from '../Nav/Nav.jsx'
+//import Nav from '../Nav/Nav.jsx'
+import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import styles from './Register.scss'
 var config = require('../../config');
@@ -73,7 +74,7 @@ class Register extends Component {
     render() {
         return(
           <div className = "Register">
-            <Nav />
+            <MiniNav />
               <div className="content">
               <form action="/" onSubmit={this.onSubmit}>
                 <h1>Register</h1>

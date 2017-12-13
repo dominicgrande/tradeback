@@ -18,10 +18,10 @@ class Nav extends Component {
             isLoggedIn: true,
             username: props.username
         }
-        
+
         this.handleLogout = this.handleLogout.bind(this);
     }
-    
+
     componentWillMount(){
         let endpoint = config.api_endpoint;
         let _this = this;
@@ -54,7 +54,7 @@ class Nav extends Component {
 
 
 	logged_in_render(){
-        if (this.state.isLoggedIn) { 
+        if (this.state.isLoggedIn) {
             return (
                 <ul>
                     <li>

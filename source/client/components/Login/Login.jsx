@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import Nav from '../Nav/Nav.jsx'
+//import Nav from '../Nav/Nav.jsx'
+import MiniNav from '../MiniNav/MiniNav.jsx'
 
 import styles from './Login.scss'
 var config = require('../../config');
@@ -73,7 +74,7 @@ class Login extends Component {
     render() {
         return(
           <div className = "Login">
-            <Nav />
+            <MiniNav />
               <div className="content">
               <form action="/" onSubmit={this.onSubmit}>
                 <h1>Login</h1>

@@ -1,7 +1,6 @@
-nav {
+.MiniNav {
 	font-size: 1em;
 	position: fixed;
-	z-index: 99;
 	height: 70px;
 	width: 100%;
 	background-color: #275AD7;
@@ -13,11 +12,11 @@ nav {
 		float: left;
 		padding: 15px 10px 10px 20px;
 		display: inline;
+		z-index: 9999;
 
 		a, a:hover {
 			color: white;
 		}
-
 	}
 
 	h1:hover {
@@ -25,7 +24,7 @@ nav {
 	}
 
 	ul {
-		margin: 1.5em 1em 1em 1em;
+		margin: 1.8em 1em 1em 1em;
 		float: right;
 		list-style-type: none;
 		margin-right: 1em;

@@ -16,10 +16,10 @@ class NavBarLogin extends Component {
             isLoggedIn: props.isLoggedIn,
             username: props.username
         }
-        
+
         this.logout = this.logout.bind(this);
     }
-    
+
     componentWillReceiveProps(props) {
         this.setState({
             isLoggedIn: props.isLoggedIn,
@@ -32,15 +32,15 @@ class NavBarLogin extends Component {
         let _this = this;
         axios.get(endpoint+'/auth/logout').then(()=> {
             console.log("Succesfully logged out");
-            _this.props.receiveLogout(false);            
+            _this.props.receiveLogout(false);
             const { history: { push } } = _this.props;
             push('/#');
         });
     }
-    
+
 
 	logged_in_render(){
-        if (this.state.isLoggedIn) { 
+        if (this.state.isLoggedIn) {
             return (
                 <ul>
                     <li>

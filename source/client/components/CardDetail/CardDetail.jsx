@@ -127,6 +127,7 @@ class CardDetail extends Component {
     render() {
         let deadline = this.state.usercard.deadline;
         let isOwner = this.state.isOwner;
+        let tags = this.state.usercard.tags;
         if (deadline !== undefined) {
             if (deadline !== null) {
                 deadline = deadline.substring(0, 10);
@@ -135,6 +136,9 @@ class CardDetail extends Component {
             }
         } else {
             deadline = "None";
+        }
+        if (tags == undefined) {
+          tags = [];
         }
         return (<div className="CardDetail">
             <MiniNav/>
@@ -155,6 +159,11 @@ class CardDetail extends Component {
                         <div className="location">
                             <h3>Location</h3>
                             <p>{this.state.usercard.location}</p>
+                            <div className="tags-box">
+                            {tags.map((element, index) => {
+                              return (<p className="detail-tags">#{element}</p>);
+                            })}
+                            </div>
                         </div>
                         <div className="deadline">
                             <h3>Deadline</h3>
