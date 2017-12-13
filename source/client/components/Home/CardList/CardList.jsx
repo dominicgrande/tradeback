@@ -3,36 +3,54 @@ import React, {Component} from 'react'
 import MiniCard from '../../MiniCard/MiniCard.jsx'
 
 //Styling
-import './OfferList.scss'
+import './CardList.scss'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 
+const CardListType = {
+    OFFERS: 0,
+    REQUESTS: 1
+}
+
 //Configuration file
 var config = require('../../../config');
 
-class OfferList extends Component {
+class CardList extends Component {
     constructor(props) {
         super(props);
-        console.log(props.history)
+        console.log(props.type);
         this.state = {
             card_list: [],
-            filtered_list: []
+            filtered_list: [],
+            type: props.type
         };
 
+        this.updateCards = this.updateCards.bind(this);
         this.search = this.search.bind(this);
     }
 
-    componentDidMount() {
+    updateCards(){
         let end_point = config.api_endpoint;
         let _this = this;
+        let offer_boolean = this.state.type === CardListType.OFFERS ? "true" : "false";
 
-        axios.get(end_point + '/api/cards').then(function(response) {
+        axios.get(end_point + '/api/cards'+'?where={"offer": '+offer_boolean+'}').then(function(response) {
             console.log(response.data.data);
             _this.setState({card_list: response.data.data, filtered_list: response.data.data});
         }).catch(function(error) {
             console.log(error);
         });
+    }
+
+    componentWillMount() {
+        this.updateCards();
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setState({
+            type: newProps.type
+        }, this.updateCards);
     }
 
     search(e) {
@@ -92,4 +110,9 @@ class OfferList extends Component {
     }
 }
 
-export default OfferList
+Object.defineProperty(CardList, 'TYPE', {
+  value: CardListType,
+  writable: false, // makes the property read-only
+});
+
+export default CardList

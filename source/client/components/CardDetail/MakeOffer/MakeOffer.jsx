@@ -44,7 +44,8 @@ class MakeOffer extends Component {
             ],
             currentlySelectedCard: "",
             otherAuthor: props.otherAuthor,
-            otherCardID: props.otherCardID
+            otherCardID: props.otherCardID,
+            offer: props.offer
         }
         this.updateData = this.updateData.bind(this);
     }
@@ -92,13 +93,16 @@ class MakeOffer extends Component {
     populate_data(){
         let endpoint = config.api_endpoint;
         let _this = this;
+        let type = this.state.offer === true ? 'false' : 'true';
+
+
         axios.get(endpoint + '/api/user/' + "?username=" + this.state.username).then(function(response) {
             _this.setState({user: response.data.data});
         }).catch(function(error) {
             console.log(error);
         });
 
-        axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username).then(function(response) {
+        axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username+'&type='+type).then(function(response) {
             _this.setState({usercards: response.data.data});
         });
     }

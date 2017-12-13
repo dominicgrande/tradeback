@@ -1,7 +1,7 @@
 //React components
 import React, { Component } from 'react'
 import { Tab } from 'semantic-ui-react'
-import OfferList from './OfferList/OfferList.jsx'
+import CardList from './CardList/CardList.jsx'
 import Nav from '../Nav/Nav.jsx'
 import CardCreate from '../CardCreate/CardCreate.jsx'
 
@@ -42,19 +42,11 @@ class Home extends Component {
 		const panes = [
 		  { menuItem: 'Offers', render: () =>
 				<Tab.Pane>
-					<OfferList />
+					<CardList type={CardList.TYPE.OFFERS}/>
 				</Tab.Pane> },
 		  { menuItem: 'Requests', render: () =>
 				<Tab.Pane>
-				<form className="bar">
-    			<input className="search" type="text" name="search" placeholder="Search"/>
-				</form>
-				<h4 className="trending">TRENDING</h4>
-				<p className="tags">#tutoring</p>
-				<p className="tags">#labor</p>
-				<p className="tags">#art</p>
-				<p className="tags">#textbooks</p>
-					Request cards
+					<CardList type={CardList.TYPE.REQUESTS}/>
 				</Tab.Pane> }
 		]
 

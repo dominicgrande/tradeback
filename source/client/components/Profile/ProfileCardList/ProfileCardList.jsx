@@ -16,9 +16,16 @@ axios.defaults.withCredentials = true;
 var config = require('../../../config');
 //var Slider = require('react-slick');
 
+const CardListType = {
+    OFFERS: 0,
+    REQUESTS: 1,
+    BOTH: 2
+}
+
 class ProfileCardList extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             card_list: props.cards,
             showAll: true,
@@ -37,10 +44,7 @@ class ProfileCardList extends Component {
         this.setState({card_list: newProps.cards});
     }
 
-    isSelected(event, data){
-        console.log("In is selected"); 
-        console.log(data);
-            
+    isSelected(event, data){ 
         this.props.receiveId(data._id);
         this.props.receiveAuthor(data.author)
     }
@@ -58,7 +62,6 @@ class ProfileCardList extends Component {
         const slides = this.state.card_list.map((element, index) => {
                     return (
                         <div onClick={(event) => {
-                                console.log("???")
                                 event.stopPropagation();
                                 this.isSelected(event, element);
                                 this.setState({selected: element, showAll: false, selectedindex: index});   
