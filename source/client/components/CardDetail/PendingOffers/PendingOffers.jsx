@@ -1,7 +1,5 @@
-import React, {Component} from React;
+import React, {Component} from 'react';
 import MiniCard from '../../MiniCard/MiniCard.jsx';
-
-var config = require('../../config');
 
 class PendingOffers extends Component {
 	constructor(props) {
@@ -26,6 +24,7 @@ class PendingOffers extends Component {
                             description={element.description}
                             img={element.image}
                             id={element._id}
+                            tags={element.tags}
                             />
                         </div>
                         )
@@ -41,6 +40,7 @@ class PendingOffers extends Component {
                             description={selected.description}
                             img={selected.image}
                             id={selected._id}
+                            tags={element.tags}
                             />
                     <div className="cancel" onClick={(event) => {
                         event.stopPropagation();

@@ -13,7 +13,7 @@ import MakeOffer from './MakeOffer/MakeOffer.jsx'
 
 import styles from './CardDetail.scss'
 import TradePage from '../TradePage/TradePage.jsx'
-import ProfileCardList from '../Profile/ProfileCardList/ProfileCardList.jsx'
+import PendingOffers from './PendingOffers/PendingOffers.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -90,6 +90,8 @@ class CardDetail extends Component {
             console.log(isOwner)
             _this.setState({usercard: response.data.data, isOwner});
         });
+        axios.get(endpoint + '/api/trades/' + '?includeCard=' + this.state.id).then();
+
     }
 
     componentDidMount() {

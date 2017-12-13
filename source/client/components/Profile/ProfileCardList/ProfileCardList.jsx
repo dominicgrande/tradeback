@@ -59,6 +59,24 @@ class ProfileCardList extends Component {
 
     render() {
         const { showAll, selected } = this.state;
+        const selectedCard = () => {
+            return (
+            <div className="selectedCard">
+                    <MiniCard key={this.state.selectedindex + "MiniCard"}
+                            title={selected.title}
+                            description={selected.description}
+                            img={selected.image}
+                            id={selected._id}
+                            tags={selected.tags}
+                            />
+                    <div className="cancel" onClick={(event) => {
+                        console.log('merp');
+                        event.stopPropagation();
+                        this.setState({selected: {}, showAll: true, selectedindex: 0});
+                    }}>Select Another Card</div>
+                    </div>
+            );
+        }
         const slides = this.state.card_list.map((element, index) => {
                     return (
                         <div onClick={(event) => {
@@ -71,6 +89,7 @@ class ProfileCardList extends Component {
                             description={element.description}
                             img={element.image}
                             id={element._id}
+                            tags={element.tags}
                             />
                         </div>
                         )
@@ -79,21 +98,7 @@ class ProfileCardList extends Component {
         <div className="ProfileCardList">
             <div className= "flexcontainer">
                 {showAll && slides}
-                {!showAll && 
-                    <div className="selectedCard">
-                    <MiniCard key={this.state.selectedindex + "MiniCard"}
-                            title={selected.title}
-                            description={selected.description}
-                            img={selected.image}
-                            id={selected._id}
-                            />
-                    <div className="cancel" onClick={(event) => {
-                        console.log('merp');
-                        event.stopPropagation();
-                        this.setState({selected: {}, showAll: true, selectedindex: 0});
-                    }}>Select Another Card</div>
-                    </div>
-                }
+                {!showAll && selectedCard}
             </div>
         </div>
         );
