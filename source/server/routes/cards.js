@@ -54,6 +54,17 @@ module.exports = function(router) {
     });
 
     url.post(function(req, res) {
+        if (
+            req.body.title === undefined || 
+            req.body.description === undefined ||
+            req.body.location === undefined 
+        ) {
+            res.status(422).json({"Message": "Not a complete post"});
+            return;
+        }
+
+
+
         Card.create({
             title: req.body.title,
             description: req.body.description,
