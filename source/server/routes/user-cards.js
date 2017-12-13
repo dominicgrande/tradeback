@@ -31,7 +31,7 @@ module.exports = function(router, passport) {
         let query;
         if (req.query.type){
 
-            query = Card.find({author: req.query.username, offer: req.query.type});            
+            query = Card.find({author: req.query.username, offer: req.query.type, status: 0});            
         } else {
             query = Card.find({status: 0, author: req.query.username});
         }
