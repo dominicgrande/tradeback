@@ -269,7 +269,7 @@ class Profile extends Component {
                         <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/>
                     </div>
                   </Tab.Pane>
-                });
+                }]);
 
             this.setState({
                 panes: new_panes
