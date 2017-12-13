@@ -7,7 +7,6 @@ To run the databse server: `npm start`
 - [ ] Hide cards from completed trades in homepage
 - [ ] Settings page
 - [ ] Click on homepage trending tags to search by that tag
-- [ ] Add "Tradeback" title to navbar when not on homepage
 - [ ] Date posted
 - [ ] Filter by date posted and deadline
 - [ ] Rating system
@@ -29,3 +28,4 @@ To run the databse server: `npm start`
 - [x] Homepage "requests" tab
 - [x] Profile card list click -> card detail
 - [x] Profile trade list click -> card detail
+- [x] Add "Tradeback" title to navbar when not on homepage
