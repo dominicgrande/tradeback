@@ -1,3 +1,8 @@
+.proflist {
+		align-items: flex-start;
+	//    align-items: center;
+//      justify-content: center;
+}
 
 .Profile {
 	@media only screen and (max-width: 768px) {
@@ -6,6 +11,7 @@
 	        width: 100%;
 	    }
 	}
+
 	.profile-content {
 	  	margin: 0 auto;
 		height: 100%;
