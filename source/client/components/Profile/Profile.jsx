@@ -12,6 +12,8 @@ var config = require('../../config');
 
 import './Profile.scss'
 
+const AWS_SETTINGS = config.aws;
+
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -195,11 +197,8 @@ class Profile extends Component {
         let _this = this;
 
         let s3 = new AWS.S3({
-            region: 'us-west-2',            
-            credentials: {
-                accessKeyId: 'AKIAITU2PXPF64X766QQ', 
-                secretAccessKey: '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'
-            }
+            region: AWS_SETTINGS.region,            
+            credentials: AWS_SETTINGS.credentials
         });
 
         let new_descr = document.getElementById("description-input").value;
