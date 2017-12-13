@@ -33,7 +33,7 @@ module.exports = function(router, passport) {
 
             query = Card.find({author: req.query.username, offer: req.query.type});            
         } else {
-            query = Card.find({author: req.query.username, status: {$lt: 1}});
+            query = Card.find({status: 0, author: req.query.username});
         }
 
           query.exec(function(err, cards) {

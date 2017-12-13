@@ -20,7 +20,8 @@ class MakeOffer extends Component {
             currentlySelectedCard: "",
             otherAuthor: props.otherAuthor,
             otherCardID: props.otherCardID,
-            offer: props.offer
+            offer: props.offer,
+            tradeMade: false
         }
         this.updateData = this.updateData.bind(this);
     }
@@ -76,7 +77,7 @@ class MakeOffer extends Component {
             console.log(error);
         });
 
-        axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username+'&type='+type).then(function(response) {
+        axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username+'&type='+type+'&status='+ 0).then(function(response) {
             _this.setState({usercards: response.data.data});
         });
     }
@@ -138,6 +139,7 @@ class MakeOffer extends Component {
             userTwoSatisfied: u2sat
         }).then(function(response) {
             console.log(response);
+            _this.setState({tradeMade: true});
         });
     }
 
@@ -151,17 +153,23 @@ class MakeOffer extends Component {
         this.setState({
             currentlySelectedCardAuthor: val
         });
-    }
+    }          
 
     render() {
-        return (<div className="MakeOffer">
+        return (
+            <div className="wrapper">
+            {this.state.tradeMade ? 
+                 <h2>Offer is pending approval.</h2> : <div className="MakeOffer">
             <h2>Which card would you like to trade?</h2>
             <h5>Select an open card that you would like completed in exchange for this task. You will be notified if your offer is accepted.</h5>
-            <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
-            <textarea placeholder="Personalize your offer (optional)"/>
+            <div className="offerlist">
+              <ProfileCardList receiveId={this.getId.bind(this)} receiveAuthor={this.getAuthor.bind(this)} cards={this.state.usercards}/>
+            </div>
             <h2 className="button" onClick={this.handleTrade.bind(this)}>Trade</h2>
             <p className="exit"><a href="#/">Cancel</a></p>
-        </div>)
+        </div>}
+        </div>
+            )
     }
 }
 

@@ -22,7 +22,9 @@ class Profile extends Component {
                 {
                     menuItem: 'Open cards',
                     render: () => <Tab.Pane>
+                        <div className="proflist">
                             <ProfileCardList cards={this.state.usercards}/>
+                        </div>
                         </Tab.Pane>
                 }, {
                     menuItem: 'Trading activity',
@@ -39,9 +41,8 @@ class Profile extends Component {
             user: {},
             usercards: [],
             usertrades: [],
-            panes: this.original_panes, 
-            isImage: false,
-            showTrades: false
+            panes: this.original_panes,
+            isImage: false
         }
 
         this.updateData = this.updateData.bind(this);
@@ -89,27 +90,11 @@ class Profile extends Component {
             this.setState({username: username});
         }
 
-        webUrl = window.location.href.split("?")
-        let show_trades = webUrl.pop();
-        if (webUrl.length > 0) {
-            console.log("here");
-            if (show_trades == "trades"){
-                this.setState({
-                    showTrades: true
-                }, this.markTab);
-            }
-        } else {
-            this.setState({
-                showTrades: false
-            }, this.markTab);
-        }
-
-       
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
             console.log(res);
             this.setState(
-                {isLoggedIn: true, loggedin_username: res.data.user.username}, 
+                {isLoggedIn: true, loggedin_username: res.data.user.username},
                 this.display_settings
             );
         }).catch((err) => {
@@ -122,7 +107,7 @@ class Profile extends Component {
     componentDidMount() {
         let endpoint = config.api_endpoint;
         let _this = this;
-    
+
         // var userSchema = mongoose.Schema({
         //     email		: String,
         //     password	: String,
@@ -196,7 +181,7 @@ class Profile extends Component {
      });
     }
 
-    //Cited from 
+    //Cited from
     //https://stackoverflow.com/questions/22255580/javascript-upload-image-file-and-draw-it-into-a-canvas
     handleUpload(){
         let _this = this;
@@ -214,7 +199,7 @@ class Profile extends Component {
            let img = new Image();
            img.src = fileReader.result;
 
-           img.addEventListener("load", function() {               
+           img.addEventListener("load", function() {
             //Cited from https://stackoverflow.com/questions/23104582/scaling-an-image-to-fit-on-canvas
              context.drawImage(img, 0, 0, img.width,    img.height,     // source rectangle
                                 0, 0, canvas.width, canvas.height);
@@ -222,14 +207,14 @@ class Profile extends Component {
                  isImage: true
              })
            });
-        };       
+        };
         fileReader.readAsDataURL(input_file);
 
         let dataurl = canvas.toDataURL("image/jpeg");
         this.setState({
             imageFile: dataurl
         })
-    } 
+    }
 
 
     dataURItoBlob(dataURI) {
@@ -246,7 +231,7 @@ class Profile extends Component {
         let _this = this;
 
         let s3 = new AWS.S3({
-            region: AWS_SETTINGS.region,            
+            region: AWS_SETTINGS.region,
             credentials: AWS_SETTINGS.credentials
         });
 
@@ -258,13 +243,13 @@ class Profile extends Component {
         //Special logic if there is an image due to it needing to be uploaded to S3
         if (this.state.isImage){
 
-            let temp_canvas = document.getElementById("image-canvas");                    
+            let temp_canvas = document.getElementById("image-canvas");
             let imgFile = this.dataURItoBlob(this.state.imageFile);
             temp_canvas.toBlob(function(image_blob){
                 let randomKey = String(Date.now()).concat(String(Math.floor(Math.random()*10000)));
                 var params = {
-                                Bucket: 'cs498rk-images', 
-                                Key: randomKey, Body: image_blob, 
+                                Bucket: 'cs498rk-images',
+                                Key: randomKey, Body: image_blob,
                             };
                 s3.upload(params, function(err, data) {
                     axios.put(config.api_endpoint+'/api/user/?id='+_this.state.loggedin_username, {
@@ -273,7 +258,7 @@ class Profile extends Component {
                         profile_image: data.Location
                     }).then(() => {
                         _this.updateData();
-                    });            
+                    });
                 });
                 return;
             });
@@ -285,7 +270,7 @@ class Profile extends Component {
                     location: new_location
             }).then(() => {
                 _this.updateData();
-            });  
+            });
         }
         console.log("here!");
     }
@@ -296,7 +281,7 @@ class Profile extends Component {
 
             let new_panes = panes.concat([{
                 menuItem: 'Settings',
-                render: () => 
+                render: () =>
                   <Tab.Pane>
                     <div id="settings">
                         <h3>Here, you can change how you appear on your public profile.</h3>
@@ -308,9 +293,9 @@ class Profile extends Component {
                           <Form.Input id = 'location-input' label = 'Your location' placeholder = {this.state.user.location} />
                           <Form.TextArea id = 'description-input' label = 'Bio' placeholder = {this.state.user.description} />
                         </Form>
-                        
+
                         <Button className="submit-button" type="submit" content="Save" onClick={this.handleSubmission}/>
-                        
+
                     </div>
                   </Tab.Pane>
                 }]);
