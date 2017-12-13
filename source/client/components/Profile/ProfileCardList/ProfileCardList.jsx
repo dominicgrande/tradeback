@@ -25,7 +25,7 @@ const CardListType = {
 class ProfileCardList extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             card_list: props.cards,
             showAll: true,
@@ -44,7 +44,7 @@ class ProfileCardList extends Component {
         this.setState({card_list: newProps.cards});
     }
 
-    isSelected(event, data){ 
+    isSelected(event, data){
         this.props.receiveId(data._id);
         this.props.receiveAuthor(data.author)
     }
@@ -52,7 +52,7 @@ class ProfileCardList extends Component {
     /*
     <div className="flexcontainer">
             {
-                
+
             }
           </div>
     */
@@ -64,13 +64,14 @@ class ProfileCardList extends Component {
                         <div onClick={(event) => {
                                 event.stopPropagation();
                                 this.isSelected(event, element);
-                                this.setState({selected: element, showAll: false, selectedindex: index});   
+                                this.setState({selected: element, showAll: false, selectedindex: index});
                             }}>
                             <MiniCard key={index + "MiniCard"}
                             title={element.title}
                             description={element.description}
                             img={element.image}
                             id={element._id}
+                            tags={element.tags}
                             />
                         </div>
                         )
@@ -79,13 +80,14 @@ class ProfileCardList extends Component {
         <div className="ProfileCardList">
             <div className= "flexcontainer">
                 {showAll && slides}
-                {!showAll && 
+                {!showAll &&
                     <div className="selectedCard">
                     <MiniCard key={this.state.selectedindex + "MiniCard"}
                             title={selected.title}
                             description={selected.description}
                             img={selected.image}
                             id={selected._id}
+                            tags={selected.tags}
                             />
                     <div className="cancel" onClick={(event) => {
                         console.log('merp');
