@@ -102,6 +102,7 @@ class CardList extends Component {
                             description={element.description}
                             img={element.image}
                             id={element._id}
+                            tags={element.tags}
                             />)
                     })
                 }

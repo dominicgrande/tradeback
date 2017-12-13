@@ -46,6 +46,10 @@
         display: block;
 
         #image {
+          text-align: center;
+        }
+
+        canvas {
           background-color: #DEDEDE;
         }
 
@@ -90,6 +94,14 @@
       #label-area {
         font-size: 0.9rem;
         display: inline-block;
+
+        #deadline {
+          margin-top: 12px;
+        }
+
+        #deadline-input::-webkit-inner-spin-button {
+          display: none;
+        }
       }
 
       #tag-area {

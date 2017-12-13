@@ -30,19 +30,7 @@ class CardDetail extends Component {
             isLoggedIn: false,
             username: "",
             isOwner: true,
-            currentOffers: [
-            {
-                id: "Card 1",
-                description: "Sample Offer",
-                img: "",
-                title: "Card 1"
-            },
-            {
-                id: "Card 2",
-                description: "Sample Offer",
-                img: "",
-                title: "Card 2"
-            }]
+            currentOffers: []
         }
 
         this.makeOffer = this.makeOffer.bind(this);
@@ -90,7 +78,9 @@ class CardDetail extends Component {
             console.log(isOwner)
             _this.setState({usercard: response.data.data, isOwner});
         });
-        axios.get(endpoint + '/api/trades/' + '?includeCard=' + this.state.id).then();
+        axios.get(endpoint + '/api/trades/' + '?includeCard=' + this.state.id).then((response) => {
+            console.log(response.data);
+        });
 
     }
 
@@ -102,35 +92,35 @@ class CardDetail extends Component {
         if (this.state.makeoffer){
             return (
                 <div className="offer">
-                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id} offer={this.state.usercard.offer}/>  
+                    <MakeOffer otherAuthor={this.state.usercard.author} otherCardID={this.state.id} offer={this.state.usercard.offer}/>
                 </div>
             );
         } else {
             return (
                 <div className="offer">
-                    <h3>Interested in trading this card?</h3>
+                    <h3>Interested in trading this card?</h3><br/>
                     <h2 className="button" onClick={()=>{
                             this.setState({makeoffer: true});
                         }}>Make a Trade</h2>
-                    <p>Or
-                        <br/>
-                        <a href="#/">keep searching</a>
-                    </p>
+                    <p>Or <a href="#/"> keep searching</a></p>
                 </div>
             );
         }
     }
 
+    /*
+    <PendingOffers offers={this.state.currentOffers} />
+    */
     pendingOffers(){
         return (
             <div className="pendingOffer">
-                <PendingOffers offers={this.state.currentOffers} />
+                <h2>Offers here</h2>
             </div>
         );
     }
     deadlineLogic(){
         if (this.state.deadline){
-            
+
         }
     }
 

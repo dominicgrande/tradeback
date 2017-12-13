@@ -1,3 +1,4 @@
+'use strict'
 Trade/**
  * @file Handles GET and POST of the /api/users endpoint
  * @author Kevin Wang
