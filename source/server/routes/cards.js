@@ -13,6 +13,8 @@ module.exports = function(router) {
         var payload;
 
         if (req.query.where) {
+            console.log(req.query.where);
+            console.log(JSON.parse(req.query.where));
             payload = Card.find(JSON.parse(req.query.where));
         } else {
             payload = Card.find({});

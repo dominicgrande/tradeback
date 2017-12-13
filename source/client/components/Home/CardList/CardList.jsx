@@ -37,7 +37,7 @@ class CardList extends Component {
         let _this = this;
         let offer_boolean = this.state.type === CardListType.OFFERS ? "true" : "false";
 
-        axios.get(end_point + '/api/cards'+'?where={"offer": '+offer_boolean+'}').then(function(response) {
+        axios.get(end_point + '/api/cards'+'?where={"offer": '+offer_boolean+',' + '"status":' + 0 +'}').then(function(response) {
             console.log(response.data.data);
             _this.setState({card_list: response.data.data, filtered_list: response.data.data});
             document.getElementById('search').value = "";

@@ -122,7 +122,7 @@ class CardDetail extends Component {
             <div className="pendingOffer">
                 <br/><br/>
                 <h3>Pending Offer List</h3>
-                <PendingOffers offers={this.state.currentOffers} sourceId={this.state.id} />
+                {this.state.currentOffers.length === 0 ? <h2>No current offers :(</h2> : <PendingOffers offers={this.state.currentOffers} sourceId={this.state.id} />}
             </div>
         );
     }
