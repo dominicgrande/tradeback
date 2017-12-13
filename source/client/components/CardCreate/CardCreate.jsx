@@ -14,11 +14,14 @@ class CardCreate extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: ""
+            username: "",
+            tags: []
         }
         this.handleOffer = this.handleOffer.bind(this);
         this.handleRequest = this.handleRequest.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
+        this.addTag = this.addTag.bind(this);
+        this.removeTag = this.removeTag.bind(this);
     }
 
     componentWillMount() {
@@ -69,9 +72,39 @@ class CardCreate extends Component {
             //image: document.getElementById('image').value,
             location: document.getElementById('location').value,
             deadline: document.getElementById('deadline').value,
+            tags: this.state.tags,
             offer: value,
             author: this.state.username
         });
+    }
+
+    removeTag(e) {
+      let parent = e.target.parentNode;
+      let tag = e.target.innerHTML;
+      parent.removeChild(e.target);
+
+      let index = this.state.tags.indexOf(tag);
+      this.setState({tag: this.state.tags.splice(index, 1)})
+    }
+
+    addTag(e) {
+      let key = e.which
+      if (key === 13) { // 13 is enter
+        let input = e.target.value.trim();
+        if (input.length === 0) {
+          return;
+        }
+
+        let tagBox = document.getElementById('tag-box')
+        let tag = document.createElement("span");
+        tag.className = "tags";
+        tag.addEventListener('click', this.removeTag)
+        tag.innerHTML = input;
+        tagBox.appendChild(tag);
+        e.target.value = '';
+
+        this.setState({tags: this.state.tags.concat(input)})
+      }
     }
 
     render() {
@@ -85,24 +118,33 @@ class CardCreate extends Component {
               <div id="desc-area">
                 <label> Describe the card and any requirements you have.
                   <br/><br/>
-                  <div id = "description">
-                    <textarea placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+                  <div id = "text-box">
+                    <textarea id = "description" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
                   </div>
                 </label>
               </div>
 
-              <div id = "label-area">
-                <label id = "location"> Your task location
-                  <input type="text" placeholder="Champaign, IL"/>
-                </label>
-                <label id = "deadline"> Date/Deadline (if applicable)
-                  <input type="text" placeholder="ASAP"/>
-                </label>
-              </div>
+              <div id = "bottom-row">
+                <div id = "label-area">
+                  <label> Your task location
+                    <input id = "location" type="text" placeholder="Champaign, IL"/>
+                  </label>
+                  <label> Date/Deadline (if applicable)
+                    <input id = "deadline" type="text" placeholder="ASAP"/>
+                  </label>
+                </div>
 
-              <div id="submission">
-                <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
-                <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
+                <div id = "tag-area">
+                  <label>Tags
+                    <input type = "text" id = "tag-input" onKeyPress = {this.addTag}/>
+                  </label>
+                  <div id = "tag-box"></div>
+                </div>
+
+                <div id="submission">
+                  <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
+                  <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
+                </div>
               </div>
           </div>
 
