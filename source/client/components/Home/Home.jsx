@@ -8,7 +8,7 @@ import CardCreate from '../CardCreate/CardCreate.jsx'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 
-var config = require('../../config');
+const config = require('../../config');
 
 //Styling
 import './Home.scss'

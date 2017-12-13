@@ -7,10 +7,12 @@ import TradePage from '../TradePage/TradePage.jsx'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 
-var config = require('../../config');
+const config = require('../../config');
 const imgur_post_path = "https://api.imgur.com/3/image";
 import AWS from 'aws-sdk';
 import resizeImage from 'resize-image';
+
+const AWS_SETTINGS = config.aws;
 
 class CardCreate extends Component {
     constructor(props) {
@@ -56,10 +58,10 @@ class CardCreate extends Component {
         let file = document.getElementById("image-upload").files[0];
 
         let s3 = new AWS.S3({
-            region: 'us-west-2',            
+            region: AWS_SETTINGS.region,            
             credentials: {
-                accessKeyId: 'AKIAITU2PXPF64X766QQ', 
-                secretAccessKey: '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'
+                accessKeyId: AWS_SETTINGS.accessKeyId, 
+                secretAccessKey: AWS_SETTINGS.secretAccessKey
             }
         });
 
@@ -82,10 +84,10 @@ class CardCreate extends Component {
         let file = document.getElementById("image-upload").files[0];
 
         let s3 = new AWS.S3({
-            region: 'us-west-2',            
+            region: AWS_SETTINGS.region,            
             credentials: {
-                accessKeyId: 'AKIAITU2PXPF64X766QQ', 
-                secretAccessKey: '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'
+                accessKeyId: AWS_SETTINGS.accessKeyId, 
+                secretAccessKey: AWS_SETTINGS.secretAccessKey
             }
         });
 
