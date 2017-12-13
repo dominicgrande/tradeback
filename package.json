@@ -42,6 +42,7 @@
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.0",
     "validator": "^9.1.1",
-    "react-scripts": "^1.0.17"
+    "react-scripts": "^1.0.17",
+    "aws-sdk": "^2.169.0"
   }
 }
