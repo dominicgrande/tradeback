@@ -51,7 +51,9 @@ class ProfileCardList extends Component {
 
     render() {
         const { showAll, selected } = this.state;
-        const slides = this.state.card_list.map((element, index) => {
+        let slides;
+        if (this.state.card_list.length > 0){
+            slides = this.state.card_list.map((element, index) => {
                     return (
                         <div onClick={(event) => {
                                 event.stopPropagation();
@@ -68,6 +70,10 @@ class ProfileCardList extends Component {
                         </div>
                         )
                 });
+        } else {
+            return (<p>You currently do not have any cards.</p>)
+        }
+
         return (
         <div className="ProfileCardList">
             <div className= "flexcontainer">
