@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 //import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 import MiniNav from '../MiniNav/MiniNav.jsx'
-
 import styles from './CardCreate.scss'
+import TradePage from '../TradePage/TradePage.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -13,7 +13,6 @@ import AWS from 'aws-sdk';
 import resizeImage from 'resize-image';
 
 class CardCreate extends Component {
-
     constructor(props) {
         super(props)
         this.state = {

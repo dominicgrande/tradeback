@@ -5,7 +5,6 @@ import './MiniCard.scss'
 import {withRouter} from 'react-router'
 
 class MiniCard extends Component {
-
     // static propTypes = {
     //     history: PropTypes.object.isRequired
     // }
