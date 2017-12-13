@@ -1,4 +1,3 @@
 {
-     "root": "build/",
-     "NODE_ENV": "production"
+     "root": "build/"
 }
