@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router'
+import axios from 'axios'
 
 // import './Nav.scss'
 
 //Auth
-import axios from 'axios'
 axios.defaults.withCredentials = true;
 var config = require('../../config');
 

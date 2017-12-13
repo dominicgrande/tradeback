@@ -1,7 +1,10 @@
 //Import components
 import React, {Component} from 'react'
 import Trade from '../../Trade/Trade.jsx'
+
+//Styling
 import './ProfileTradeList.scss'
+
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 

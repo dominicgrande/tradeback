@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
-import './MiniCard.scss'
+import './MiniCard.css'
+
 import {withRouter} from 'react-router'
 
 class MiniCard extends Component {

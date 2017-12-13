@@ -2,10 +2,11 @@
 import React, {Component} from 'react'
 import Slider from 'react-slick'
 import MiniCard from '../../MiniCard/MiniCard.jsx'
-import './ProfileCardList.scss'
+import './ProfileCardList.css'
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import axios from 'axios'
+
 axios.defaults.withCredentials = true;
 
 //Configuration file
@@ -45,17 +46,11 @@ class ProfileCardList extends Component {
         this.props.receiveAuthor(data.author)
     }
 
-    /*
-    <div className="flexcontainer">
-            {
-
-            }
-          </div>
-    */
-
     render() {
         const { showAll, selected } = this.state;
-        const slides = this.state.card_list.map((element, index) => {
+        let slides;
+        if (this.state.card_list.length > 0){
+            slides = this.state.card_list.map((element, index) => {
                     return (
                         <div onClick={(event) => {
                                 event.stopPropagation();
@@ -72,6 +67,10 @@ class ProfileCardList extends Component {
                         </div>
                         )
                 });
+        } else {
+            return (<p>You currently do not have any cards.</p>)
+        }
+
         return (
         <div className="ProfileCardList">
             <div className= "flexcontainer">

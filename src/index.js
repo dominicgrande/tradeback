@@ -29,5 +29,5 @@ render(
 		</div>
 	</Router>
 	</div>,
-	document.getElementById('root')
+	document.getElementById('app')
 );

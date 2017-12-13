@@ -6,7 +6,7 @@ import NavBarLogin from '../NavBarLogin/NavBarLogin.jsx'
 
 
 //Styling
-import './MiniNav.scss'
+import './MiniNav.css'
 
 // Auth
 import axios from 'axios'

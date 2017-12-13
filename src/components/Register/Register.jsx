@@ -3,7 +3,8 @@ import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import MiniNav from '../MiniNav/MiniNav.jsx'
-import styles from './Register.scss'
+import styles from './Register.css'
+
 var config = require('../../config');
 
 class Register extends Component {
@@ -13,7 +14,8 @@ class Register extends Component {
         this.state = {
             user: {
                 password: '',
-                username: ''
+                username: '',
+                fb_name: ''
             },
 
             message: ''
@@ -22,6 +24,7 @@ class Register extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeFacebookName = this.onChangeFacebookName.bind(this);
     }
 
     onSubmit(e) {
@@ -31,7 +34,8 @@ class Register extends Component {
         const name = encodeURIComponent(this.state.user.username);
         const username = encodeURIComponent(this.state.user.username);
         const password = encodeURIComponent(this.state.user.password);
-        const formData = `name=${name}&username=${username}&password=${password}`;
+        const fb_name = encodeURIComponent(this.state.user.fb_name);
+        const formData = `name=${name}&username=${username}&password=${password}&fb_name=${fb_name}`;
 
         // create an AJAX POST request (This should probably done with Axios instead)
         const xhr = new XMLHttpRequest();
@@ -69,6 +73,14 @@ class Register extends Component {
         })
     }
 
+    onChangeFacebookName(e){
+        const user = this.state.user;
+        user.fb_name = e.target.value;
+        this.setState({
+            user
+        })
+    }
+
     render() {
         return(
           <div className = "Register">
@@ -79,6 +91,8 @@ class Register extends Component {
                 <input type="text" onChange={this.onChangeUsername} placeholder="username"/>
                 <br/><br/>
                 <input type="password" onChange={this.onChangePassword} placeholder="password"/>
+                <br/><br/>
+                <input type="text" onChange={this.onChangeFacebookName} placeholder="Facebook User Name"/>
                 <p>{this.state.logged_in}</p>
                 <input className="button" type="submit" value="Register" />
                 <h4>Already have an account? <a href = "#/login">Log in!</a></h4>

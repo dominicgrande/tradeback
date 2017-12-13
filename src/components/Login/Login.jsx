@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+//import Nav from '../Nav/Nav.jsx'
 import MiniNav from '../MiniNav/MiniNav.jsx'
-import styles from './Login.scss'
+
+import styles from './Login.css'
 var config = require('../../config');
 
 class Login extends Component {

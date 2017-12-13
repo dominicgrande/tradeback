@@ -1,13 +1,10 @@
 .CardCreate .card {
-  text-align: left;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  border: 2px solid #ECECEC;
-  border-radius: 8px;
-  overflow: auto; }
+  position: relative;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; }
   .CardCreate .card input, .CardCreate .card label {
     display: block; }
   .CardCreate .card input {
@@ -15,7 +12,8 @@
     border-radius: 8px;
     padding: 10px; }
   .CardCreate .card label {
-    font-size: 0.9rem; }
+    font-size: 0.9rem;
+    font-weight: bold; }
   .CardCreate .card #title {
     float: left;
     border: none;
@@ -24,37 +22,36 @@
     background-color: #ECECEC; }
   .CardCreate .card #top-row {
     width: 100%;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between; }
     .CardCreate .card #top-row #image-area {
-      display: block; }
-      .CardCreate .card #top-row #image-area #image {
-        text-align: center; }
+      margin: 0 auto;
+      min-width: 256px; }
       .CardCreate .card #top-row #image-area canvas {
+        width: 256px;
+        height: 256px;
         background-color: #DEDEDE; }
-      .CardCreate .card #top-row #image-area p {
-        margin: 0 auto;
-        padding: 10px;
-        background-color: white; }
     .CardCreate .card #top-row #desc-area {
-      width: 100%;
+      flex-grow: 1;
+      position: relative;
       padding: 15px 15px 0 15px; }
       .CardCreate .card #top-row #desc-area textarea {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 256px;
         resize: none;
         border: none; }
       .CardCreate .card #top-row #desc-area #description {
-        height: 256px;
         border: 1.5px solid #ECECEC;
         line-height: 1.5em;
         border-radius: 8px; }
   .CardCreate .card #bottom-row {
     width: 100%;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px; }
     .CardCreate .card #bottom-row #label-area {

@@ -1,33 +1,36 @@
 .CardDetail {
 
-  body {
-    margin: 0 auto;
+  @media only screen and (max-width: 768px) {
+      /* For mobile phones: */
+      #card-pic {
+        min-width: 100vw;
+        min-height: 100vw;
+      }
   }
 
-    text-align: center;
+  text-align: center;
+
+  #card {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 5%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 
-    .wrapper {
-      // position: relative;
-    }
-
-    .header {
+    #header {
+      width: 100%;
+      margin-bottom: -30px;
       background-color: #787878;
       color: white;
-      position: absolute;
-      top: 140px;
-      width: 50%;
-      height: 80px;
+      padding: 14px 10px 10px 15px;
 
-      .title {
+      #title {
         float: left;
-        padding: 14px 10px 10px 15px;
       }
 
-      .author {
+      #author {
         float: right;
-        padding: 15px;
 
         a {
           color: white;
@@ -40,120 +43,109 @@
       }
     }
 
-    .card {
+    #info {
+      width: 100%;
       display: flex;
-      position:absolute;
-      height: 300px;
-      width: 50%;
-      margin-top: 195px;
-      //top: 21%;
-      left: 25%;
-      overflow: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
       background-color: #ECECEC;
 
-      .left {
-        order: 1;
-        flex-basis: auto;
+      #left {
 
-        .card-pic {
-          float:left;
-          background-color: #275AD7;
+        .cardbox {
+        //  height: 0;
+        //  width:100%;
+        //  padding-bottom:100%;
+          //width: 20vw;
+          //height: 20vw;
         }
 
+        #card-pic {
+        //  width: 100%;
+        //  padding-bottom: 50%;
+          width: 15vw;
+          height: 15vw;
+        }
       }
 
-      .right {
-        order: 1;
-        padding: .5rem;
+      #right {
+        padding-top: 5%;
+        padding-left: 50px;
+        position: relative;
+        margin: 0 auto;
 
-        .desc {
+        #desc {
           text-align: left;
-          padding: 10px;
-          max-height: 135px;
-          overflow: auto;
+          padding-bottom: 20px;
         }
 
-        .location {
-          text-align: left;
-          float: left;
-          padding: 10px;
+        #loc-date {
+          width: 100%;
 
-          .tags-box {
-
-            margin-top: 15px;
-
-              .detail-tags {
-                  display: inline;
-                  font-weight: bold;
-                  color: white;
-                  font-size: 12.5px;
-                  background-color: #275AD7;
-                  border: 2px solid #ECECEC;
-                  border-radius: 8px;
-                  margin-right: 9px;
-                  padding: 6px 8px 6px 8px;
-              }
-
-              .detail-tags:hover {
-                  background-color: #ECECEC;
-                  border: 2px solid #275AD7;
-                  color: #275AD7;
-              }
+          #location {
+            float: left;
+            text-align: left;
           }
 
+          #deadline {
+            float: right;
+            text-align: right;
+          }
         }
 
-        .deadline {
-          text-align: left;
-          float: right;
-          padding: 10px;
-        }
 
       }
 
-    }
+      #tags-box {
+        margin: 15px;
 
-    .offer {
-    //  position:absolute;
+        .detail-tags {
+            display: inline;
+            font-weight: bold;
+            color: white;
+            font-size: 12.5px;
+            background-color: #275AD7;
+            border: 2px solid #ECECEC;
+            border-radius: 8px;
+            margin-right: 9px;
+            padding: 6px 8px 6px 8px;
+        }
+
+        .detail-tags:hover {
+            background-color: #ECECEC;
+            border: 2px solid #275AD7;
+            color: #275AD7;
+        }
+      }
+    }
+  }
+
+  .offer {
     position: relative;
-    //  margin-bottom: 100px;
-      margin-top: 540px;
-      height: 300px;
-      width: 100%;
-    //  bottom: 0;
+    width: 100%;
+    margin-top: 18px;
 
     p {
       padding: 8px;
     }
 
-      .button {
-        padding: 15px 30px;
-        border-radius: 8px;
-        width: 230px;
-        text-align: center;
-        margin: 0 auto;
-        color: white;
-        border: 2px solid white;
-        background-color: #275AD7;
-      }
-
-      .button:hover {
-        background-color: white;
-        color: #275AD7;
-        border: 2px solid #275AD7;
-      }
-
+    .button {
+      padding: 15px 30px;
+      border-radius: 8px;
+      width: 230px;
+      text-align: center;
+      margin: 0 auto;
+      color: white;
+      border: 2px solid white;
+      background-color: #275AD7;
     }
 
+    .button:hover {
+      background-color: white;
+      color: #275AD7;
+      border: 2px solid #275AD7;
+    }
 
-
-
-
-
-
-
-
-
-
-
+  }
 }

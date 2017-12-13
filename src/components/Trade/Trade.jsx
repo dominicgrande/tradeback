@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MiniCard from '../MiniCard/MiniCard.jsx'
-import './Trade.scss'
+import './Trade.css'
 
 class Trade extends Component {
 	constructor(props) {
@@ -23,9 +23,10 @@ class Trade extends Component {
 					id = {this.state.trade.userOneCardObject._id}
 					tags = {this.state.trade.userOneCardObject.tags}
 					/>
-				<div class = "info">
+				<div className = "info">
 					<p>
-						<a href = {"#/profile/" + this.state.trade.cardOneOwner}>{this.state.trade.cardOneOwner}</a> traded with
+						<a href = {"#/profile/" + this.state.trade.cardOneOwner}>{this.state.trade.cardOneOwner} </a> 
+						traded with
 						<a href = {"#/profile/" + this.state.trade.cardTwoOwner}> {this.state.trade.cardTwoOwner}</a>
 					</p>
 				</div>

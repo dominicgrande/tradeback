@@ -4,7 +4,6 @@
     display: flex;
     margin: 0 auto;
     flex-wrap: wrap;
-    align-items: flex-start;
     width: 1000px; }
   .ProfileCardList .cancel {
     padding: 15px 30px;

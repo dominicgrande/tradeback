@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './TradePage.scss'
+import './TradePage.css'
 
 class TradePage extends Component {
 	constructor(props) {

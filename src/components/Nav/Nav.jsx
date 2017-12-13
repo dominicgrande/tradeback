@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-
-import './Nav.scss'
-
-//React component imports
 import NavBarLogin from '../NavBarLogin/NavBarLogin.jsx'
-
-//Auth
 import axios from 'axios'
+import './Nav.css'
+
 axios.defaults.withCredentials = true;
 var config = require('../../config');
 

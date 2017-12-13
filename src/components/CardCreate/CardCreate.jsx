@@ -1,17 +1,16 @@
 import React, {Component} from 'react'
 //import { Header, Divider, Input, Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 import MiniNav from '../MiniNav/MiniNav.jsx'
-import styles from './CardCreate.scss'
-import TradePage from '../TradePage/TradePage.jsx'
+import styles from './CardCreate.css'
 import {withRouter} from 'react-router'
 import AWS from 'aws-sdk';
 import resizeImage from 'resize-image';
 import axios from 'axios'
-
 axios.defaults.withCredentials = true;
 
 const config = require('../../config');
 const imgur_post_path = "https://api.imgur.com/3/image";
+
 
 const AWS_SETTINGS = config.aws;
 
@@ -34,7 +33,7 @@ class CardCreate extends Component {
     }
 
     componentWillMount() {
-        axios.get(config.api_endpoint+'/auth/profile').then((res) => {
+        axios.get('http://localhost:3000/auth/profile').then((res) => {
             console.log(res);
             this.setState({isLoggedIn: true, username: res.data.user.username})
         }).catch((err) => {
@@ -183,18 +182,15 @@ class CardCreate extends Component {
         return (
           <div className="CardCreate">
             <MiniNav />
-            <div className="card">
+            <div className="card col-6">
               <input type="text" id="title" placeholder="Enter Card Title"/>
-              <br/><br/>
               <div id = "top-row">
-                  <div id = "image-area">
-                      <div id="image">
-                            <canvas id='image-canvas' width={256} height={256}></canvas>
-                      </div>
+                  <div id = "image-area" className = "">
+                      <canvas id='image-canvas'></canvas>
                       <input type="file" accept="image/jpeg" id="image-upload" onChange={this.handleUpload}/> 
                   </div>
 
-                  <div id="desc-area">
+                  <div id="desc-area" className = "">
                     <label> Describe the card and any requirements you have.
                       <br/><br/>
                       <div id = "description">

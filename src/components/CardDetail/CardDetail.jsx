@@ -11,8 +11,9 @@ import {
 import MiniNav from '../MiniNav/MiniNav.jsx'
 import MakeOffer from './MakeOffer/MakeOffer.jsx'
 
-import styles from './CardDetail.scss'
+import styles from './CardDetail.css'
 import TradePage from '../TradePage/TradePage.jsx'
+import PendingOffers from './PendingOffers/PendingOffers.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -27,10 +28,14 @@ class CardDetail extends Component {
             id: props.id,
             usercard: {},
             isLoggedIn: false,
-            username: ""
+            username: "",
+            isOwner: true,
+            currentOffers: [],
+            hasLoaded: false
         }
 
         this.makeOffer = this.makeOffer.bind(this);
+        this.pendingOffers = this.pendingOffers.bind(this);
     }
 
     componentWillMount() {
@@ -44,11 +49,8 @@ class CardDetail extends Component {
         let _this = this;
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
-            console.log(res);
             this.setState({isLoggedIn: true, username: res.data.user.username});
         }).catch((err) => {
-            console.log(err);
-            console.log("Not logged in");
             this.setState({isLoggedIn: false})
         });
     }
@@ -69,8 +71,21 @@ class CardDetail extends Component {
         // Get User data
         console.log(this.state.id);
         axios.get(endpoint + '/api/card/' + '?id=' + this.state.id).then(function(response) {
-            console.log(response.data);
-            _this.setState({usercard: response.data.data});
+            const isOwner = response.data.data.author === _this.state.username;
+            _this.setState({usercard: response.data.data, isOwner});
+        });
+        axios.get(endpoint + '/api/trades/' + '?includeCard=' + this.state.id).then((response) => {
+            const offerList = response.data.data;
+            console.log(offerList);
+            offerList.forEach((offer) => {
+                axios.get(endpoint + '/api/card/' + '?id=' + offer.userOneCard).then((res) => {
+                    let currentOffers = _this.state.currentOffers;
+                    console.log(res);
+                    console.log(res.data.data);
+                    currentOffers.push(res.data.data);
+                    _this.setState({currentOffers, hasLoaded:true});
+                });
+            });
         });
     }
 
@@ -98,6 +113,19 @@ class CardDetail extends Component {
         }
     }
 
+    /*
+    <PendingOffers offers={this.state.currentOffers} />
+    */
+    pendingOffers(){
+        console.log("Detail username " + this.state.username);
+        return (
+            <div className="pendingOffer">
+                <br/><br/>
+                <h3>Pending Offer List</h3>
+                {this.state.currentOffers.length === 0 ? <h2>No current offers :(</h2> : <PendingOffers offers={this.state.currentOffers} sourceId={this.state.id} username={this.state.username}/>}
+            </div>
+        );
+    }
     deadlineLogic(){
         if (this.state.deadline){
 
@@ -105,8 +133,8 @@ class CardDetail extends Component {
     }
 
     render() {
-        let deadline = this.state.usercard.deadline
-        let tags = this.state.usercard.tags;
+        let { deadline, tags } = this.state.usercard;
+        let { isOwner, hasLoaded } = this.state;
         if (deadline !== undefined) {
             if (deadline !== null) {
                 deadline = deadline.substring(0, 10);
@@ -116,44 +144,47 @@ class CardDetail extends Component {
         } else {
             deadline = "None";
         }
-        if (tags == undefined) {
+        if (tags === undefined) {
           tags = [];
         }
-        return (<div className="CardDetail">
-            <MiniNav/>
-            <div className="header">
-                <h2 className="title">{this.state.usercard.title}</h2>
-                <p className="author">
-                    <a href={"#/profile/" + this.state.usercard.author}>{this.state.usercard.author}</a>
-                </p>
-            </div>
-            <Divider hidden/>
-            <div className="wrapper">
-                <div className="card">
-                    <div className="left">
-                        <img className="card-pic" src={this.state.usercard.image} height="300" width="300"/>
-                    </div>
-                    <div className="right">
-                        <p className="desc">{this.state.usercard.description}</p>
-                        <div className="location">
-                            <h3>Location</h3>
-                            <p>{this.state.usercard.location}</p>
-                            <div className="tags-box">
+        return (
+            <div className="CardDetail">
+                <MiniNav/>
+                <div id = "card" className = "col-6">
+                    <section id="header">
+                        <h2 id="title">{this.state.usercard.title}</h2>
+                        <p id="author">
+                            <a href={"#/profile/" + this.state.usercard.author}>{this.state.usercard.author}</a>
+                        </p>
+                    </section>
+                    <Divider hidden/>
+                    <section id="info">
+                        <div id="left" className = "col-3">
+                          <div className="cardbox">
+                            <img id="card-pic" src={this.state.usercard.image}/>
+                          </div>
+                        </div>
+                        <div id="right" className = "col-8">
+                            <p id="desc">{this.state.usercard.description}</p>
+                            <div id = "loc-date">
+                                <div id="location">
+                                    <h3>Location</h3>
+                                    <p>{this.state.usercard.location}</p>
+                                </div>
+                                <div id="deadline">
+                                    <h3>Deadline</h3>
+                                    <p>{deadline}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tags-box">
                             {tags.map((element, index) => {
                               return (<p className="detail-tags">#{element}</p>);
                             })}
-                            </div>
                         </div>
-                        <div className="deadline">
-                            <h3>Deadline</h3>
-                            <p>{deadline}</p>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-            </div>
-            {
-                this.makeOffer()
-            }
+            {(isOwner)?this.pendingOffers():this.makeOffer()}
         </div>)
     }
 }
