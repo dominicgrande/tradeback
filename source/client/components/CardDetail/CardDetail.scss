@@ -37,11 +37,8 @@
         a:hover {
           text-decoration: underline;
         }
-
       }
-
     }
-
 
     .card {
       display: flex;
@@ -80,6 +77,30 @@
           text-align: left;
           float: left;
           padding: 10px;
+
+          .tags-box {
+
+            margin-top: 15px;
+
+              .detail-tags {
+                  display: inline;
+                  font-weight: bold;
+                  color: white;
+                  font-size: 12.5px;
+                  background-color: #275AD7;
+                  border: 2px solid #ECECEC;
+                  border-radius: 8px;
+                  margin-right: 9px;
+                  padding: 6px 8px 6px 8px;
+              }
+
+              .detail-tags:hover {
+                  background-color: #ECECEC;
+                  border: 2px solid #275AD7;
+                  color: #275AD7;
+              }
+          }
+
         }
 
         .deadline {
@@ -87,13 +108,6 @@
           float: right;
           padding: 10px;
         }
-
-        .tags {
-          p {
-            display: inline;
-          }
-        }
-
 
       }
 
