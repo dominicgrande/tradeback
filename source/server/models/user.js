@@ -10,7 +10,10 @@ var userSchema = mongoose.Schema({
     cards         : [String],
     trades        : [String],
     profile       : String,
-    profile_image : String
+    profile_image : {
+        type: String, 
+        default: 'https://s3-us-west-2.amazonaws.com/cs498rk-images/prof_pic_orig.png'
+    }
 });
 
 userSchema.methods.generateHash = function(password) {
