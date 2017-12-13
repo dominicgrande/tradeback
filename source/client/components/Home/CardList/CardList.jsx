@@ -38,6 +38,7 @@ class CardList extends Component {
         axios.get(end_point + '/api/cards'+'?where={"offer": '+offer_boolean+'}').then(function(response) {
             console.log(response.data.data);
             _this.setState({card_list: response.data.data, filtered_list: response.data.data});
+            document.getElementById('search').value = "";
         }).catch(function(error) {
             console.log(error);
         });
@@ -67,7 +68,11 @@ class CardList extends Component {
         //Filter the list
         input.forEach(str => {
             result = result.filter( element => {
-                return element.title.toLowerCase().includes(str)
+                let searchTerm = element.title;
+                element.tags.forEach( tag => {
+                    searchTerm += " " + tag;
+                })
+                return searchTerm.toLowerCase().includes(str)
             })
         })
 
@@ -86,7 +91,7 @@ class CardList extends Component {
     render() {
         return (<div className="OfferList">
             <form className="bar">
-                <input className="search" type="text" name="search" placeholder="Search" onChange = {this.search}/>
+                <input id="search" type="text" name="search" placeholder="Search" onChange = {this.search}/>
             </form>
             <h4 className="trending">TRENDING</h4>
             <p className="tags">#tutoring</p>
