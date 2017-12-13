@@ -17,10 +17,11 @@ module.exports = function(passport) {
 
     // Registration Strategy
     passport.use('local-signup', new LocalStrategy({
+            passReqToCallback: true,
             usernameField: 'username',
-            passwordField: 'password',
+            passwordField: 'password'
         },
-        function(username, password, done) {
+        function(req, username, password, done, val) {
             User.findOne({
                 'username': username
             }, function(err, user) {
@@ -31,8 +32,13 @@ module.exports = function(passport) {
                 } else {
                     var newUser = new User();
 
+                    if (!req.body.fb_name){
+                        return done(null);
+                    }
+
                     newUser.username = username;
                     newUser.password = newUser.generateHash(password);
+                    newUser.fb_name = req.body.fb_name
 
                     newUser.save(function(err) {
                         console.log(err);

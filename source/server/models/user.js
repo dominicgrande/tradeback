@@ -13,7 +13,8 @@ var userSchema = mongoose.Schema({
     profile_image : {
         type: String, 
         default: 'https://s3-us-west-2.amazonaws.com/cs498rk-images/prof_pic_orig.png'
-    }
+    },
+    fb_name: String
 });
 
 userSchema.methods.generateHash = function(password) {

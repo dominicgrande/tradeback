@@ -353,7 +353,7 @@ class Profile extends Component {
                 <h2 className="username">{this.state.user.username}</h2>
                 <h3 className="location">{this.state.user.location}</h3>
                 <p className="description">{this.state.user.description}</p>
-                {/*<div className="tags">{this.state.user.tags}</div>*/}
+                <a href={'http://www.m.me/'+this.state.user.fb_name}  target="_blank"><img className='fb-link' src='https://en.facebookbrand.com/wp-content/uploads/2016/09/messenger_icon2.png'/></a>
               </div>
             <Tab className="activity col-8" menu = {{secondary:true, pointing: true}} panes={this.state.panes}/>
           </div>
