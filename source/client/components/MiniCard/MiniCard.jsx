@@ -15,12 +15,13 @@ class MiniCard extends Component {
             id: props.id,
             title: props.title,
             description: props.description,
-            img: props.img
+            img: props.img,
+            tags: props.tags
         }
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({title: newProps.title, description: newProps.description, img: newProps.img, id: newProps.id});
+        this.setState({title: newProps.title, description: newProps.description, img: newProps.img, id: newProps.id, tags: newProps.tags});
     }
 
     switch_to_detailed() {
@@ -34,8 +35,10 @@ class MiniCard extends Component {
             <div className="mini-card" onClick={this.switch_to_detailed.bind(this)}>
                 <img src={this.state.img}/>
                 <div className="desc">
-                    <p>
-                        {this.state.description}
+                    <p>{this.state.description}
+                    {this.state.tags.map((element, index) => {
+                      return (<p>#{element}</p>);
+                    })}
                     </p>
                 </div>
                 <div className="title">
