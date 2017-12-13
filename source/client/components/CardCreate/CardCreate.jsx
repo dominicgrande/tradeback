@@ -81,27 +81,28 @@ class CardCreate extends Component {
             <MiniNav />
             <div className="card">
               <input type="text" id="title" placeholder="Enter Card Title"/>
-              <br/><br/>
               <div id="image"><p>Upload image</p></div>
               <div id="desc-area">
-                <label id = "desc-label"> Describe the card and any requirements you have.
+                <label> Describe the card and any requirements you have.
                   <br/><br/>
-                  <textarea id="description" placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+                  <div id = "description">
+                    <textarea placeholder="Example: I’m looking for someone with experience tutoring college students in advanced calculus. Must be available weekly Monday nights. "/>
+                  </div>
                 </label>
               </div>
-              <br/><br/>
-              <label className="location-label"> Your task location
-                <br/><br/>
-                <input type="text" id="location" placeholder="Champaign, IL"/>
-              </label>
-              <label className="deadline-label"> Date/Deadline (if applicable)
-                <br/><br/>
-                <input type="text" id="deadline" placeholder="ASAP"/>
-              </label>
-              <div className="submission">
-                <input className="offerButton" onClick={this.handleOffer} type="submit" value="Offer" />
-                <br/>
-                <input className="requestButton" onClick={this.handleRequest} type="submit" value="Request" />
+
+              <div id = "label-area">
+                <label id = "location"> Your task location
+                  <input type="text" placeholder="Champaign, IL"/>
+                </label>
+                <label id = "deadline"> Date/Deadline (if applicable)
+                  <input type="text" placeholder="ASAP"/>
+                </label>
+              </div>
+
+              <div id="submission">
+                <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
+                <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
               </div>
           </div>
 
