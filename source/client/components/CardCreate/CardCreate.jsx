@@ -178,7 +178,7 @@ class CardCreate extends Component {
     } 
 
     render() {
-
+        let currDate = new Date().toISOString().substring(0, 10);
         return (
           <div className="CardCreate">
             <MiniNav />
@@ -208,8 +208,8 @@ class CardCreate extends Component {
                   <label id = "location"> Your task location
                     <input id="location-input" type="text" placeholder="Champaign, IL"/>
                   </label>
-                  <label id = "deadline"> Date/Deadline (if applicable)
-                    <input id = "deadline-input" type="text" placeholder="ASAP"/>
+                  <label id = "deadline"> Deadline (if applicable)
+                    <input id = "deadline-input" type="date" min = {currDate}/>
                   </label>
                 </div>
 

@@ -98,6 +98,10 @@
         #deadline {
           margin-top: 12px;
         }
+
+        #deadline-input::-webkit-inner-spin-button {
+          display: none;
+        }
       }
 
       #tag-area {
