@@ -13,6 +13,7 @@ import MakeOffer from './MakeOffer/MakeOffer.jsx'
 
 import styles from './CardDetail.scss'
 import TradePage from '../TradePage/TradePage.jsx'
+import PendingOffers from './PendingOffers/PendingOffers.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -27,10 +28,14 @@ class CardDetail extends Component {
             id: props.id,
             usercard: {},
             isLoggedIn: false,
-            username: ""
+            username: "",
+            isOwner: true,
+            currentOffers: [],
+            hasLoaded: false
         }
 
         this.makeOffer = this.makeOffer.bind(this);
+        this.pendingOffers = this.pendingOffers.bind(this);
     }
 
     componentWillMount() {
@@ -44,11 +49,8 @@ class CardDetail extends Component {
         let _this = this;
         // Check login
         axios.get(endpoint + '/auth/profile').then((res) => {
-            console.log(res);
             this.setState({isLoggedIn: true, username: res.data.user.username});
         }).catch((err) => {
-            console.log(err);
-            console.log("Not logged in");
             this.setState({isLoggedIn: false})
         });
     }
@@ -69,8 +71,21 @@ class CardDetail extends Component {
         // Get User data
         console.log(this.state.id);
         axios.get(endpoint + '/api/card/' + '?id=' + this.state.id).then(function(response) {
-            console.log(response.data);
-            _this.setState({usercard: response.data.data});
+            const isOwner = response.data.data.author === _this.state.username;
+            _this.setState({usercard: response.data.data, isOwner});
+        });
+        axios.get(endpoint + '/api/trades/' + '?includeCard=' + this.state.id).then((response) => {
+            const offerList = response.data.data;
+            console.log(offerList);
+            offerList.forEach((offer) => {
+                axios.get(endpoint + '/api/card/' + '?id=' + offer.userOneCard).then((res) => {
+                    let currentOffers = _this.state.currentOffers;
+                    console.log(res);
+                    console.log(res.data.data);
+                    currentOffers.push(res.data.data);
+                    _this.setState({currentOffers, hasLoaded:true});
+                });
+            });
         });
     }
 
@@ -98,6 +113,18 @@ class CardDetail extends Component {
         }
     }
 
+    /*
+    <PendingOffers offers={this.state.currentOffers} />
+    */
+    pendingOffers(){
+        console.log(this.state.currentOffers);
+        return (
+            <div className="pendingOffer">
+                <h3>Pending Offer List</h3>
+                <PendingOffers offers={this.state.currentOffers} sourceId={this.state.id} />
+            </div>
+        );
+    }
     deadlineLogic(){
         if (this.state.deadline){
 
@@ -105,8 +132,8 @@ class CardDetail extends Component {
     }
 
     render() {
-        let deadline = this.state.usercard.deadline
-        let tags = this.state.usercard.tags;
+        let { deadline, tags } = this.state.usercard;
+        let { isOwner, hasLoaded } = this.state;
         if (deadline !== undefined) {
             if (deadline !== null) {
                 deadline = deadline.substring(0, 10);
@@ -154,11 +181,8 @@ class CardDetail extends Component {
                         </div>
                     </section>
                 </div>
-                {
-                    this.makeOffer()
-                }
-            </div>
-        )
+            {(isOwner)?this.pendingOffers():this.makeOffer()}
+        </div>)
     }
 }
 

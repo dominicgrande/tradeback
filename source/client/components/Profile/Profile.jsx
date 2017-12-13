@@ -98,6 +98,7 @@ class Profile extends Component {
         });
 
         axios.get(endpoint + '/api/user-cards/' + '?username=' + this.state.username).then(function(response) {
+          console.log(response);
             _this.setState({usercards: response.data.data});
         });
 

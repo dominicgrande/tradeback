@@ -1,3 +1,4 @@
+'use strict'
 Trade/**
  * @file Handles GET and POST of the /api/users endpoint
  * @author Kevin Wang
@@ -17,13 +18,11 @@ module.exports = function(router) {
             console.log(req.query.includeCard)
             payload = Trade.find(
                 {
-                    $or:[
-                        {userOneCard: req.query.includeCard, userTwoSatisfied: false}, 
-                        {userTwoCard: req.query.includeCard, userTwoSatisfied: false}
-                    ]
+                    userTwoCard: req.query.includeCard, userOneSatisfied: false
                 }
             );
-        } else {
+        } 
+        else {
             payload = Trade.find({});            
         }
 
@@ -98,7 +97,9 @@ module.exports = function(router) {
                 userTwoCard   : req.body.userTwoCard,
                 cardOneOwner  : req.body.cardOneOwner,
                 cardTwoOwner  : req.body.cardTwoOwner,
-                dateCompleted : null
+                userOneSatisfied : req.body.userOneSatisfied,
+                userTwoSatisfied : req.body.userTwoSatisfied,
+                dateCompleted : req.body.dateCompleted || null
             }, function(err, trade) {
                 if (err) {
                     res.status(500).json({
@@ -113,6 +114,31 @@ module.exports = function(router) {
                 }
             });
         }
+    });
+
+    
+    url.put(function (req, res) {
+        if (!req.isAuthenticated()) {
+            res.status(403).json({message: "Please login"});
+            return;
+        }
+        Trade.update({ $or:[
+                            {userOneCard : req.query.includeCard},
+                            {userTwoCard : req.query.includeCard}
+                            ]}, {userOneSatisfied: true, userTwoSatisfied: req.body.userTwoSatisfied}, {multi: true}, function(err, raw) {
+            if (err) {
+                res.status(500).json({
+                    message: 'Failed to PUT trade',
+                    data: err
+                });
+            } else {
+                res.status(200).json({
+                    message: 'Successfully PUT trade',
+                    data: err
+                });
+            }
+        })
+
     });
 
     return router;

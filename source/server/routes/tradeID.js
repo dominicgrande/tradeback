@@ -79,7 +79,7 @@ module.exports = function(router) {
                 });
             } else {
                 res.status(201).json({
-                    message: "Succcessful POST Card",
+                    message: "Successful POST Card",
                     data: card,
                 });
             }

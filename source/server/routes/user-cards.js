@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @file Defines route to fetch trades for current logged in users
  * @name server.user-cards.js
@@ -29,9 +30,10 @@ module.exports = function(router, passport) {
     url.get(function(req, res) {
         let query;
         if (req.query.type){
+
             query = Card.find({author: req.query.username, offer: req.query.type});            
         } else {
-            query = Card.find({author: req.query.username});
+            query = Card.find({author: req.query.username, status: {$lt: 1}});
         }
 
           query.exec(function(err, cards) {
