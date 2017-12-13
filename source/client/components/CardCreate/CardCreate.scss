@@ -46,8 +46,11 @@
         display: block;
 
         #image {
-          background-color: #DEDEDE;
           text-align: center;
+        }
+
+        canvas {
+          background-color: #DEDEDE;
         }
 
         p {
