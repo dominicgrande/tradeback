@@ -1,3 +1,4 @@
+"use strict"
 /**
  * @file Defines route to fetch trades for current logged in users
  * @name server.user-trades.js
@@ -28,6 +29,7 @@ module.exports = function(router, passport) {
  * @description Retrieve a list of trades for a specific user
  */
     url.get(function(req, res) {
+
         let queryOne = Trade.find({cardOneOwner: req.query.username});
         queryOne.exec()
         .then(function(trades){

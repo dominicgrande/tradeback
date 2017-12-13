@@ -13,6 +13,7 @@ import MakeOffer from './MakeOffer/MakeOffer.jsx'
 
 import styles from './CardDetail.scss'
 import TradePage from '../TradePage/TradePage.jsx'
+import ProfileCardList from '../Profile/ProfileCardList/ProfileCardList.jsx'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true;
@@ -27,10 +28,25 @@ class CardDetail extends Component {
             id: props.id,
             usercard: {},
             isLoggedIn: false,
-            username: ""
+            username: "",
+            isOwner: true,
+            currentOffers: [
+            {
+                id: "Card 1",
+                description: "Sample Offer",
+                img: "",
+                title: "Card 1"
+            },
+            {
+                id: "Card 2",
+                description: "Sample Offer",
+                img: "",
+                title: "Card 2"
+            }]
         }
 
         this.makeOffer = this.makeOffer.bind(this);
+        this.pendingOffers = this.pendingOffers.bind(this);
     }
 
     componentWillMount() {
@@ -70,7 +86,9 @@ class CardDetail extends Component {
         console.log(this.state.id);
         axios.get(endpoint + '/api/card/' + '?id=' + this.state.id).then(function(response) {
             console.log(response.data);
-            _this.setState({usercard: response.data.data});
+            const isOwner = response.data.data.author === _this.state.username;
+            console.log(isOwner)
+            _this.setState({usercard: response.data.data, isOwner});
         });
     }
 
@@ -101,8 +119,17 @@ class CardDetail extends Component {
         }
     }
 
+    pendingOffers(){
+        return (
+            <div className="pendingOffer">
+                <PendingOffers offers={this.state.currentOffers} />
+            </div>
+        );
+    }
+
     render() {
-        let deadline = this.state.usercard.deadline
+        let deadline = this.state.usercard.deadline;
+        let isOwner = this.state.isOwner;
         if (deadline !== undefined) {
             deadline = deadline.substring(0, 10)
         }
@@ -133,9 +160,7 @@ class CardDetail extends Component {
                     </div>
                 </div>
             </div>
-            {
-                this.makeOffer()
-            }
+            {isOwner?this.pendingOffers():this.makeOffer()}
         </div>)
     }
 }

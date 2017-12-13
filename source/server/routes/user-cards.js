@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @file Defines route to fetch trades for current logged in users
  * @name server.user-cards.js
