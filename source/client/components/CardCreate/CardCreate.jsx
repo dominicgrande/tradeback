@@ -17,12 +17,15 @@ class CardCreate extends Component {
         super(props)
         this.state = {
             username: "",
+            tags: [],
             imageUploaded: false, 
             imageUrl: ""
         }
         this.handleOffer = this.handleOffer.bind(this);
         this.handleRequest = this.handleRequest.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
+        this.addTag = this.addTag.bind(this);
+        this.removeTag = this.removeTag.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
         this.dataURItoBlob = this.dataURItoBlob.bind(this);
     }
@@ -103,6 +106,7 @@ class CardCreate extends Component {
     handleSubmission(value, imgur_url) {
         axios.post(config.api_endpoint + '/api/cards', {
             title: document.getElementById('title').value,
+            tags: this.state.tags,
             description: document.getElementById('description-input').value,
             image: imgur_url,
             location: document.getElementById('location-input').value,
@@ -110,6 +114,35 @@ class CardCreate extends Component {
             offer: value,
             author: this.state.username
         });
+    }
+
+    removeTag(e) {
+      let parent = e.target.parentNode;
+      let tag = e.target.innerHTML;
+      parent.removeChild(e.target);
+
+      let index = this.state.tags.indexOf(tag);
+      this.setState({tag: this.state.tags.splice(index, 1)})
+    }
+
+    addTag(e) {
+      let key = e.which
+      if (key === 13) { // 13 is enter
+        let input = e.target.value.trim();
+        if (input.length === 0) {
+          return;
+        }
+
+        let tagBox = document.getElementById('tag-box')
+        let tag = document.createElement("span");
+        tag.className = "tags";
+        tag.addEventListener('click', this.removeTag)
+        tag.innerHTML = input;
+        tagBox.appendChild(tag);
+        e.target.value = '';
+
+        this.setState({tags: this.state.tags.concat(input)})
+      }
     }
 
     //Cited from 
@@ -166,18 +199,27 @@ class CardCreate extends Component {
                 </label>
               </div>
 
-              <div id = "label-area">
-                <label id = "location"> Your task location
-                  <input id="location-input" type="text" placeholder="Champaign, IL"/>
-                </label>
-                <label id = "deadline"> Date/Deadline (if applicable)
-                  <input id = "deadline-input" type="text" placeholder="ASAP"/>
-                </label>
-              </div>
+              <div id = "bottom-row">
+                <div id = "label-area">
+                  <label id = "location"> Your task location
+                    <input id="location-input" type="text" placeholder="Champaign, IL"/>
+                  </label>
+                  <label id = "deadline"> Date/Deadline (if applicable)
+                    <input id = "deadline-input" type="text" placeholder="ASAP"/>
+                  </label>
+                </div>
 
-              <div id="submission">
-                <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
-                <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
+                <div id = "tag-area">
+                  <label>Tags
+                    <input type = "text" id = "tag-input" onKeyPress = {this.addTag}/>
+                  </label>
+                  <div id = "tag-box"></div>
+                </div>
+
+                <div id="submission">
+                  <input className="submit-button" onClick={this.handleOffer} type="submit" value="Offer" />
+                  <input className="submit-button" onClick={this.handleRequest} type="submit" value="Request" />
+                </div>
               </div>
           </div>
         </div>)

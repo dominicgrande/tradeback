@@ -1,6 +1,7 @@
 .CardCreate {
 
   $image-height: 256px;
+  $card-background-color: none;
 
   .card {
     text-align: left;
@@ -9,10 +10,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    max-height: 70%;
-    overflow: auto;
     border: 2px solid #ECECEC;
     border-radius: 8px;
+    overflow: auto;
 
     input, label {
       display: block;
@@ -21,7 +21,7 @@
     input {
       border: 1.5px solid #ECECEC;
       border-radius: 8px;
-      padding: 8px;
+      padding: 10px;
     }
 
     label {
@@ -78,44 +78,79 @@
       height: 205px;
     }
 
-    #label-area {
-      float: left;
-      margin-top: 20px;
-      padding: 10px;
-      font-size: 0.9rem;
-      display: inline-block;
+    #bottom-row {
+      width: 100%;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
 
-      #location {
+      #label-area {
         float: left;
-        margin-right: 8px;
+        
+        font-size: 0.9rem;
+        display: inline-block;
       }
 
-      #deadline {
-        float: left;
+      #tag-area {
+        flex: 0 0 40%;
+
+        #tag-input {
+          width: 100%;
+        }
+
+        #tag-box {
+          width: 100%;
+          margin-top: 8px;
+          display: inline-flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+        }
+
+        .tags {
+          display: inline;
+          font-weight: bold;
+          color: white;
+          font-size: 12.5px;
+          background-color: #275AD7;
+          border: 2px solid white;
+          border-radius: 8px;
+          padding: 6px 8px 6px 8px;
+        }
+
+        .tags:hover {
+          background-color: white;
+          opacity: 0.5;
+          border: 2px solid #275AD7;
+          color: #275AD7;
+        }
+
+        .tags:hover:before {
+          content: "x ";
+          color: red;
+        }
+      }
+
+      #submission {
+        float: right;
+
+        .submit-button {
+          margin-top: 8px;
+          width: 150px;
+          padding: 10px 20px 10px 20px;
+          border: 2px solid white;
+          background-color: #275AD7;
+          font-family: 'Cubano';
+          color: white;
+        }
+
+        .submit-button:hover {
+          color: #275AD7;
+          border: 2px solid #275AD7;
+          background-color: white;
+        }
       }
     }
-
-    #submission {
-      float: right;
-      margin: 10px;
-
-      .submit-button {
-        margin-top: 8px;
-        width: 150px;
-        padding: 10px 20px 10px 20px;
-        border: 2px solid white;
-        background-color: #275AD7;
-        font-family: 'Cubano';
-        color: white;
-      }
-
-      .submit-button:hover {
-        color: #275AD7;
-        border: 2px solid #275AD7;
-        background-color: white;
-      }
-    }
-
   }
 
 }
