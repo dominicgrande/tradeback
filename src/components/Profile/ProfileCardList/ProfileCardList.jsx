@@ -48,6 +48,7 @@ class ProfileCardList extends Component {
 
     render() {
         const { showAll, selected } = this.state;
+        let _this = this;
         let slides;
         if (this.state.card_list.length > 0){
             slides = this.state.card_list.map((element, index) => {
